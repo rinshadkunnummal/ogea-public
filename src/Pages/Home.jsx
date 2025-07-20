@@ -1,0 +1,65 @@
+import React, { useState, useEffect } from 'react'
+import Button from '../Components/Button/Button.jsx'
+import { posters } from '../assets/posters/posters.js'
+import Loader from '../Components/Loader/Loader.jsx'
+
+const Home = () => {
+    const [loading, setLoading] = useState(true)
+
+    // Simulate initial loading
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setLoading(false)
+        }, 1200) // 1.2 second loading simulation
+
+        return () => clearTimeout(timer)
+    }, [])
+
+    // Show loader during initial loading
+    if (loading) {
+        return (
+            <div className="home-page flex justify-center items-center min-h-[400px]">
+                <div className="text-center">
+                    <Loader />
+                </div>
+            </div>
+        )
+    }
+
+    return (
+        <div className="home-page py-3 flex flex-col items-center justify-center gap-5">
+            <h1 className="text-3xl sm:text-4xl pt-3.5 text-black font-semibold font-poppins grid grid-cols-1 lg:grid-cols-2 items-center leading-[25px] sm:leading-8 lg:flex-row lg:text-5xl gap-2">Showcasing Students <br />
+                <span className="text-4xl sm:text-5xl lg:text-5xl text-[#413dfa] "> Voices and Visuals</span>
+            </h1>
+            <Button className={'mb-4 px-4 py-2 rounded-md bg-[#23272c] text-gray-100'}>
+                <a href="https://drive.google.com/drive/folders/1z-Q5CfkDy-2D0T9tDwXYXL6Uv1jrkkSk?usp=drive_link" className="text-white" target="_blank">   Trace Your Programmes</a>
+            </Button>
+            <div className="px-3 rounded-lg flex flex-col gap-2">
+                <h2 className="text-2xl font-medium text-center mb-2 text-black font-poppins">Latest Achievements</h2>
+                {/* Posters Grid */}
+                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    {posters.slice(-4).map((poster) => (
+                        <div key={poster.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                            <img
+                                src={poster.image}
+                                alt={`Poster ${poster.id}`}
+                                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                            />
+                        </div>
+                    ))}
+                </div>
+
+                {/* Empty State */}
+                {posters.length === 0 && (
+                    <div className="text-center py-12">
+                        <div className="text-gray-600 text-xl mb-4">No posters found</div>
+                        <p className="text-gray-500">Posters will be displayed here once they are added.</p>
+                    </div>
+                )}
+            </div>
+
+        </div>
+    )
+}
+
+export default Home
