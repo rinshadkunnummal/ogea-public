@@ -26,7 +26,7 @@ const Contact = () => {
   }
 
   return (
-    <div className="contact-page flex  items-center justify-center flex-col p-6 leading-normal">
+    <div className="contact-page flex  items-center justify-center flex-col leading-normal p-3 sm:p-6">
       <h1 className="text-3xl text-black font-bold mb-4 font-nunito">Contact</h1>
       <p className="text-lg text-black mb-6">Get in touch with us!</p>
       <ContactDetails />

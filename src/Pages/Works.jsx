@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from 'react'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import axios from 'axios';
 import Loader from '../Components/Loader/Loader';
+import ArticleCard from '../Components/ArticleCard/ArticleCard';
+import ArticleFullView from '../Components/ArticleFullView/ArticleFullView';
 
 const Works = () => {
+  const { articleId } = useParams()
+  const navigate = useNavigate()
+  const location = useLocation()
+  
   const [articles, setArticles] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -33,16 +40,31 @@ const Works = () => {
     fetchArticles()
   }, []);
 
+  // Check for article ID in URL and set up full view
+  useEffect(() => {
+    if (articleId && articles.length > 0) {
+      const article = articles.find(a => a._id === articleId)
+      if (article) {
+        setSelectedArticle(article)
+        setShowFullView(true)
+      } else {
+        // Article not found, redirect to works list
+        navigate('/works', { replace: true })
+      }
+    } else if (!articleId) {
+      setShowFullView(false)
+      setSelectedArticle(null)
+    }
+  }, [articleId, articles, navigate])
+
   // Function to open article full view
   const openArticleView = (article) => {
-    setSelectedArticle(article)
-    setShowFullView(true)
+    navigate(`/works/${article._id}`)
   }
 
   // Function to go back to articles list
   const backToArticles = () => {
-    setShowFullView(false)
-    setSelectedArticle(null)
+    navigate('/works')
   }
 
   // Filter articles based on category and search term
@@ -57,55 +79,9 @@ const Works = () => {
 
   // Get unique categories for filter dropdown
   const categories = ['all', ...new Set(articles.map(article => article.category).filter(Boolean))]
-
-  // Article Card Component
-  const ArticleCard = ({ article }) => (
-    <article className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300" role="listitem">
-      <div className="p-6">
-        <header>
-          <h3 className="text-xl font-bold text-gray-800 mb-2 font-nunito break-words whitespace-pre-line">
-            {article.title || 'Untitled Article'}
-          </h3>
-          {article.writer && (
-            <address className="text-sm text-blue-600 mb-3 font-medium not-italic">
-              By {article.writer}
-            </address>
-          )}
-        </header>
-        
-        <p className="text-gray-600 mb-4 line-clamp-4 whitespace-pre-line"
-          dangerouslySetInnerHTML={{
-            __html: article.content ? (article.content.substring(0, 200) + '...').replace(/<\/?[^>]+(>|$)/g, "<br>", "<hr>") : 'No content available'
-          }}
-        >
-        </p>
-        
-        <footer className="flex justify-between items-center mb-4">
-          {article.category && (
-            <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full capitalize" role="tag">
-              {article.category}
-            </span>
-          )}
-          {article.createdAt && (
-            <time dateTime={article.createdAt} className="text-gray-500 text-sm">
-              {new Date(article.createdAt).toLocaleDateString()}
-            </time>
-          )}
-        </footer>
-        
-        <button 
-          onClick={() => openArticleView(article)}
-          className="w-full bg-[#23272c] text-white py-2 px-4 rounded-md hover:bg-[#41474b] transition-colors duration-200"
-          aria-label={`Read full ${article.category || 'article'}: ${article.title}`}
-        >
-          Read Full {article.category}
-        </button>
-      </div>
-    </article>
-  )
-
+  
   return (
-    <main className="works-page">
+    <main className="works-page  p-3 sm:p-6">
       {!showFullView ? (
         <>
           <header className="mb-6">
@@ -191,51 +167,7 @@ const Works = () => {
         </>
       ) : (
         /* Full Article View */
-        <article className="full-article-view">
-          <nav className="mb-6">
-            <button 
-              onClick={backToArticles}
-              className="flex items-center text-black hover:text-gray-300 transition-colors mb-4"
-              aria-label="Go back to articles list"
-            >
-              <span className="mr-2" aria-hidden="true">←</span> Back
-            </button>
-          </nav>
-
-          <div className="bg-white rounded-lg p-8 shadow-lg">
-            <header className="mb-6">
-              <h1 className="text-4xl font-bold text-gray-800 mb-4 font-nunito break-words whitespace-pre-line">
-                {selectedArticle.title}
-              </h1>
-              <div className="flex items-center gap-4 text-sm text-gray-600 mb-6">
-                {selectedArticle.writer && (
-                  <address className="text-blue-600 font-medium text-lg not-italic">
-                    By {selectedArticle.writer}
-                  </address>
-                )}
-                {selectedArticle.createdAt && (
-                  <time dateTime={selectedArticle.createdAt} className="text-lg">
-                    {new Date(selectedArticle.createdAt).toLocaleDateString()}
-                  </time>
-                )}
-                {selectedArticle.category && (
-                  <span className="px-4 py-2 bg-blue-100 text-blue-800 rounded-full capitalize" role="tag">
-                    {selectedArticle.category}
-                  </span>
-                )}
-              </div>
-            </header>
-
-            <section className="prose max-w-none">
-              <p className="text-gray-700 text-lg leading-relaxed break-words whitespace-pre-line"
-              dangerouslySetInnerHTML={{
-                __html: selectedArticle.content ? selectedArticle.content.replace(/<\/?[^>]+(>|$)/g, "<br />", "<hr>") : 'No content available'
-              }}
-              >
-              </p>
-            </section>
-          </div>
-        </article>
+        <ArticleFullView article={selectedArticle} />
       )}
     </main>
   )

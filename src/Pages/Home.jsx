@@ -18,7 +18,7 @@ const Home = () => {
     // Show loader during initial loading
     if (loading) {
         return (
-            <div className="home-page flex justify-center items-center min-h-[400px]">
+            <div className="home-page flex justify-center items-center min-h-[400px] p-3 sm:p-6">
                 <div className="text-center">
                     <Loader />
                 </div>
@@ -38,7 +38,7 @@ const Home = () => {
                 <h2 className="text-2xl font-medium text-center mb-2 text-black font-poppins">Latest Achievements</h2>
                 {/* Posters Grid */}
                 <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    {posters.slice(-4).map((poster) => (
+                    {posters.slice(-4).reverse().map((poster) => (
                         <div key={poster.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
                             <img
                                 src={poster.image}
