@@ -21,7 +21,7 @@ const Navbar = () => {
     }
 
     return (
-        <section className='pt-1 px-3 sm:px-4 lg:px-24 bg-[#f0f7f8] sticky top-0 z-50'>
+        <section className='pt-1 px-3 sm:px-4 lg:px-24 sticky top-0 z-50'>
             <header className='w-full bg-[#23272c] px-6 py-4 text-white shadow-lg rounded mx-auto backdrop-blur-10xl'>
                 <div className='flex justify-between items-center'>
                     {/* Logo/Brand */}
@@ -39,7 +39,7 @@ const Navbar = () => {
                             </NavigationButton>
                         </Link>
                         <Link to="/works" className='hover:text-gray-300 transition-colors'>
-                            <NavigationButton imageId={WorksIcon} isActive={location.pathname === '/works'}>
+                            <NavigationButton imageId={WorksIcon} isActive={location.pathname === '/works' || location.pathname.startsWith('/works/')}>
                                 Literary Works
                             </NavigationButton>
                         </Link>

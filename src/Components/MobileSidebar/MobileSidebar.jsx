@@ -60,7 +60,11 @@ const MobileSidebar = ({ isOpen, onClose }) => {
                                 className="block hover:text-gray-300 transition-colors duration-200 hover:translate-x-2" 
                                 onClick={onClose}
                             >
-                                <NavigationButton imageId={item.icon} isActive={location.pathname === item.to}>
+                                <NavigationButton imageId={item.icon} isActive={
+                                    item.to === '/works' 
+                                        ? location.pathname === '/works' || location.pathname.startsWith('/works/')
+                                        : location.pathname === item.to
+                                }>
                                     {item.label}
                                 </NavigationButton>
                             </Link>
@@ -74,7 +78,7 @@ const MobileSidebar = ({ isOpen, onClose }) => {
                 }`} style={{ transitionDelay: isOpen ? '250ms' : '0ms' }}>
                     <p className="text-sm text-gray-300 text-center">© 2025 CHS OGEA</p>
                     <p className="text-sm text-gray-200 text-center">
-                        Developed By <a href="#" className="text-teal-300 hover:underline transition-colors">Inkuit</a>
+                        Developed By <a target="_blank" href="https://github.com/Inkuit" className="text-teal-300 hover:underline transition-colors">Inkuit</a>
                     </p>
                 </div>
             </div>

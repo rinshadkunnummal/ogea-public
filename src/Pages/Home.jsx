@@ -18,7 +18,7 @@ const Home = () => {
     // Show loader during initial loading
     if (loading) {
         return (
-            <div className="home-page flex justify-center items-center min-h-[400px]">
+            <div className="home-page flex justify-center items-center min-h-[400px] p-3 sm:p-6">
                 <div className="text-center">
                     <Loader />
                 </div>
@@ -27,18 +27,23 @@ const Home = () => {
     }
 
     return (
-        <div className="home-page py-3 flex flex-col items-center justify-center gap-5">
-            <h1 className="text-3xl sm:text-4xl pt-3.5 text-black font-semibold font-poppins grid grid-cols-1 lg:grid-cols-2 items-center leading-[25px] sm:leading-8 lg:flex-row lg:text-5xl gap-2">Showcasing Students <br />
-                <span className="text-4xl sm:text-5xl lg:text-5xl text-[#413dfa] "> Voices and Visuals</span>
-            </h1>
-            <Button className={'mb-4 px-4 py-2 rounded-md bg-[#23272c] text-gray-100'}>
-                <a href="https://drive.google.com/drive/folders/1z-Q5CfkDy-2D0T9tDwXYXL6Uv1jrkkSk?usp=drive_link" className="text-white" target="_blank">   Trace Your Programmes</a>
-            </Button>
+        <div className="home-page py-10  flex flex-col items-center justify-center gap-5">
+            <div className="info w-5/6 rounded-2xl flex flex-col justify-center items-center sm:items-start gap-3 lg:gap-6 h-[85vh] px-3 sm:px-6 lg:px-12 ">
+                <h1 className="text-3xl sm:text-4xl lg:text-6xl text-black font-semibold text-center sm:text-left">Showcasing Students <br />
+                    <span className="text-[#413dfa] "> Voices and Visuals</span>
+                </h1>
+                <p className='text-lg sm:text-xl text-black text-center sm:text-left'>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus eos exercitationem architecto in accusamus nulla cum eius ratione impedit consequatur, consequuntur, molestiae tempore vero enim corporis quibusdam eveniet perspiciatis. Exercitationem? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae, optio sit? Amet est ea tenetur consectetur recusandae debitis nam in assumenda delectus deleniti, accusamus voluptate facilis sint minus velit quis?
+                </p>
+                <Button className={'mb-4 px-4 py-2 rounded-md bg-[#23272c] text-gray-100'}>
+                    <a href="https://drive.google.com/drive/folders/1z-Q5CfkDy-2D0T9tDwXYXL6Uv1jrkkSk?usp=drive_link" className="text-white" target="_blank">   Trace Your Programmes</a>
+                </Button>
+            </div>
             <div className="px-3 rounded-lg flex flex-col gap-2">
                 <h2 className="text-2xl font-medium text-center mb-2 text-black font-poppins">Latest Achievements</h2>
                 {/* Posters Grid */}
                 <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    {posters.slice(-4).map((poster) => (
+                    {posters.slice(-4).reverse().map((poster) => (
                         <div key={poster.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
                             <img
                                 src={poster.image}

@@ -1,33 +1,30 @@
 import React, { useState, useEffect } from 'react'
+import { Routes, Route } from 'react-router-dom'
+import StatsSection from './StatsSection'
+import ManageSection from './ManageSection'
+import AddSection from './AddSection'
 import axios from 'axios'
-import StatsCard from '../../Components/StatsCard/StatsCard'
-import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp"
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSlot,
-} from "@/components/ui/input-otp"
 import AdminSideBar from '@/Components/AdminSideBar/AdminSideBar'
-
-
 
 const Admin = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [passkey, setPasskey] = useState('')
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
   const [error, setError] = useState('')
-  const [showAddForm, setShowAddForm] = useState(false)
   const [submitting, setSubmitting] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
   const [stats, setStats] = useState({
     totalArticles: 0,
+    articles: 0,
     stories: 0,
     poems: 0,
     essays: 0,
     seminars: 0,
     reviews: 0,
+    letters: 0,
     loading: true
   })
 
-  // Form state
   const [formData, setFormData] = useState({
     title: '',
     writer: '',
@@ -35,81 +32,97 @@ const Admin = () => {
     category: 'article'
   })
 
-  // Check authentication on component mount
+  const [articles, setArticles] = useState([])
+
+  const correctUsername = "admin"
+  const correctPassword = "ogea123"
+
   useEffect(() => {
-    const authStatus = sessionStorage.getItem('adminAuthenticated')
-    if (authStatus === 'true') {
+    const storedAuth = sessionStorage.getItem('adminAuthenticated')
+    if (storedAuth === 'true') {
       setIsAuthenticated(true)
-      fetchStats() // Fetch stats when authenticated
     }
   }, [])
 
-  // Fetch statistics for different categories
-  const fetchStats = async () => {
-    try {
-      setStats(prev => ({ ...prev, loading: true }))
-
-      // Fetch all categories in parallel
-      const [totalRes, storiesRes, poemsRes, essaysRes, seminarsRes, reviewsRes] = await Promise.all([
-        axios.get("https://ogea-api.onrender.com/api/v1/articles"),
-        axios.get("https://ogea-api.onrender.com/api/v1/articles?category=story"),
-        axios.get("https://ogea-api.onrender.com/api/v1/articles?category=poem"),
-        axios.get("https://ogea-api.onrender.com/api/v1/articles?category=essay"),
-        axios.get("https://ogea-api.onrender.com/api/v1/articles?category=seminar"),
-        axios.get("https://ogea-api.onrender.com/api/v1/articles?category=review")
-      ])
-
-      setStats({
-        totalArticles: totalRes.data.results || totalRes.data.data?.articles?.length || 0,
-        stories: storiesRes.data.results || storiesRes.data.data?.articles?.length || 0,
-        poems: poemsRes.data.results || poemsRes.data.data?.articles?.length || 0,
-        essays: essaysRes.data.results || essaysRes.data.data?.articles?.length || 0,
-        seminars: seminarsRes.data.results || seminarsRes.data.data?.articles?.length || 0,
-        reviews: reviewsRes.data.results || reviewsRes.data.data?.articles?.length || 0,
-        loading: false
-      })
-    } catch (err) {
-      console.error("Stats fetch error:", err)
-      setStats(prev => ({ ...prev, loading: false }))
+  useEffect(() => {
+    if (isAuthenticated) {
+      fetchArticles()
     }
-  }
+  }, [isAuthenticated])
 
-  const handlePasskeySubmit = (e) => {
+  useEffect(() => {
+    if (articles.length > 0) {
+      fetchStats()
+    }
+  }, [articles])
+
+  const handleLoginSubmit = (e) => {
     e.preventDefault()
-
-    // Replace 'ADMIN1' with your desired 6-character passkey
-    const correctPasskey = 'ogea25'
-
-    if (passkey === correctPasskey) {
+    if (username === correctUsername && password === correctPassword) {
       setIsAuthenticated(true)
       setError('')
       sessionStorage.setItem('adminAuthenticated', 'true')
     } else {
-      setError('Incorrect passkey. Access denied.')
-      setPasskey('')
+      setError('Incorrect username or password. Access denied.')
+      setPassword('')
     }
   }
 
   const handleLogout = () => {
     setIsAuthenticated(false)
     sessionStorage.removeItem('adminAuthenticated')
-    setPasskey('')
+    setUsername('')
+    setPassword('')
     setError('')
   }
 
-  // Fetch existing articles
   const fetchArticles = async () => {
     try {
       const response = await axios.get("https://ogea-api.onrender.com/api/v1/articles")
-      console.log("Data from backend:", response.data)
-      // Refresh stats after fetching articles
-      fetchStats()
+      const fetched = response.data.data?.articles || response.data.articles || []
+      console.log("Fetched articles:", fetched)
+      setArticles(fetched)
     } catch (err) {
       console.error("Fetch error:", err)
     }
   }
 
-  // Handle form input changes
+  const fetchStats = () => {
+    const totalArticles = articles.length
+    const articlesCount = articles.filter(article => article.category === 'article').length
+    const stories = articles.filter(article => article.category === 'story').length
+    const poems = articles.filter(article => article.category === 'poem').length
+    const essays = articles.filter(article => article.category === 'essay').length
+    const seminars = articles.filter(article => article.category === 'seminar').length
+    const reviews = articles.filter(article => article.category === 'review').length
+    const letters = articles.filter(article => article.category === 'letter').length
+
+    setStats({
+      totalArticles,
+      articles: articlesCount,
+      stories,
+      poems,
+      essays,
+      seminars,
+      reviews,
+      letters,
+      loading: false
+    })
+  }
+
+  const handleDeleteArticle = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this article?")) return
+    try {
+      await axios.delete(`https://ogea-api.onrender.com/api/v1/articles/${id}`)
+      setArticles(prev => prev.filter(article => article._id !== id))
+      fetchStats()
+      alert("Article deleted successfully!")
+    } catch (err) {
+      console.error("Delete error:", err)
+      alert("Failed to delete article.")
+    }
+  }
+
   const handleInputChange = (e) => {
     const { name, value } = e.target
     setFormData(prev => ({
@@ -118,10 +131,8 @@ const Admin = () => {
     }))
   }
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault()
-
     if (!formData.title || !formData.writer || !formData.content) {
       alert('Please fill in all required fields')
       return
@@ -132,7 +143,6 @@ const Admin = () => {
       const response = await axios.post("https://ogea-api.onrender.com/api/v1/articles", formData)
       console.log("Article created:", response.data)
 
-      // Reset form
       setFormData({
         title: '',
         writer: '',
@@ -140,10 +150,7 @@ const Admin = () => {
         category: 'article'
       })
 
-      // Hide form and refresh articles
-      setShowAddForm(false)
       fetchArticles()
-
       alert('Article added successfully!')
     } catch (err) {
       console.error("Submit error:", err)
@@ -153,7 +160,6 @@ const Admin = () => {
     }
   }
 
-  // Cancel form
   const handleCancel = () => {
     setFormData({
       title: '',
@@ -161,10 +167,8 @@ const Admin = () => {
       content: '',
       category: 'article'
     })
-    setShowAddForm(false)
   }
 
-  // If not authenticated, show passkey form
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -172,33 +176,55 @@ const Admin = () => {
           <div className="text-center mb-6">
             <div className="mx-auto w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center mb-4">
               <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
               </svg>
             </div>
             <h2 className="text-2xl font-bold text-gray-800">Admin Access Required</h2>
-            <p className="text-gray-600 mt-2">Enter your passkey to access the admin panel</p>
+            <p className="text-gray-600 mt-2">Enter your credentials to access the admin panel</p>
           </div>
 
-          <form onSubmit={handlePasskeySubmit}>
+          <form onSubmit={handleLoginSubmit}>
             <div className="mb-4">
-              <div className="flex justify-center">
-                <InputOTP
-                  maxLength={6}
-                  pattern={REGEXP_ONLY_DIGITS_AND_CHARS}
-                  value={passkey}
-                  onChange={(value) => setPasskey(value)}
+              <label className="block text-sm font-medium text-gray-700 mb-2">Username</label>
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                placeholder="Enter username"
+                required
+              />
+            </div>
+            
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 pr-10"
+                  placeholder="Enter password"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
                 >
-                  <InputOTPGroup>
-                    <InputOTPSlot index={0} />
-                    <InputOTPSlot index={1} />
-                    <InputOTPSlot index={2} />
-                    <InputOTPSlot index={3} />
-                    <InputOTPSlot index={4} />
-                    <InputOTPSlot index={5} />
-                  </InputOTPGroup>
-                </InputOTP>
+                  {showPassword ? (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21" />
+                    </svg>
+                  ) : (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
+                  )}
+                </button>
               </div>
-              <p className="text-xs text-gray-500 text-center mt-2">Enter 6-character admin code</p>
             </div>
 
             {error && (
@@ -209,162 +235,28 @@ const Admin = () => {
 
             <button
               type="submit"
-              disabled={passkey.length !== 6}
+              disabled={!username || !password}
               className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Access Admin Panel
+              Login to Admin Panel
             </button>
           </form>
         </div>
       </div>
     )
   }
+
   return (
-    <div className="admin-page">
-      <div className="sideBar"> <AdminSideBar handleLogout={handleLogout} /> </div>
-      <div className="right">
-
-        {/* Header with Logout */}
-        <div className="flex justify-center items-center mb-6 flex-col gap-3 lg:gap-10">
-          <div>
-            <h1 className="text-xl sm:text-3xl text-center sm:text-left text-black font-bold font-nunito">Admin Dashboard</h1>
-            <p className="text-[#6B7280] sm:text-lg text-[10px] text-center sm:text-left">Manage articles and content for the CHS Outreach Board.</p>
-          </div>
-          <nav className="stats grid grid-cols-2 sm:grid-cols-3 gap-4">
-            <StatsCard
-              title={"Total Articles"}
-              value={stats.loading ? "..." : stats.totalArticles.toString()}
-            />
-            <StatsCard
-              title={"Stories"}
-              value={stats.loading ? "..." : stats.stories.toString()}
-            />
-            <StatsCard
-              title={"Poems"}
-              value={stats.loading ? "..." : stats.poems.toString()}
-            />
-            <StatsCard
-              title={"Essays"}
-              value={stats.loading ? "..." : stats.essays.toString()}
-            />
-            <StatsCard
-              title={"Seminars"}
-              value={stats.loading ? "..." : stats.seminars.toString()}
-            />
-            <StatsCard
-              title={"Reviews"}
-              value={stats.loading ? "..." : stats.reviews.toString()}
-            />
-          </nav>
-          <button
-            onClick={() => setShowAddForm(!showAddForm)}
-            className="w-48 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
-          >
-            {showAddForm ? 'Cancel' : 'Add New Content'}
-          </button>
-        </div>
-
-        {/* Add Article Form */}
-        {showAddForm && (
-          <div className="bg-white rounded-lg p-6 shadow-lg mb-6 border border-gray-200">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">Add New Content</h2>
-
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Title */}
-              <div>
-                <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">
-                  Article Title *
-                </label>
-                <input
-                  type="text"
-                  id="title"
-                  name="title"
-                  value={formData.title}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="Enter article title"
-                  required
-                />
-              </div>
-
-              {/* Writer */}
-              <div>
-                <label htmlFor="writer" className="block text-sm font-medium text-gray-700 mb-1">
-                  Author/Writer *
-                </label>
-                <input
-                  type="text"
-                  id="writer"
-                  name="writer"
-                  value={formData.writer}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="Enter author name"
-                  required
-                />
-              </div>
-
-              {/* Category */}
-              <div>
-                <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-1">
-                  Category
-                </label>
-                <select
-                  id="category"
-                  name="category"
-                  value={formData.category}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                >
-                  <option value="essay">Essay / Article</option>
-                  <option value="story">Short Story</option>
-                  <option value="poem">Poem</option>
-                  <option value="seminar">Seminar Paper</option>
-                  <option value="review">Letter</option>
-                  <option value="review">Review</option>
-                </select>
-              </div>
-
-              {/* Content */}
-              <div>
-                <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-1">
-                  Article Content *
-                </label>
-                <textarea
-                  id="content"
-                  name="content"
-                  value={formData.content}
-                  onChange={handleInputChange}
-                  rows="8"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="Enter the full article content"
-                  required
-                />
-              </div>
-
-              {/* Form Buttons */}
-              <div className="flex gap-4 pt-4">
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium disabled:opacity-50"
-                >
-                  {submitting ? 'Adding...' : 'Add Content'}
-                </button>
-
-                <button
-                  type="button"
-                  onClick={handleCancel}
-                  className="px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors font-medium"
-                >
-                  Cancel
-                </button>
-              </div>
-            </form>
-
-          </div>
-        )}
-        {/* Logout button moved to sidebar */}
+    <div className="admin-page flex min-h-screen mt-10 sm:mt-0">
+      <div className="sideBar">
+        <AdminSideBar handleLogout={handleLogout} />
+      </div>
+      <div className="right flex-1 p-8 bg-gray-50">
+        <Routes>
+          <Route path="/" element={<StatsSection stats={stats} />} />
+          <Route path="manage" element={<ManageSection articles={articles} handleDeleteArticle={handleDeleteArticle} onArticleUpdate={fetchArticles} />} />
+          <Route path="add" element={<AddSection formData={formData} handleInputChange={handleInputChange} handleSubmit={handleSubmit} handleCancel={handleCancel} submitting={submitting} />} />
+        </Routes>
       </div>
     </div>
   )

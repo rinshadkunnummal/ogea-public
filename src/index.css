@@ -129,3 +129,7 @@
     scroll-behavior: smooth;
     font-family: var(--font-arima);
 }
+
+body {
+    background-color:#f0f7f8 ;
+}

@@ -37,7 +37,7 @@ const Posters = () => {
         }, 500) // 0.5 second loading for show less
     }
 
-    const displayedPosters = posters.slice(0, displayLimit)
+    const displayedPosters = posters.slice().reverse().slice(0, displayLimit)
     const hasMorePosters = displayLimit < posters.length
 
     // Show loader during initial loading
@@ -52,7 +52,7 @@ const Posters = () => {
     }
 
     return (
-        <div className="posters-page">
+        <div className="posters-page px-3 sm:px-6">
             <div className="mb-6">
                 <div>
                     <h1 className="text-3xl font-bold text-black font-nunito text-center">Achievements</h1>
