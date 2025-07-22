@@ -10,7 +10,7 @@ const ArticleCard = ({ article }) => {
 
     return (
         <article className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300" role="listitem">
-            <div className="p-6">
+            <div className="p-6 flex flex-col justify-between h-full">
                 <header>
                     <h3 className="text-xl font-bold text-gray-800 mb-2 font-nunito break-words whitespace-pre-line">
                         {article.title || 'Untitled Article'}

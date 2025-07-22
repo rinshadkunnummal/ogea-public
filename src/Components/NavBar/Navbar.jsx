@@ -21,7 +21,7 @@ const Navbar = () => {
     }
 
     return (
-        <section className='pt-1 px-3 sm:px-4 lg:px-24 sticky top-0 z-50 bg-[#f1f1f1]'>
+        <section className='pt-1 px-3 sm:px-4 lg:px-24 sticky top-0 z-50'>
             <header className='w-full bg-[#23272c] px-6 py-4 text-white shadow-lg rounded mx-auto backdrop-blur-10xl'>
                 <div className='flex justify-between items-center'>
                     {/* Logo/Brand */}

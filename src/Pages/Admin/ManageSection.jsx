@@ -9,6 +9,7 @@ const ManageSection = ({ articles, handleDeleteArticle, onArticleUpdate }) => {
     content: '',
     category: 'article'
   })
+  const [isSaving, setIsSaving] = useState(false)
 
   const handleEditClick = (article) => {
     setEditingArticle(article)
@@ -30,6 +31,7 @@ const ManageSection = ({ articles, handleDeleteArticle, onArticleUpdate }) => {
 
   const handleEditSubmit = async (e) => {
     e.preventDefault()
+    setIsSaving(true) // Start loading state
     try {
       const response = await axios.patch(`https://ogea-api.onrender.com/api/v1/articles/${editingArticle._id}`, editFormData)
       console.log('Article updated successfully:', response.data)
@@ -45,11 +47,14 @@ const ManageSection = ({ articles, handleDeleteArticle, onArticleUpdate }) => {
     } catch (err) {
       console.error('Update error:', err)
       alert('Failed to update article. Please try again.')
+    } finally {
+      setIsSaving(false) // End loading state regardless of success or failure
     }
   }
 
   const handleEditCancel = () => {
     setEditingArticle(null)
+    setIsSaving(false) // Reset loading state
     setEditFormData({
       title: '',
       writer: '',
@@ -208,14 +213,23 @@ const ManageSection = ({ articles, handleDeleteArticle, onArticleUpdate }) => {
                 type="button"
                 onClick={handleEditCancel}
                 className="w-full sm:w-auto px-4 py-2 text-gray-600 hover:bg-gray-100 rounded transition-colors border border-gray-300"
+                disabled={isSaving}
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="w-full sm:w-auto px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+                className={`w-full sm:w-auto px-6 py-2 rounded transition-colors flex items-center justify-center gap-2 ${
+                  isSaving 
+                    ? 'bg-blue-400 cursor-not-allowed' 
+                    : 'bg-blue-600 hover:bg-blue-700'
+                } text-white`}
+                disabled={isSaving}
               >
-                Save Changes
+                {isSaving && (
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                )}
+                {isSaving ? 'Saving...' : 'Save Changes'}
               </button>
             </div>
           </form>

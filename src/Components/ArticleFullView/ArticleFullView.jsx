@@ -17,7 +17,7 @@ const ArticleFullView = ({ article }) => {
   }
 
   return (
-    <article className="full-article-view">
+    <article className="full-article-view lg:px-28">
       <nav className="mb-6">
         <button 
           onClick={backToArticles}

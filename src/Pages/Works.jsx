@@ -95,7 +95,7 @@ const Works = () => {
           <section className="mb-8 bg-white p-4 rounded-lg shadow-md" role="search">
             <div className="flex flex-wrap items-center gap-4">
               {/* Search Input */}
-              <div className="flex-1 min-w-64">
+              <div className="flex-1">
                 <label htmlFor="search-input" className="sr-only">Search articles</label>
                 <input
                   id="search-input"
@@ -108,11 +108,11 @@ const Works = () => {
               </div>
               
               {/* Category Filter */}
-              <div className="flex items-center gap-2">
+              <div className="flex items-center ">
                 <label htmlFor="category-filter" className="font-medium text-gray-700">Filter:</label>
                 <select 
                   id="category-filter"
-                  className="px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className=" border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
                 >
