@@ -3,10 +3,6 @@ import { Link, useLocation } from 'react-router-dom'
 import { Menu } from 'lucide-react'
 import NavigationButton from '../NavigationButton/NavigationButton.jsx'
 import MobileSidebar from '../MobileSidebar/MobileSidebar.jsx'
-import homeIcon from '../../assets/Dashboard.png'
-import WorksIcon from '../../assets/Works.png'
-import PostersIcon from '../../assets/Posters.png'
-import ContactIcon from '../../assets/Contact.png'
 
 const Navbar = () => {
     const location = useLocation()
@@ -34,22 +30,22 @@ const Navbar = () => {
                     {/* Desktop Navigation Links */}
                     <nav className='hidden md:flex gap-2'>
                         <Link to="/" className='hover:text-gray-300 transition-colors'>
-                            <NavigationButton imageId={homeIcon} isActive={location.pathname === '/'}>
+                            <NavigationButton  isActive={location.pathname === '/'}>
                                 Home
                             </NavigationButton>
                         </Link>
                         <Link to="/works" className='hover:text-gray-300 transition-colors'>
-                            <NavigationButton imageId={WorksIcon} isActive={location.pathname === '/works' || location.pathname.startsWith('/works/')}>
+                            <NavigationButton  isActive={location.pathname === '/works' || location.pathname.startsWith('/works/')}>
                                 Literary Works
                             </NavigationButton>
                         </Link>
                         <Link to="/posters" className='hover:text-gray-300 transition-colors'>
-                            <NavigationButton imageId={PostersIcon} isActive={location.pathname === '/posters'}>
+                            <NavigationButton  isActive={location.pathname === '/posters'}>
                                 Achievements
                             </NavigationButton>
                         </Link>
                         <Link to="/contact" className='hover:text-gray-300 transition-colors'>
-                            <NavigationButton imageId={ContactIcon} isActive={location.pathname === '/contact'}>
+                            <NavigationButton  isActive={location.pathname === '/contact'}>
                                 Contact
                             </NavigationButton>
                         </Link>
