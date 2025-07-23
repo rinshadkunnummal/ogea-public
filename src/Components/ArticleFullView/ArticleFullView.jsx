@@ -54,10 +54,14 @@ const ArticleFullView = ({ article }) => {
 
         <section className="prose max-w-none">
           <div 
-            className="text-gray-700 text-base sm:text-lg leading-relaxed break-words whitespace-pre-line"
+            className="text-gray-700 text-base sm:text-lg leading-relaxed break-words"
             dangerouslySetInnerHTML={{
               __html: article.content 
-                ? article.content.replace(/<\/?[^>]+(>|$)/g, "<br />", "<hr>, <i>") 
+                ? article.content
+                    .replace(/\n/g, '<br />')
+                    .replace(/&lt;/g, '<')
+                    .replace(/&gt;/g, '>')
+                    .replace(/&amp;/g, '&')
                 : 'No content available'
             }}
           />
