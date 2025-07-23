@@ -54,6 +54,10 @@ export const router = createBrowserRouter([
     ]
   },
   {
+    path: "/admin",
+    element: <LazyWrapper><Admin /></LazyWrapper>
+  },
+  {
     path: "/admin/*",
     element: <LazyWrapper><Admin /></LazyWrapper>
   }

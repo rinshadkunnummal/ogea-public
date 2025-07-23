@@ -109,7 +109,6 @@ const Works = () => {
               
               {/* Category Filter */}
               <div className="flex items-center ">
-                <label htmlFor="category-filter" className="font-medium text-gray-700">Filter:</label>
                 <select 
                   id="category-filter"
                   className=" border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
