@@ -39,7 +39,7 @@ const Footer = () => {
           Developed By <a target="_blank" href="https://github.com/Inkuit" className="text-teal-300 hover:underline transition-colors">Inkuit</a>
         </p>
       </div>
-    </footer>
+    </footer> 
   );
 };
 

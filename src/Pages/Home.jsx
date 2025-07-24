@@ -27,7 +27,7 @@ const Home = () => {
     }
 
     return (
-        <div className="home-page py-10  flex flex-col items-center justify-center gap-5">
+        <div className="home-page py-20 sm:py-10 flex flex-col items-center justify-center gap-15 sm:gap-5">
             <div className="info w-5/6 rounded-2xl flex flex-col justify-center items-center sm:items-start gap-3 lg:gap-6 h-[85vh] px-3 sm:px-6 lg:px-12 ">
                 <h1 className="text-3xl sm:text-4xl lg:text-6xl text-black font-semibold text-center sm:text-left">Showcasing Students <br />
                     <span className="text-[#413dfa] "> Voices and Visuals</span>
