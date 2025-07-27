@@ -34,8 +34,8 @@ const Admin = () => {
 
   const [articles, setArticles] = useState([])
 
-  const correctUsername = "admin"
-  const correctPassword = "ogea123"
+  const correctUsername = import.meta.env.VITE_ADMIN_USERNAME
+  const correctPassword = import.meta.env.VITE_ADMIN_PASSWORD
 
   useEffect(() => {
     const storedAuth = sessionStorage.getItem('adminAuthenticated')
@@ -78,7 +78,8 @@ const Admin = () => {
 
   const fetchArticles = async () => {
     try {
-      const response = await axios.get("https://ogea-api.onrender.com/api/v1/articles")
+      const apiUrl = import.meta.env.VITE_API_BASE_URL || "https://ogea-api.onrender.com/api/v1"
+      const response = await axios.get(`${apiUrl}/articles`)
       const fetched = response.data.data?.articles || response.data.articles || []
       console.log("Fetched articles:", fetched)
       setArticles(fetched)
@@ -113,7 +114,8 @@ const Admin = () => {
   const handleDeleteArticle = async (id) => {
     if (!window.confirm("Are you sure you want to delete this article?")) return
     try {
-      await axios.delete(`https://ogea-api.onrender.com/api/v1/articles/${id}`)
+      const apiUrl = import.meta.env.VITE_API_BASE_URL || "https://ogea-api.onrender.com/api/v1"
+      await axios.delete(`${apiUrl}/articles/${id}`)
       setArticles(prev => prev.filter(article => article._id !== id))
       fetchStats()
       alert("Article deleted successfully!")
@@ -140,7 +142,8 @@ const Admin = () => {
 
     try {
       setSubmitting(true)
-      const response = await axios.post("https://ogea-api.onrender.com/api/v1/articles", formData)
+      const apiUrl = import.meta.env.VITE_API_BASE_URL || "https://ogea-api.onrender.com/api/v1"
+      const response = await axios.post(`${apiUrl}/articles`, formData)
       console.log("Article created:", response.data)
 
       setFormData({

@@ -1,10 +1,30 @@
-import Home from '../Pages/Home.jsx'
-import Works from '../Pages/Works'
-import Posters from '../Pages/Posters.jsx'
-import Contact from '../Pages/Contact'
-import Admin from '../Pages/Admin/Admin.jsx'
 import { createBrowserRouter } from 'react-router-dom'
+import { lazy, Suspense } from 'react'
 import Layout from '@/Pages/Layout.jsx'
+import Loader from '@/Components/Loader/Loader.jsx'
+
+// Lazy load components
+const Home = lazy(() => import('../Pages/Home.jsx'))
+const Works = lazy(() => import('../Pages/Works'))
+const Posters = lazy(() => import('../Pages/Posters.jsx'))
+const Contact = lazy(() => import('../Pages/Contact'))
+const Admin = lazy(() => import('../Pages/Admin/Admin.jsx'))
+
+// Loading component
+const LoadingSpinner = () => (
+  <div className="flex items-center justify-center min-h-[50vh]">
+    <div className="flex flex-col items-center gap-4">
+        <Loader />
+    </div>
+  </div>
+)
+
+// Wrapper component with Suspense
+const LazyWrapper = ({ children }) => (
+  <Suspense fallback={<LoadingSpinner />}>
+    {children}
+  </Suspense>
+)
 
 export const router = createBrowserRouter([
   {
@@ -13,28 +33,32 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />
+        element: <LazyWrapper><Home /></LazyWrapper>
       },
       {
         path: "works",
-        element: <Works />
+        element: <LazyWrapper><Works /></LazyWrapper>
       },
       {
         path: "works/:articleId",
-        element: <Works />
+        element: <LazyWrapper><Works /></LazyWrapper>
       },
       {
         path: "posters",
-        element: <Posters />
+        element: <LazyWrapper><Posters /></LazyWrapper>
       },
       {
         path: "contact",
-        element: <Contact />
+        element: <LazyWrapper><Contact /></LazyWrapper>
       }
     ]
   },
   {
+    path: "/admin",
+    element: <LazyWrapper><Admin /></LazyWrapper>
+  },
+  {
     path: "/admin/*",
-    element: <Admin />
+    element: <LazyWrapper><Admin /></LazyWrapper>
   }
 ])

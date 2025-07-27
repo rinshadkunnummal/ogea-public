@@ -5,7 +5,7 @@ const Footer = () => {
   const location = useLocation();
   
   return (
-    <footer className="bg-[#23272c] text-white py-8 px-4 mt-auto">
+    <footer className="bg-[#23272c] text-white py-8 px-4 mt-3">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         {/* Logo and Brand */}
         <div className="flex items-center gap-3">
@@ -39,7 +39,7 @@ const Footer = () => {
           Developed By <a target="_blank" href="https://github.com/Inkuit" className="text-teal-300 hover:underline transition-colors">Inkuit</a>
         </p>
       </div>
-    </footer>
+    </footer> 
   );
 };
 
