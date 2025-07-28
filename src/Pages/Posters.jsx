@@ -3,7 +3,7 @@ import { posters } from '../assets/posters/posters.js'
 import Loader from '../Components/Loader/Loader.jsx'
 
 const Posters = () => {
-    const [displayLimit, setDisplayLimit] = useState(4)
+    const [displayLimit, setDisplayLimit] = useState(8)
     const [loading, setLoading] = useState(true)
     const [loadingMore, setLoadingMore] = useState(false)
     const [loadingLess, setLoadingLess] = useState(false)
@@ -22,7 +22,7 @@ const Posters = () => {
         
         // Simulate loading delay for "Show More"
         setTimeout(() => {
-            setDisplayLimit(prev => prev + 4)
+            setDisplayLimit(prev => prev + 8)
             setLoadingMore(false)
         }, 500) // 0.5 second loading for show more
     }
@@ -32,7 +32,7 @@ const Posters = () => {
         
         // Simulate loading delay for "Show Less"
         setTimeout(() => {
-            setDisplayLimit(4)
+            setDisplayLimit(8)
             setLoadingLess(false)
         }, 500) // 0.5 second loading for show less
     }
@@ -74,7 +74,7 @@ const Posters = () => {
             </div>
 
             {/* Show More/Less Buttons */}
-            {posters.length > 4 && (
+            {posters.length > 8 && (
                 <div className="flex justify-center mt-8 gap-4">
                     {hasMorePosters && !loadingLess && (
                         <button
@@ -92,7 +92,7 @@ const Posters = () => {
                             )}
                         </button>
                     )}
-                    {displayLimit > 4 && !loadingMore && (
+                    {displayLimit > 8 && !loadingMore && (
                         <button
                             onClick={handleShowLess}
                             disabled={loadingLess}
