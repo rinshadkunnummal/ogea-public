@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { posters } from '../assets/posters/posters.js'
+import { posters } from '../../public/assets/posters/posters.js'
 import Loader from '../Components/Loader/Loader.jsx'
 
 const Posters = () => {
