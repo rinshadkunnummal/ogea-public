@@ -81,18 +81,19 @@ const Works = () => {
   const categories = ['all', ...new Set(articles.map(article => article.category).filter(Boolean))]
   
   return (
-    <main className="works-page  p-3 sm:p-6">
+    <main className="works-page  p-3 sm:p-6" aria-live="polite" aria-busy={loading ? "true" : "false"}>
       {!showFullView ? (
         <>
-          <header className="mb-6">
-            <div>
-              <h1 className="text-2xl font-bold text-black font-nunito text-center">Literary Works</h1>
+          <header className="mb-6" role="banner">
+            <section aria-labelledby="works-title">
+              <h1 id="works-title" className="text-2xl font-bold text-black font-nunito text-center">Literary Works</h1>
               <p className="text-[15px] text-black text-center">Explore creative pieces written by our talented students.</p>
-            </div>
+            </section>
           </header>
 
           {/* Search and Filter Section */}
-          <section className="mb-8 bg-white p-4 rounded-lg shadow-md" role="search">
+          <section className="mb-8 bg-white p-4 rounded-lg shadow-md" role="search" aria-labelledby="search-heading">
+            <h2 id="search-heading" className="sr-only">Search and filter articles</h2>
             <div className="flex flex-wrap items-center gap-4">
               {/* Search Input */}
               <div className="flex-1">
@@ -104,16 +105,22 @@ const Works = () => {
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
+                  aria-describedby="search-description"
                 />
+                <span id="search-description" className="sr-only">
+                  Search through article titles, authors, and content
+                </span>
               </div>
               
               {/* Category Filter */}
               <div className="flex items-center ">
+                <label htmlFor="category-filter" className="sr-only">Filter by category</label>
                 <select 
                   id="category-filter"
                   className=" border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
+                  aria-label="Filter articles by category"
                 >
                   {categories.map(category => (
                     <option key={category} value={category}>
@@ -127,29 +134,36 @@ const Works = () => {
 
           {/* Loading State */}
           {loading && (
-            <div className="flex justify-center items-center h-64">
+            <section className="flex justify-center items-center h-64" role="status" aria-live="polite" aria-label="Loading articles">
               <Loader />
-            </div>
+            </section>
           )}
 
           {/* Error State */}
           {error && (
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
+            <section 
+              className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6" 
+              role="alert" 
+              aria-live="assertive"
+              aria-label="Error message"
+            >
               {error}
-            </div>
+            </section>
           )}
 
           {/* Articles Grid */}
           {!loading && !error && (
-            <section>
+            <section role="region" aria-labelledby="works-title" aria-label="Literary works collection">
               {filteredArticles.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" role="list" aria-label="Literary articles">
                   {filteredArticles.map((article) => (
-                    <ArticleCard key={article._id} article={article} />
+                    <article key={article._id} role="listitem">
+                      <ArticleCard article={article} />
+                    </article>
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-12" role="status" aria-live="polite">
+                <aside className="text-center py-12" role="status" aria-live="polite" aria-label="No articles message">
                   <div className="text-black text-xl mb-4">
                     {searchTerm || selectedCategory !== 'all' ? 'No articles match your filters' : 'No articles found'}
                   </div>
@@ -159,14 +173,16 @@ const Works = () => {
                       : 'Be the first to submit a literary work!'
                     }
                   </p>
-                </div>
+                </aside>
               )}
             </section>
           )}
         </>
       ) : (
         /* Full Article View */
-        <ArticleFullView article={selectedArticle} />
+        <article role="main" aria-label="Full article view">
+          <ArticleFullView article={selectedArticle} />
+        </article>
       )}
     </main>
   )

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Button from '../Components/Button/Button.jsx'
 import { posters } from '../assets/posters/posters.js'
 import Loader from '../Components/Loader/Loader.jsx'
+import PhotoSlider from '../Components/PhotoSlider/PhotoSlider.jsx'
 
 const Home = () => {
     const [loading, setLoading] = useState(true)
@@ -18,52 +19,81 @@ const Home = () => {
     // Show loader during initial loading
     if (loading) {
         return (
-            <div className="home-page flex justify-center items-center min-h-[400px] p-3 sm:p-6">
-                <div className="text-center">
+            <main className="home-page flex justify-center items-center min-h-[400px] p-3 sm:p-6 pt-24">
+                <section className="text-center" aria-live="polite" aria-busy="true">
                     <Loader />
-                </div>
-            </div>
+                </section>
+            </main>
         )
     }
 
     return (
-        <div className="home-page py-20 sm:py-10 flex flex-col items-center justify-center gap-15 sm:gap-5">
-            <div className="info w-5/6 rounded-2xl flex flex-col justify-center items-center sm:items-start gap-3 lg:gap-6 h-[85vh] px-3 sm:px-6 lg:px-12 ">
-                <h1 className="text-3xl sm:text-4xl lg:text-6xl text-black font-semibold text-center sm:text-left">Showcasing Students <br />
-                    <span className="text-[#413dfa] "> Voices and Visuals</span>
-                </h1>
-                <p className='text-lg sm:text-xl text-black text-center sm:text-left'>
-                    Your destination for exploring the outreach vision of Darul Huda Islamic University. This official platform of the Office of Guidance and External Activities (OGEA) is dedicated to highlighting a wide range of outreach initiatives, academic collaborations, and creative expressions by our students. Here, you'll find regularly updated details on student-led programs, national and international outreach activities, and a showcase of literary and artistic contributions that reflect the intellectual spirit of our campus. With a focus on guidance, excellence, and external engagement, the site serves as a vibrant record of achievements and a gateway to new opportunities. Whether you're seeking inspiration, tracking student performance, or exploring the dynamic role of OGEA, this space is designed to inform, involve, and ignite curiosity across disciplines and communities.
-                </p>
-                <Button className={'mb-4 px-4 py-2 rounded-md bg-[#23272c] text-gray-100'}>
-                    <a href="https://drive.google.com/drive/folders/1z-Q5CfkDy-2D0T9tDwXYXL6Uv1jrkkSk?usp=drive_link" className="text-white" target="_blank">   Trace Your Programmes</a>
-                </Button>
-            </div>
-            <div className="px-3 rounded-lg flex flex-col gap-2">
-                <h2 className="text-2xl font-medium text-center mb-2 text-black font-poppins">Latest Achievements</h2>
-                {/* Posters Grid */}
-                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    {posters.slice(-4).reverse().map((poster) => (
-                        <div key={poster.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                            <img
-                                src={poster.image}
-                                alt={`Poster ${poster.id}`}
-                                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                            />
+        <main className="home-page pt-24 pb-8 sm:pb-12 lg:pb-20 flex flex-col items-center justify-center gap-8 sm:gap-12 lg:gap-16">
+            <PhotoSlider/>
+
+            <section className="hero-section w-full max-w-6xl mx-auto flex flex-col justify-center items-center gap-4 sm:gap-6 lg:gap-8 px-4 sm:px-6 lg:px-12 py-10 border-t border-gray-500" role="banner">
+                <header className="hero-content">
+                    <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-black font-semibold text-center sm:text-left leading-tight">
+                        Showcasing Students <br />
+                        <span className="text-[#413dfa]">Voices and Visuals</span>
+                    </h1>
+                </header>
+                
+                <article className="hero-description">
+                    <p className='text-sm sm:text-base md:text-lg lg:text-xl text-black text-center sm:text-left leading-relaxed max-w-4xl'>
+                        Your destination for exploring the outreach vision of Darul Huda Islamic University. This official platform of the Office of Guidance and External Activities (OGEA) is dedicated to highlighting a wide range of outreach initiatives, academic collaborations, and creative expressions by our students. Here, you'll find regularly updated details on student-led programs, national and international outreach activities, and a showcase of literary and artistic contributions that reflect the intellectual spirit of our campus. With a focus on guidance, excellence, and external engagement, the site serves as a vibrant record of achievements and a gateway to new opportunities. Whether you're seeking inspiration, tracking student performance, or exploring the dynamic role of OGEA, this space is designed to inform, involve, and ignite curiosity across disciplines and communities.
+                    </p>
+                </article>
+                
+                <nav className="hero-cta" role="navigation" aria-label="Call to action">
+                    <Button className={'mb-4 px-4 py-2 sm:px-6 sm:py-3 rounded-md bg-[#23272c] text-gray-100 hover:bg-[#2a2f35] transition-colors duration-300'}>
+                        <a href="https://drive.google.com/drive/folders/1z-Q5CfkDy-2D0T9tDwXYXL6Uv1jrkkSk?usp=drive_link" 
+                           className="text-white text-sm sm:text-base" 
+                           target="_blank" 
+                           rel="noopener noreferrer">
+                            Trace Your Programmes
+                        </a>
+                    </Button>
+                </nav>
+            </section>
+
+            <section className="achievements-section w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-12 hidden" role="region" aria-labelledby="achievements-heading">
+                <div className="rounded-lg flex flex-col gap-4 sm:gap-6">
+                    <header className="section-header">
+                        <h2 id="achievements-heading" className="text-xl sm:text-2xl lg:text-3xl font-medium text-center mb-4 sm:mb-6 text-black font-poppins">
+                            Latest Achievements
+                        </h2>
+                    </header>
+                    
+                    {/* Posters Grid */}
+                    <div className="posters-grid" role="list" aria-label="Achievement posters">
+                        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+                            {posters.slice(-4).reverse().map((poster) => (
+                                <article key={poster.id} className="poster-item bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group" role="listitem">
+                                    <figure className="poster-image">
+                                        <img
+                                            src={poster.image}
+                                            alt={`Achievement poster ${poster.id}`}
+                                            className="w-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                            loading="lazy"
+                                        />
+                                        <figcaption className="sr-only">Achievement poster number {poster.id}</figcaption>
+                                    </figure>
+                                </article>
+                            ))}
                         </div>
-                    ))}
-                </div>
-
-                {/* Empty State */}
-                {posters.length === 0 && (
-                    <div className="text-center py-12">
-                        <div className="text-gray-600 text-xl mb-4">No posters found</div>
-                        <p className="text-gray-500">Posters will be displayed here once they are added.</p>
                     </div>
-                )}
-            </div>
 
-        </div>
+                    {/* Empty State */}
+                    {posters.length === 0 && (
+                        <aside className="empty-state text-center py-8 sm:py-12" role="status" aria-live="polite">
+                            <div className="text-gray-600 text-lg sm:text-xl mb-4">No posters found</div>
+                            <p className="text-gray-500 text-sm sm:text-base">Posters will be displayed here once they are added.</p>
+                        </aside>
+                    )}
+                </div>
+            </section>
+        </main>
     )
 }
 
