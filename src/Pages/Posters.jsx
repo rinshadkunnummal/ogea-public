@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { posters } from '../../public/assets/posters/posters.js'
+import { posters } from '../assets/posters/posters.js'
 import Loader from '../Components/Loader/Loader.jsx'
 
 const Posters = () => {
@@ -43,49 +43,53 @@ const Posters = () => {
     // Show loader during initial loading
     if (loading) {
         return (
-            <div className="posters-page flex justify-center items-center min-h-[400px]">
-                <div className="text-center">
+            <main className="posters-page flex justify-center items-center min-h-[400px]" aria-live="polite" aria-busy="true">
+                <section className="text-center" role="status" aria-label="Loading posters">
                     <Loader />
-                </div>
-            </div>
+                </section>
+            </main>
         )
     }
 
     return (
-        <div className="posters-page px-3 sm:px-6">
-            <div className="mb-6">
-                <div>
-                    <h1 className="text-3xl font-bold text-black font-nunito text-center">Achievements</h1>
-              <p className="text-[15px] text-black text-center">Explore programmes by our talented students.</p>
-                </div>
-            </div>
+        <main className="posters-page px-3 sm:px-6" aria-live="polite" aria-busy="false">
+            <header className="mb-6">
+                <section role="banner" aria-labelledby="achievements-title">
+                    <h1 id="achievements-title" className="text-3xl font-bold text-black font-nunito text-center">Achievements</h1>
+                    <p className="text-[15px] text-black text-center">Explore programmes by our talented students.</p>
+                </section>
+            </header>
 
             {/* Posters Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <section className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" role="region" aria-labelledby="achievements-title" aria-label="Achievement posters gallery">
                 {displayedPosters.map((poster) => (
-                    <div key={poster.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                    <article key={poster.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                        <figure className="relative">
                             <img 
                                 src={poster.image} 
-                                alt={`Poster ${poster.id}`}
+                                alt={`Achievement poster ${poster.id}`}
                                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                                role="img"
                             />
-                    </div>
+                        </figure>
+                    </article>
                 ))}
-            </div>
+            </section>
 
             {/* Show More/Less Buttons */}
             {posters.length > 8 && (
-                <div className="flex justify-center mt-8 gap-4">
+                <nav className="flex justify-center mt-8 gap-4" role="navigation" aria-label="Poster pagination controls">
                     {hasMorePosters && !loadingLess && (
                         <button
                             onClick={handleShowMore}
                             disabled={loadingMore}
                             className="px-6 py-3 border-1 border-[#58A0C8] text-[#58A0C8] rounded-xl hover:bg-blue-600 hover:text-white transition-colors duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                            aria-label="Show more achievement posters"
                         >
                             {loadingMore ? (
                                 <>
-                                    <div className="w-4 h-4 border-2 border-[#58A0C8] border-t-transparent rounded-full animate-spin"></div>
-                                    Loading...
+                                    <div className="w-4 h-4 border-2 border-[#58A0C8] border-t-transparent rounded-full animate-spin" aria-hidden="true"></div>
+                                    <span aria-live="polite">Loading...</span>
                                 </>
                             ) : (
                                 'Show More'
@@ -97,28 +101,29 @@ const Posters = () => {
                             onClick={handleShowLess}
                             disabled={loadingLess}
                             className="px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                            aria-label="Show fewer achievement posters"
                         >
                             {loadingLess ? (
                                 <>
-                                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                                    Loading...
+                                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" aria-hidden="true"></div>
+                                    <span aria-live="polite">Loading...</span>
                                 </>
                             ) : (
                                 'Show Less'
                             )}
                         </button>
                     )}
-                </div>
+                </nav>
             )}
 
             {/* Empty State */}
             {displayedPosters.length === 0 && (
-                <div className="text-center py-12">
+                <section className="text-center py-12" role="region" aria-live="polite" aria-label="Empty state message">
                     <div className="text-gray-600 text-xl mb-4">No posters found</div>
                     <p className="text-gray-500">Posters will be displayed here once they are added.</p>
-                </div>
+                </section>
             )}
-        </div>
+        </main>
     )
 }
 

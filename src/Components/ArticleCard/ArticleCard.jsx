@@ -12,7 +12,7 @@ const ArticleCard = ({ article }) => {
         <article className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300" role="listitem">
             <div className="p-6 flex flex-col justify-between h-full">
                 <header>
-                    <h3 className="text-xl font-bold text-gray-800 mb-2 font-nunito break-words whitespace-pre-line">
+                    <h3 className="text-xl font-bold text-gray-800 mb-2 font-nunito break-words line-clamp-2">
                         {article.title || 'Untitled Article'}
                     </h3>
                     {article.writer && (
@@ -22,7 +22,7 @@ const ArticleCard = ({ article }) => {
                     )}
                 </header>
 
-                <p className="text-gray-600 mb-4 line-clamp-4 whitespace-pre-line"
+                <p className="text-gray-600 mb-4 whitespace-pre-line line-clamp-3"
                     dangerouslySetInnerHTML={{
                         __html: article.content ? (article.content.substring(0, 200) + '...').replace(/<\/?[^>]+(>|$)/g, "<br>", "<hr>") : 'No content available'
                     }}
