@@ -5,6 +5,7 @@ import Navbar from './Components/NavBar/Navbar.jsx'
 import Footer from './Components/Footer/Footer.jsx'
 
 import { router } from './routes/routes'
+import { Analytics } from '@vercel/analytics/react';
 
 // Layout component that handles navbar and footer visibility
 const Layout = () => {
@@ -26,7 +27,12 @@ const Layout = () => {
 
 
 const App = () => {
-  return <RouterProvider router={router} />
+  return (
+    <>
+      <RouterProvider router={router} />
+      <Analytics />
+    </>
+  )
 }
 
 export default App
