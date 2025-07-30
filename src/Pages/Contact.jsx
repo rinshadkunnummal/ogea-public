@@ -17,20 +17,24 @@ const Contact = () => {
   // Show loader during initial loading
   if (loading) {
     return (
-      <div className="contact-page flex items-center justify-center min-h-[400px]">
-        <div className="text-center">
+      <main className="contact-page flex items-center justify-center min-h-[400px]">
+        <section className="text-center" aria-live="polite" aria-busy="true">
           <Loader />
-        </div>
-      </div>
+        </section>
+      </main>
     )
   }
 
   return (
-    <div className="contact-page flex  items-center justify-center flex-col leading-normal p-3 sm:p-6">
-      <h1 className="text-3xl text-black font-bold mb-4 font-nunito">Contact</h1>
-      <p className="text-lg text-black mb-6">Get in touch with us!</p>
-      <ContactDetails />
-    </div>
+    <main className="contact-page flex items-center justify-center flex-col leading-normal px-3 sm:px-6 py-6 pt-24">
+      <header className="contact-header text-center mb-8">
+        <h1 className="text-3xl text-black font-bold mb-4 font-nunito">Contact</h1>
+        <p className="text-lg text-black mb-6">Get in touch with us!</p>
+      </header>
+      <section className="contact-content" role="region" aria-labelledby="contact-heading">
+        <ContactDetails />
+      </section>
+    </main>
   )
 }
 
