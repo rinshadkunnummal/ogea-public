@@ -81,7 +81,7 @@ const Works = () => {
   const categories = ['all', ...new Set(articles.map(article => article.category).filter(Boolean))]
   
   return (
-    <main className="works-page  p-3 sm:p-6" aria-live="polite" aria-busy={loading ? "true" : "false"}>
+    <main className="works-page  p-3 sm:p-6 font-arima" aria-live="polite" aria-busy={loading ? "true" : "false"}>
       {!showFullView ? (
         <>
           <header className="mb-6" role="banner">
