@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
 import Layout from '@/Pages/Layout.jsx'
 import Loader from '@/Components/Loader/Loader.jsx'
+import ErrorPage from '@/Components/ErrorPage/ErrorPage.jsx'
 
 // Lazy load components
 const Home = lazy(() => import('../Pages/Home.jsx'))
@@ -30,6 +31,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -60,5 +62,9 @@ export const router = createBrowserRouter([
   {
     path: "/admin/*",
     element: <LazyWrapper><Admin /></LazyWrapper>
+  },
+  {
+    path: "*",
+    element: <ErrorPage />
   }
 ])
