@@ -24,6 +24,9 @@ const PhotoSlider = () => {
           margin-top: -25px !important;
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
           transition: all 0.3s ease !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
         }
         
         .photo-slider .swiper-button-next:hover,
@@ -72,7 +75,7 @@ const PhotoSlider = () => {
       >
         {latestBanners.map((banner) => (
           <SwiperSlide key={banner.id} className="flex justify-center items-center">
-            <figure className="w-[430px] sm:w-[1050px] h-96 sm:h-[500px] mx-auto">
+            <figure className="w-[430px] h-[384px] sm:w-full sm:h-[937px] sm:px-4 mx-auto">
               <img 
                 src={banner.image} 
                 alt={`Banner image ${banner.id}`}
