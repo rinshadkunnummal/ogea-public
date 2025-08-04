@@ -19,7 +19,7 @@ const Home = () => {
     // Show loader during initial loading
     if (loading) {
         return (
-            <main className="home-page flex justify-center items-center min-h-[400px] p-3 sm:p-6 pt-24">
+            <main className="home-page flex justify-center items-center min-h-[400px] ">
                 <section className="text-center" aria-live="polite" aria-busy="true">
                     <Loader />
                 </section>

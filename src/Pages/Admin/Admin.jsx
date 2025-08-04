@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 import StatsSection from './StatsSection'
 import ManageSection from './ManageSection'
 import AddSection from './AddSection'
-import axios from 'axios'
+import { articlesAPI, config } from '../../services/apiService'
 import AdminSideBar from '@/Components/AdminSideBar/AdminSideBar'
 
 const Admin = () => {
@@ -34,8 +34,7 @@ const Admin = () => {
 
   const [articles, setArticles] = useState([])
 
-  const correctUsername = import.meta.env.VITE_ADMIN_USERNAME
-  const correctPassword = import.meta.env.VITE_ADMIN_PASSWORD
+  const { username: correctUsername, password: correctPassword } = config.adminCredentials
 
   useEffect(() => {
     const storedAuth = sessionStorage.getItem('adminAuthenticated')
@@ -78,9 +77,8 @@ const Admin = () => {
 
   const fetchArticles = async () => {
     try {
-      const apiUrl = import.meta.env.VITE_API_BASE_URL || "https://ogea-api.onrender.com/api/v1"
-      const response = await axios.get(`${apiUrl}/articles`)
-      const fetched = response.data.data?.articles || response.data.articles || []
+      const response = await articlesAPI.getAll()
+      const fetched = response.data?.articles || response.articles || []
       console.log("Fetched articles:", fetched)
       setArticles(fetched)
     } catch (err) {
@@ -114,8 +112,7 @@ const Admin = () => {
   const handleDeleteArticle = async (id) => {
     if (!window.confirm("Are you sure you want to delete this article?")) return
     try {
-      const apiUrl = import.meta.env.VITE_API_BASE_URL || "https://ogea-api.onrender.com/api/v1"
-      await axios.delete(`${apiUrl}/articles/${id}`)
+      await articlesAPI.delete(id)
       setArticles(prev => prev.filter(article => article._id !== id))
       fetchStats()
       alert("Article deleted successfully!")
@@ -142,9 +139,8 @@ const Admin = () => {
 
     try {
       setSubmitting(true)
-      const apiUrl = import.meta.env.VITE_API_BASE_URL || "https://ogea-api.onrender.com/api/v1"
-      const response = await axios.post(`${apiUrl}/articles`, formData)
-      console.log("Article created:", response.data)
+      const response = await articlesAPI.create(formData)
+      console.log("Article created:", response)
 
       setFormData({
         title: '',

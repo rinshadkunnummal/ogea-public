@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate, useLocation } from 'react-router-dom'
-import axios from 'axios';
+import { articlesAPI } from '../services/apiService';
 import Loader from '../Components/Loader/Loader';
 import ArticleCard from '../Components/ArticleCard/ArticleCard';
 import ArticleFullView from '../Components/ArticleFullView/ArticleFullView';
@@ -23,15 +23,18 @@ const Works = () => {
     const fetchArticles = async () => {
       try {
         setLoading(true)
-        const response = await axios.get("https://ogea-api.onrender.com/api/v1/articles?sort=-createdAt")
+        const response = await articlesAPI.getSorted('-createdAt')
         
         // Extract articles from nested data structure
-        const articlesData = response.data.data?.articles || response.data.articles || response.data || []
+        const articlesData = response.data?.articles || response.articles || response || []
         setArticles(articlesData)
         setError(null)
       } catch (err) {
-        console.error("Axios error:", err);
-        setError("Failed to load articles. Please try again later.")
+        console.error("API error:", err);
+        const errorMessage = err.message.includes('timeout') 
+          ? "The server is taking longer than usual to respond. Please wait a moment and try refreshing the page."
+          : "Failed to load articles. Please try again later."
+        setError(errorMessage)
       } finally {
         setLoading(false)
       }

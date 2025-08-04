@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { articlesAPI } from '../../services/apiService';
 
 const ManageSection = ({ articles, handleDeleteArticle, onArticleUpdate }) => {
   const [editingArticle, setEditingArticle] = useState(null)
@@ -33,8 +33,8 @@ const ManageSection = ({ articles, handleDeleteArticle, onArticleUpdate }) => {
     e.preventDefault()
     setIsSaving(true) // Start loading state
     try {
-      const response = await axios.patch(`https://ogea-api.onrender.com/api/v1/articles/${editingArticle._id}`, editFormData)
-      console.log('Article updated successfully:', response.data)
+      const response = await articlesAPI.update(editingArticle._id, editFormData)
+      console.log('Article updated successfully:', response)
       
       // Call parent function to refresh articles list
       if (onArticleUpdate) {
