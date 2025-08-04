@@ -57,7 +57,7 @@ const PhotoSlider = () => {
         }}
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
-        className="w-full h-[400px] lg:h-[500px]"
+        className="w-full h-auto"
         breakpoints={{
           640: {
             slidesPerView: 1,
@@ -75,9 +75,9 @@ const PhotoSlider = () => {
       >
         {latestBanners.map((banner) => (
           <SwiperSlide key={banner.id} className="flex justify-center items-center">
-            <figure className="w-[430px] h-[384px] sm:w-full sm:h-[937px] sm:px-4 mx-auto">
-              <img 
-                src={banner.image} 
+            <figure className="w-full max-w-[430px] sm:max-w-[700px] md:max-w-[900px] lg:max-w-[1200px] xl:max-w-[1400px] aspect-[16/9] mx-auto px-2 sm:px-4">
+              <img
+                src={banner.image}
                 alt={`Banner image ${banner.id}`}
                 className="w-full h-full object-cover rounded-lg shadow-lg"
                 loading="lazy"
