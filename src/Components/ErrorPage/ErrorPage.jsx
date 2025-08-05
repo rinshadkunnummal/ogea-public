@@ -1,5 +1,6 @@
 import React from 'react'
 import errorImage from '../../assets/404.png'
+import { NavLink } from 'react-router-dom'
 
 const ErrorPage = () => {
   return (
@@ -11,7 +12,9 @@ const ErrorPage = () => {
           <h2 className='text-xl mb-2'>Page Not Found</h2>
         </header>
         <p className='text-[15px]'>Sorry, the page you are looking for does not exist.</p>
-        <a href="https://www.chsoutreach.live" className='mt-4 text-blue-500 hover:underline'>Go back to Home</a>
+        <NavLink to="/" className='mt-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors'>
+          Go to Home
+        </NavLink>
       </section>
     </main>
   )

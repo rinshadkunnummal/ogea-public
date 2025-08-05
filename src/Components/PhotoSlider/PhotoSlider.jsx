@@ -79,7 +79,7 @@ const PhotoSlider = () => {
               <img
                 src={banner.image}
                 alt={`Banner image ${banner.id}`}
-                className="w-full h-full object-cover rounded-lg shadow-lg"
+                className="w-full h-full object-cover shadow-lg"
                 loading="lazy"
               />
             </figure>

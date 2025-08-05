@@ -28,12 +28,12 @@ const Home = () => {
     }
 
     return (
-        <main className="home-page pt-24 pb-8 sm:pb-12 lg:pb-20 flex flex-col items-center justify-center gap-8 sm:gap-12 lg:gap-16">
+        <main className="home-page pt-18 sm:pt-19 lg:pt-19 pb-8 sm:pb-12 lg:pb-20 flex flex-col items-center justify-center gap-8 sm:gap-12 lg:gap-16">
             <PhotoSlider/>
 
             <section className="hero-section w-full max-w-6xl mx-auto flex flex-col justify-center items-center gap-4 sm:gap-6 lg:gap-8 px-4 sm:px-6 lg:px-12 py-10 border-t border-gray-500" role="banner">
                 <header className="hero-content">
-                    <h1 className="text-4xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-black font-semibold text-center sm:text-left leading-tight">
+                    <h1 className="text-4xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-black font-semibold text-center  leading-tight">
                         Showcasing Students <br />
                         <span className="text-[#413dfa]">Voices and Visuals</span>
                     </h1>
