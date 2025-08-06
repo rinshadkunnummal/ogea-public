@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { BarChart2, FileText, PlusCircle } from 'react-feather'
+import { BarChart2, FileText, PlusCircle, Image } from 'react-feather'
 
 
 const AdminSideBar = ({ handleLogout }) => {
@@ -56,6 +56,16 @@ const AdminSideBar = ({ handleLogout }) => {
             >
               <PlusCircle size={20} />
               Add Content
+            </button>
+          </li>
+          <li>
+            <button
+              className={`flex gap-2 w-full text-left px-4 py-2 rounded transition-colors font-medium text-white ${location.pathname.endsWith('/posters') ? 'bg-blue-100 text-blue-700' : 'text-gray-700 hover:bg-gray-100'}`}
+              onClick={() => { navigate('/admin/posters'); setOpen(false); }}
+              role="menuitem"
+            >
+              <Image size={20} />
+              Manage Posters
             </button>
           </li>
         </ul>

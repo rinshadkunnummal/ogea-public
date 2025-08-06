@@ -85,6 +85,131 @@ export const articlesAPI = {
   },
 };
 
+// Images API functions (for posters from new API endpoint)
+export const imagesAPI = {
+  // Get all images from the new API endpoint
+  getAll: async (params = {}) => {
+    try {
+      const response = await axios.get('http://192.168.20.59:2000/api/v1/upload/images', { 
+        params,
+        timeout: 30000 
+      });
+      return response.data;
+    } catch (error) {
+      console.error('API Error - images getAll:', error);
+      throw new Error(error.code === 'ECONNABORTED' ? 'Request timeout - API server may be slow' : error.message);
+    }
+  },
+
+  // Get images with sorting from the new API endpoint
+  getSorted: async (sortBy = '-createdAt') => {
+    try {
+      const response = await axios.get(`http://192.168.20.59:2000/api/v1/upload/images?sort=${sortBy}`, {
+        timeout: 30000
+      });
+      return response.data;
+    } catch (error) {
+      console.error('API Error - images getSorted:', error);
+      throw new Error(error.code === 'ECONNABORTED' ? 'Request timeout - API server may be slow' : error.message);
+    }
+  },
+};
+
+// Poster API functions
+export const postersAPI = {
+  // Get all posters
+  getAll: async (params = {}) => {
+    try {
+      const response = await apiClient.get('/posters', { params });
+      return response.data;
+    } catch (error) {
+      console.error('API Error - posters getAll:', error);
+      throw new Error(error.code === 'ECONNABORTED' ? 'Request timeout - API server may be slow' : error.message);
+    }
+  },
+
+  // Get poster by ID
+  getById: async (id) => {
+    try {
+      const response = await apiClient.get(`/posters/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error('API Error - posters getById:', error);
+      throw new Error(error.code === 'ECONNABORTED' ? 'Request timeout - API server may be slow' : error.message);
+    }
+  },
+
+  // Create new poster
+  create: async (posterData) => {
+    try {
+      const response = await apiClient.post('/posters', posterData);
+      return response.data;
+    } catch (error) {
+      console.error('API Error - posters create:', error);
+      throw new Error(error.code === 'ECONNABORTED' ? 'Request timeout - API server may be slow' : error.message);
+    }
+  },
+
+  // Update poster
+  update: async (id, posterData) => {
+    try {
+      const response = await apiClient.patch(`/posters/${id}`, posterData);
+      return response.data;
+    } catch (error) {
+      console.error('API Error - posters update:', error);
+      throw new Error(error.code === 'ECONNABORTED' ? 'Request timeout - API server may be slow' : error.message);
+    }
+  },
+
+  // Delete poster
+  delete: async (id) => {
+    try {
+      const response = await apiClient.delete(`/posters/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error('API Error - posters delete:', error);
+      throw new Error(error.code === 'ECONNABORTED' ? 'Request timeout - API server may be slow' : error.message);
+    }
+  },
+
+  // Get posters with sorting
+  getSorted: async (sortBy = '-createdAt') => {
+    try {
+      const response = await apiClient.get(`/posters?sort=${sortBy}`);
+      return response.data;
+    } catch (error) {
+      console.error('API Error - posters getSorted:', error);
+      throw new Error(error.code === 'ECONNABORTED' ? 'Request timeout - API server may be slow' : error.message);
+    }
+  },
+};
+
+// Upload API functions
+export const uploadAPI = {
+  // Upload image to Cloudinary via new API endpoint
+  uploadImage: async (file) => {
+    try {
+      const formData = new FormData();
+      formData.append('image', file);
+      
+      const response = await fetch('http://192.168.20.59:2000/api/v1/upload/image', {
+        method: 'POST',
+        body: formData
+      });
+      
+      if (!response.ok) {
+        throw new Error(`Upload failed: ${response.statusText}`);
+      }
+      
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('API Error - upload image:', error);
+      throw new Error(error.message || 'Failed to upload image');
+    }
+  },
+};
+
 // Authentication helper
 export const auth = {
   username: import.meta.env.VITE_ADMIN_USERNAME,
