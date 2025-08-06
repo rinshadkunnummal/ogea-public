@@ -25,7 +25,7 @@ const Navbar = () => {
                 <div className='flex justify-between items-center'>
                     {/* Logo/Brand */}
                     <div className='w-32 md:w-40 flex items-center gap-2'>
-                        <img src="public/logo.svg" alt="" className='w-full' />
+                        <img src="/logo.svg" alt="" className='w-full' />
                         <h1 className='text-xl md:text-2xl font-poppins font-bold text-black hidden'>
                             CHS Outreach. <span className='hidden text-teal-300'>Board</span>
                         </h1>
@@ -61,7 +61,7 @@ const Navbar = () => {
                         className='md:hidden p-2 rounded-md hover:bg-teal-700 transition-colors'
                         aria-label='Toggle navigation menu'
                     >
-                        <Menu className='h-6 w-6 text-white' />
+                        <Menu className='h-6 w-6 text-black' />
                     </button>
                 </div>
             </header>
