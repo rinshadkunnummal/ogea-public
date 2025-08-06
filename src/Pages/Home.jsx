@@ -28,7 +28,7 @@ const Home = () => {
     }
 
     return (
-        <main className="home-page pt-18 sm:pt-19 lg:pt-19 pb-8 sm:pb-12 lg:pb-20 flex flex-col items-center justify-center gap-8 sm:gap-12 lg:gap-16">
+        <main className="home-page flex flex-col items-center justify-center gap-10">
             <PhotoSlider/>
 
             <section className="hero-section w-full max-w-6xl mx-auto flex flex-col justify-center items-center gap-4 sm:gap-6 lg:gap-8 px-4 sm:px-6 lg:px-12 py-10 border-t border-gray-500" role="banner">
@@ -40,12 +40,12 @@ const Home = () => {
                 </header>
                 
                 <article className="hero-description">
-                    <p className='text-sm sm:text-base md:text-lg lg:text-xl text-black text-center sm:text-left leading-relaxed max-w-4xl'>
+                    <p className='text-sm sm:text-base md:text-lg lg:text-xl text-black text-center leading-relaxed max-w-4xl'>
                         Your destination for exploring the outreach vision of Darul Huda Islamic University. This official platform of the Office of Guidance and External Activities (OGEA) is dedicated to highlighting a wide range of outreach initiatives, academic collaborations, and creative expressions by our students. Here, you'll find regularly updated details on student-led programs, national and international outreach activities, and a showcase of literary and artistic contributions that reflect the intellectual spirit of our campus. With a focus on guidance, excellence, and external engagement, the site serves as a vibrant record of achievements and a gateway to new opportunities. Whether you're seeking inspiration, tracking student performance, or exploring the dynamic role of OGEA, this space is designed to inform, involve, and ignite curiosity across disciplines and communities.
                     </p>
                 </article>
                 
-                <nav className="hero-cta" role="navigation" aria-label="Call to action">
+                <nav className="hero-cta hidden" role="navigation" aria-label="Call to action">
                     <Button className={'mb-4 px-4 py-2 sm:px-6 sm:py-3 rounded-md bg-[#23272c] text-gray-100 hover:bg-[#2a2f35] transition-colors duration-300'}>
                         <a href="https://drive.google.com/drive/folders/1z-Q5CfkDy-2D0T9tDwXYXL6Uv1jrkkSk?usp=drive_link" 
                            className="text-white text-sm sm:text-base" 

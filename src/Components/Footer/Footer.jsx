@@ -9,10 +9,10 @@ const Footer = () => {
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         {/* Logo and Brand */}
         <div className="flex items-center gap-3">
-          <span className="sm:font-bold sm:text-lg flex flex-col text-center sm:flex-row">&copy; {new Date().getFullYear()} CHS Outreach . <span>All Rights Reserved</span></span>
+          <span className="font-poppins sm:text-lg flex flex-col text-center sm:flex-row">&copy; {new Date().getFullYear()} CHS Outreach . <span>All Rights Reserved</span></span>
         </div>
         {/* Navigation Links */}
-        <nav className='hidden md:flex gap-4'>
+        <nav className='hidden gap-4'>
           <Link to="/" className='hover:text-gray-300 transition-colors'>
             Home
           </Link>
