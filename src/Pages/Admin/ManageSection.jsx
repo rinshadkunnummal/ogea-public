@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
 import { articlesAPI } from '../../services/apiService';
 
-const ManageSection = ({ articles, handleDeleteArticle, onArticleUpdate }) => {
+const ManageSection = () => {
+  const { articles, handleDeleteArticle, onArticleUpdate } = useOutletContext();
   const [editingArticle, setEditingArticle] = useState(null)
   const [editFormData, setEditFormData] = useState({
     title: '',

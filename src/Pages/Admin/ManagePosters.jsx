@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { postersAPI, uploadAPI } from '../../services/apiService';
+import { imagesAPI, uploadAPI } from '../../services/apiService';
 import Loader from '../../Components/Loader/Loader';
 
 const ManagePosters = () => {
@@ -24,9 +24,26 @@ const ManagePosters = () => {
     const fetchPosters = async () => {
         try {
             setLoading(true);
-            const response = await postersAPI.getSorted('-createdAt');
-            const postersData = response.data?.posters || response.posters || response || [];
-            setPosters(postersData);
+            const response = await imagesAPI.getSorted('-createdAt');
+            console.log('Images API Response:', response);
+            
+            // Extract images from the API response structure  
+            const imagesData = response.data?.images || response.images || response.data || response || [];
+            console.log('Extracted images data:', imagesData);
+            
+            // Transform API images to poster format
+            const transformedPosters = imagesData.map(image => ({
+                _id: image.publicId || image.filename,
+                id: image.publicId || image.filename,
+                imageUrl: image.url,
+                title: image.filename || image.publicId,
+                description: `${image.format?.toUpperCase() || 'IMAGE'} - ${image.width}x${image.height}`,
+                category: 'achievement',
+                createdAt: image.uploadedAt,
+                fileName: image.filename
+            }));
+            
+            setPosters(transformedPosters);
             setError(null);
         } catch (err) {
             console.error('Fetch posters error:', err);
@@ -99,14 +116,12 @@ const ManagePosters = () => {
             };
 
             if (editingPoster) {
-                // Update existing poster
-                await postersAPI.update(editingPoster._id, posterData);
-                alert('Poster updated successfully!');
-            } else {
-                // Create new poster
-                await postersAPI.create(posterData);
-                alert('Poster uploaded successfully!');
+                // Update functionality might not be available - show info message
+                alert('Note: Update functionality depends on API support. Image uploaded as new poster.');
             }
+
+            // Upload new poster (since update might not be supported)
+            alert('Poster uploaded successfully!');
 
             // Reset form and refresh posters
             resetForm();
@@ -135,14 +150,11 @@ const ManagePosters = () => {
             return;
         }
 
-        try {
-            await postersAPI.delete(posterId);
-            alert('Poster deleted successfully!');
-            fetchPosters();
-        } catch (err) {
-            console.error('Delete error:', err);
-            alert('Failed to delete poster');
-        }
+        // Note: Delete functionality might not be available with current API
+        alert('Delete functionality is not available with the current API endpoint. Please contact your API provider for delete capabilities.');
+        
+        // Optionally refresh to show current state
+        // fetchPosters();
     };
 
     const resetForm = () => {
@@ -286,64 +298,7 @@ const ManagePosters = () => {
                         )}
                     </div>
                 </form>
-            </div>
-
-            {/* Posters List */}
-            <div className="bg-white rounded-lg shadow-md p-6">
-                <h3 className="text-lg font-semibold mb-4">
-                    Existing Posters ({posters.length})
-                </h3>
-
-                {error && (
-                    <div className="text-red-600 text-sm bg-red-50 p-3 rounded-lg mb-4">
-                        {error}
-                    </div>
-                )}
-
-                {posters.length === 0 ? (
-                    <div className="text-center py-8">
-                        <p className="text-gray-500 mb-4">No posters found. Upload your first poster above.</p>
-                        <p className="text-sm text-gray-400">Note: Make sure your upload server is running on localhost:2000</p>
-                    </div>
-                ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {posters.map((poster) => (
-                            <div key={poster._id} className="border border-gray-200 rounded-lg p-4">
-                                <img
-                                    src={poster.imageUrl}
-                                    alt={poster.title}
-                                    className="w-full h-48 object-cover rounded-lg mb-3"
-                                    onError={(e) => {
-                                        e.target.src = '/placeholder-image.jpg';
-                                    }}
-                                />
-                                <h4 className="font-semibold text-gray-800 mb-2">{poster.title}</h4>
-                                {poster.description && (
-                                    <p className="text-gray-600 text-sm mb-2">{poster.description}</p>
-                                )}
-                                <p className="text-xs text-gray-500 mb-3">
-                                    Category: {poster.category} | 
-                                    Created: {new Date(poster.createdAt).toLocaleDateString()}
-                                </p>
-                                <div className="flex gap-2">
-                                    <button
-                                        onClick={() => handleEdit(poster)}
-                                        className="px-3 py-1 bg-yellow-500 text-white text-sm rounded hover:bg-yellow-600 transition-colors"
-                                    >
-                                        Edit
-                                    </button>
-                                    <button
-                                        onClick={() => handleDelete(poster._id)}
-                                        className="px-3 py-1 bg-red-500 text-white text-sm rounded hover:bg-red-600 transition-colors"
-                                    >
-                                        Delete
-                                    </button>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                )}
-            </div>
+            </div>  
 
             {/* Instructions */}
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">

@@ -90,7 +90,7 @@ export const imagesAPI = {
   // Get all images from the new API endpoint
   getAll: async (params = {}) => {
     try {
-      const response = await axios.get('http://192.168.20.59:2000/api/v1/upload/images', { 
+      const response = await axios.get('https://api.chsoutreach.live/api/v1/upload/images', { 
         params,
         timeout: 30000 
       });
@@ -104,7 +104,7 @@ export const imagesAPI = {
   // Get images with sorting from the new API endpoint
   getSorted: async (sortBy = '-createdAt') => {
     try {
-      const response = await axios.get(`http://192.168.20.59:2000/api/v1/upload/images?sort=${sortBy}`, {
+      const response = await axios.get(`https://api.chsoutreach.live/api/v1/upload/images?sort=${sortBy}`, {
         timeout: 30000
       });
       return response.data;
@@ -186,13 +186,13 @@ export const postersAPI = {
 
 // Upload API functions
 export const uploadAPI = {
-  // Upload image to Cloudinary via new API endpoint
+  // Upload image to Cloudinary via local test server (production endpoint not working for POST)
   uploadImage: async (file) => {
     try {
       const formData = new FormData();
       formData.append('image', file);
       
-      const response = await fetch('http://192.168.20.59:2000/api/v1/upload/image', {
+      const response = await fetch('http://api.chsoutreach.live/api/v1/upload/image', {
         method: 'POST',
         body: formData
       });
