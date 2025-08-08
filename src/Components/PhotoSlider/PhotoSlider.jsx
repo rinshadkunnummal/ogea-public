@@ -42,6 +42,36 @@ const PhotoSlider = () => {
           font-weight: bold !important;
           color: #333 !important;
         }
+
+        /* Mobile styles - smaller navigation buttons */
+        @media (max-width: 640px) {
+          .photo-slider .swiper-button-next,
+          .photo-slider .swiper-button-prev {
+            width: 35px !important;
+            height: 35px !important;
+            margin-top: -17.5px !important;
+          }
+          
+          .photo-slider .swiper-button-next:after,
+          .photo-slider .swiper-button-prev:after {
+            font-size: 12px !important;
+          }
+        }
+
+        /* Extra small mobile - even smaller buttons */
+        @media (max-width: 480px) {
+          .photo-slider .swiper-button-next,
+          .photo-slider .swiper-button-prev {
+            width: 30px !important;
+            height: 30px !important;
+            margin-top: -15px !important;
+          }
+          
+          .photo-slider .swiper-button-next:after,
+          .photo-slider .swiper-button-prev:after {
+            font-size: 10px !important;
+          }
+        }
       `}</style>
 
       <Swiper
