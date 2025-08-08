@@ -186,13 +186,17 @@ export const postersAPI = {
 
 // Upload API functions
 export const uploadAPI = {
-  // Upload image to Cloudinary via new API endpoint
+  // Upload image to Cloudinary via local test server (production endpoint not working for POST)
   uploadImage: async (file) => {
     try {
       const formData = new FormData();
       formData.append('image', file);
       
+<<<<<<< HEAD
       const response = await fetch('https://api.chsoutreach.live/api/v1/upload/image', {
+=======
+      const response = await fetch('http://api.chsoutreach.live/api/v1/upload/image', {
+>>>>>>> 28b1b16a2ed885ad34db01712a6ff8e0e5ce7395
         method: 'POST',
         body: formData
       });

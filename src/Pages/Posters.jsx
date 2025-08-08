@@ -13,51 +13,37 @@ const Posters = () => {
     const [selectedImage, setSelectedImage] = useState(null)
     const [isModalOpen, setIsModalOpen] = useState(false)
 
-    // Fetch posters from API with fallback to static data
+    // Load only static posters, skip API fetching
     useEffect(() => {
-        const fetchPosters = async () => {
+        const loadStaticPosters = async () => {
             try {
                 setLoading(true)
-                console.log('Attempting to fetch images from API: http://192.168.20.59:2000/api/v1/images')
-                const response = await imagesAPI.getSorted('-createdAt')
-                console.log('Images API Response:', response)
                 
-                // Extract images from the specific API response structure
-                const imagesData = response.data?.images || []
-                console.log('Extracted images data:', imagesData)
-                console.log('Number of API images:', imagesData.length)
+                // Transform static posters to consistent format
+                const transformedStaticPosters = staticPosters.map(poster => ({
+                    id: poster.id,
+                    _id: poster.id,
+                    imageUrl: poster.image,
+                    title: `Poster ${poster.id}`,
+                    description: `Achievement poster ${poster.id}`,
+                    category: 'achievement',
+                    createdAt: new Date(),
+                    source: 'static'
+                }))
                 
-                if (imagesData.length > 0) {
-                    console.log('Using API images (Cloudinary)')
-                    // Transform API images to poster format based on the actual API structure
-                    const transformedPosters = imagesData.map(image => ({
-                        id: image.publicId || image.filename,
-                        _id: image.publicId || image.filename,
-                        imageUrl: image.url,
-                        title: image.filename || image.publicId,
-                        description: `${image.format.toUpperCase()} image - ${image.width}x${image.height}`,
-                        category: 'achievement',
-                        createdAt: image.uploadedAt
-                    }))
-                    setPosters(transformedPosters)
-                    setError(null)
-                } else {
-                    console.log('No API images found')
-                    // Don't show static posters, just show empty state
-                    setPosters([])
-                    setError("No images available from API")
-                }
+                console.log('Using static posters only:', transformedStaticPosters.length)
+                setPosters(transformedStaticPosters)
+                setError(null)
             } catch (err) {
-                console.error("API error:", err);
-                setError(`API unavailable: ${err.message}`)
-                // Don't fallback to static posters, show empty state
+                console.error("Error loading static posters:", err)
+                setError(`Failed to load posters: ${err.message}`)
                 setPosters([])
             } finally {
                 setLoading(false)
             }
         }
         
-        fetchPosters()
+        loadStaticPosters()
     }, [])
 
     const handleShowMore = async () => {
@@ -129,6 +115,13 @@ const Posters = () => {
                     {error && (
                         <p className="text-xs text-orange-600 text-center mt-2">{error}</p>
                     )}
+<<<<<<< HEAD
+=======
+                    {/* Debug info */}
+                    <p className="text-xs text-gray-500 text-center mt-2">
+                        Showing {posters.length} static posters
+                    </p>
+>>>>>>> 28b1b16a2ed885ad34db01712a6ff8e0e5ce7395
                 </section>
             </header>
 
@@ -143,6 +136,7 @@ const Posters = () => {
                                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                                 role="img"
                             />
+<<<<<<< HEAD
                             {/* Click indicator */}
                             <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center">
                                 <div className="opacity-0 hover:opacity-100 transition-opacity duration-300">
@@ -151,6 +145,8 @@ const Posters = () => {
                                     </svg>
                                 </div>
                             </div>
+=======
+>>>>>>> 28b1b16a2ed885ad34db01712a6ff8e0e5ce7395
                         </figure>
                     </article>
                 ))}
@@ -201,10 +197,7 @@ const Posters = () => {
                 <section className="text-center py-12" role="region" aria-live="polite" aria-label="Empty state message">
                     <div className="text-gray-600 text-xl mb-4">No posters available</div>
                     <p className="text-gray-500">
-                        {error ? 
-                            'Unable to load posters from API. Please check your connection or try again later.' : 
-                            'No posters have been uploaded yet. Visit the admin panel to add new posters.'
-                        }
+                        No static posters are available at the moment.
                     </p>
                 </section>
             )}

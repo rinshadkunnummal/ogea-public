@@ -101,7 +101,24 @@ const ManagePosters = () => {
                 throw new Error('No image URL returned from upload');
             }
 
+<<<<<<< HEAD
             alert('Image uploaded successfully to Cloudinary!');
+=======
+            // Create poster data
+            const posterData = {
+                ...posterForm,
+                imageUrl: imageUrl,
+                fileName: selectedFile?.name || editingPoster?.fileName
+            };
+
+            if (editingPoster) {
+                // Update functionality might not be available - show info message
+                alert('Note: Update functionality depends on API support. Image uploaded as new poster.');
+            }
+>>>>>>> 28b1b16a2ed885ad34db01712a6ff8e0e5ce7395
+
+            // Upload new poster (since update might not be supported)
+            alert('Poster uploaded successfully!');
 
             // Reset form and refresh posters
             resetForm();
@@ -277,64 +294,7 @@ const ManagePosters = () => {
                         )}
                     </div>
                 </form>
-            </div>
-
-            {/* Posters List */}
-            <div className="bg-white rounded-lg shadow-md p-6">
-                <h3 className="text-lg font-semibold mb-4">
-                    Existing Posters ({posters.length})
-                </h3>
-
-                {error && (
-                    <div className="text-red-600 text-sm bg-red-50 p-3 rounded-lg mb-4">
-                        {error}
-                    </div>
-                )}
-
-                {posters.length === 0 ? (
-                    <div className="text-center py-8">
-                        <p className="text-gray-500 mb-4">No posters found. Upload your first poster above.</p>
-                        <p className="text-sm text-gray-400">Note: Make sure your upload server is running on localhost:2000</p>
-                    </div>
-                ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {posters.map((poster) => (
-                            <div key={poster._id} className="border border-gray-200 rounded-lg p-4">
-                                <img
-                                    src={poster.imageUrl}
-                                    alt={poster.title}
-                                    className="w-full h-48 object-cover rounded-lg mb-3"
-                                    onError={(e) => {
-                                        e.target.src = '/placeholder-image.jpg';
-                                    }}
-                                />
-                                <h4 className="font-semibold text-gray-800 mb-2">{poster.title}</h4>
-                                {poster.description && (
-                                    <p className="text-gray-600 text-sm mb-2">{poster.description}</p>
-                                )}
-                                <p className="text-xs text-gray-500 mb-3">
-                                    Category: {poster.category} | 
-                                    Created: {new Date(poster.createdAt).toLocaleDateString()}
-                                </p>
-                                <div className="flex gap-2">
-                                    <button
-                                        onClick={() => handleEdit(poster)}
-                                        className="px-3 py-1 bg-yellow-500 text-white text-sm rounded hover:bg-yellow-600 transition-colors"
-                                    >
-                                        Edit
-                                    </button>
-                                    <button
-                                        onClick={() => handleDelete(poster._id)}
-                                        className="px-3 py-1 bg-red-500 text-white text-sm rounded hover:bg-red-600 transition-colors"
-                                    >
-                                        Delete
-                                    </button>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                )}
-            </div>
+            </div>  
 
             {/* Instructions */}
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
