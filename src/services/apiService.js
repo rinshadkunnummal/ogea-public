@@ -192,7 +192,7 @@ export const uploadAPI = {
       const formData = new FormData();
       formData.append('image', file);
       
-      const response = await fetch('http://api.chsoutreach.live/api/v1/upload/image', {
+      const response = await fetch('https://api.chsoutreach.live/api/v1/upload/image', {
         method: 'POST',
         body: formData
       });

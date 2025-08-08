@@ -82,13 +82,8 @@ const ManagePosters = () => {
     const handleUpload = async (e) => {
         e.preventDefault();
         
-        if (!selectedFile && !editingPoster) {
+        if (!selectedFile) {
             setUploadError('Please select an image file');
-            return;
-        }
-
-        if (!posterForm.title.trim()) {
-            setUploadError('Please provide a title');
             return;
         }
 
@@ -96,29 +91,17 @@ const ManagePosters = () => {
             setUploading(true);
             setUploadError(null);
 
-            let imageUrl = editingPoster?.imageUrl;
-
-            // Upload new image if file is selected
-            if (selectedFile) {
-                const uploadResponse = await uploadAPI.uploadImage(selectedFile);
-                imageUrl = uploadResponse.data?.url || uploadResponse.url;
-
-                if (!imageUrl) {
-                    throw new Error('No image URL returned from upload');
-                }
+            // Upload image to Cloudinary
+            const uploadResponse = await uploadAPI.uploadImage(selectedFile);
+            console.log('Upload response:', uploadResponse);
+            
+            const imageUrl = uploadResponse.data?.url || uploadResponse.url;
+            
+            if (!imageUrl) {
+                throw new Error('No image URL returned from upload');
             }
 
-            // Create poster data
-            const posterData = {
-                ...posterForm,
-                imageUrl: imageUrl,
-                fileName: selectedFile?.name || editingPoster?.fileName
-            };
-
-            if (editingPoster) {
-                // Update functionality might not be available - show info message
-                alert('Note: Update functionality depends on API support. Image uploaded as new poster.');
-            }
+            alert('Image uploaded successfully to Cloudinary!');
 
             // Upload new poster (since update might not be supported)
             alert('Poster uploaded successfully!');
@@ -126,10 +109,9 @@ const ManagePosters = () => {
             // Reset form and refresh posters
             resetForm();
             fetchPosters();
-
         } catch (err) {
             console.error('Upload error:', err);
-            setUploadError(err.message || 'Failed to upload poster');
+            setUploadError(`Upload failed: ${err.message}`);
         } finally {
             setUploading(false);
         }

@@ -62,6 +62,7 @@ export const router = createBrowserRouter([
   {
     path: "/admin",
     element: <LazyWrapper><Admin /></LazyWrapper>,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
