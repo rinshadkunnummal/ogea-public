@@ -247,11 +247,11 @@ const Admin = () => {
   }
 
   return (
-    <div className="admin-page flex min-h-screen mt-10 sm:mt-0">
+    <div className="admin-page flex min-h-screen">
       <div className="sideBar">
         <AdminSideBar handleLogout={handleLogout} />
       </div>
-      <div className="right flex-1 p-8 bg-gray-50">
+      <div className="right flex-1 ml-0 md:ml-64 p-4 md:p-8 bg-gray-50">
         <Routes>
           <Route path="/" element={<StatsSection stats={stats} />} />
           <Route path="manage" element={<ManageSection articles={articles} handleDeleteArticle={handleDeleteArticle} onArticleUpdate={fetchArticles} />} />

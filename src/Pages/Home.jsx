@@ -57,7 +57,7 @@ const Home = () => {
                 </nav>
             </section>
 
-            <section className="achievements-section w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-12 hidden" role="region" aria-labelledby="achievements-heading">
+            <section className="achievements-section w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-12 " role="region" aria-labelledby="achievements-heading">
                 <div className="rounded-lg flex flex-col gap-4 sm:gap-6">
                     <header className="section-header">
                         <h2 id="achievements-heading" className="text-xl sm:text-2xl lg:text-3xl font-medium text-center mb-4 sm:mb-6 text-black font-poppins">

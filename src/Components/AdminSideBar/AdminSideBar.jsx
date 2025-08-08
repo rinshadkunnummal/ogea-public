@@ -22,7 +22,7 @@ const AdminSideBar = ({ handleLogout }) => {
 
   // Sidebar content
   const sidebarContent = (
-    <aside className="admin-sidebar w-64 min-h-screen bg-[#23272c] shadow-md p-1 sm:p-2 flex flex-col" role="navigation" aria-label="Admin navigation">
+    <aside className="admin-sidebar w-64 h-screen bg-[#23272c] shadow-md p-1 sm:p-2 flex flex-col fixed left-0 top-0 z-30 overflow-y-auto" role="navigation" aria-label="Admin navigation">
       <header>
         <h2 className="text-xl font-bold mb-8 text-center text-white pt-2">Admin Tools</h2>
       </header>
@@ -90,7 +90,7 @@ const AdminSideBar = ({ handleLogout }) => {
       {/* Hamburger for mobile */}
       {HamburgerButton}
       {/* Sidebar for desktop */}
-      <div className="hidden md:block">{sidebarContent}</div>
+      <div className="hidden md:block fixed left-0 top-0 z-30">{sidebarContent}</div>
       {/* Sidebar for mobile (drawer) */}
       {open && (
         <div className="fixed inset-0 z-40 flex">

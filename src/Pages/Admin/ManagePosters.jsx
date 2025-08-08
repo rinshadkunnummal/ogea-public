@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { postersAPI, uploadAPI } from '../../services/apiService';
+import { imagesAPI, uploadAPI } from '../../services/apiService';
 import Loader from '../../Components/Loader/Loader';
 
 const ManagePosters = () => {
@@ -24,9 +24,26 @@ const ManagePosters = () => {
     const fetchPosters = async () => {
         try {
             setLoading(true);
-            const response = await postersAPI.getSorted('-createdAt');
-            const postersData = response.data?.posters || response.posters || response || [];
-            setPosters(postersData);
+            const response = await imagesAPI.getSorted('-createdAt');
+            console.log('Images API Response:', response);
+            
+            // Extract images from the API response structure  
+            const imagesData = response.data?.images || response.images || response.data || response || [];
+            console.log('Extracted images data:', imagesData);
+            
+            // Transform API images to poster format
+            const transformedPosters = imagesData.map(image => ({
+                _id: image.publicId || image.filename,
+                id: image.publicId || image.filename,
+                imageUrl: image.url,
+                title: image.filename || image.publicId,
+                description: `${image.format?.toUpperCase() || 'IMAGE'} - ${image.width}x${image.height}`,
+                category: 'achievement',
+                createdAt: image.uploadedAt,
+                fileName: image.filename
+            }));
+            
+            setPosters(transformedPosters);
             setError(null);
         } catch (err) {
             console.error('Fetch posters error:', err);
@@ -65,13 +82,8 @@ const ManagePosters = () => {
     const handleUpload = async (e) => {
         e.preventDefault();
         
-        if (!selectedFile && !editingPoster) {
+        if (!selectedFile) {
             setUploadError('Please select an image file');
-            return;
-        }
-
-        if (!posterForm.title.trim()) {
-            setUploadError('Please provide a title');
             return;
         }
 
@@ -79,42 +91,24 @@ const ManagePosters = () => {
             setUploading(true);
             setUploadError(null);
 
-            let imageUrl = editingPoster?.imageUrl;
-
-            // Upload new image if file is selected
-            if (selectedFile) {
-                const uploadResponse = await uploadAPI.uploadImage(selectedFile);
-                imageUrl = uploadResponse.data?.url || uploadResponse.url;
-
-                if (!imageUrl) {
-                    throw new Error('No image URL returned from upload');
-                }
+            // Upload image to Cloudinary
+            const uploadResponse = await uploadAPI.uploadImage(selectedFile);
+            console.log('Upload response:', uploadResponse);
+            
+            const imageUrl = uploadResponse.data?.url || uploadResponse.url;
+            
+            if (!imageUrl) {
+                throw new Error('No image URL returned from upload');
             }
 
-            // Create poster data
-            const posterData = {
-                ...posterForm,
-                imageUrl: imageUrl,
-                fileName: selectedFile?.name || editingPoster?.fileName
-            };
-
-            if (editingPoster) {
-                // Update existing poster
-                await postersAPI.update(editingPoster._id, posterData);
-                alert('Poster updated successfully!');
-            } else {
-                // Create new poster
-                await postersAPI.create(posterData);
-                alert('Poster uploaded successfully!');
-            }
+            alert('Image uploaded successfully to Cloudinary!');
 
             // Reset form and refresh posters
             resetForm();
             fetchPosters();
-
         } catch (err) {
             console.error('Upload error:', err);
-            setUploadError(err.message || 'Failed to upload poster');
+            setUploadError(`Upload failed: ${err.message}`);
         } finally {
             setUploading(false);
         }
@@ -135,14 +129,11 @@ const ManagePosters = () => {
             return;
         }
 
-        try {
-            await postersAPI.delete(posterId);
-            alert('Poster deleted successfully!');
-            fetchPosters();
-        } catch (err) {
-            console.error('Delete error:', err);
-            alert('Failed to delete poster');
-        }
+        // Note: Delete functionality might not be available with current API
+        alert('Delete functionality is not available with the current API endpoint. Please contact your API provider for delete capabilities.');
+        
+        // Optionally refresh to show current state
+        // fetchPosters();
     };
 
     const resetForm = () => {

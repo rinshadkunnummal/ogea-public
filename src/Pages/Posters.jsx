@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { imagesAPI } from '../services/apiService'
+import { posters as staticPosters } from '../assets/posters/posters'
 import Loader from '../Components/Loader/Loader.jsx'
 
 const Posters = () => {
@@ -9,6 +10,8 @@ const Posters = () => {
     const [loadingMore, setLoadingMore] = useState(false)
     const [loadingLess, setLoadingLess] = useState(false)
     const [error, setError] = useState(null)
+    const [selectedImage, setSelectedImage] = useState(null)
+    const [isModalOpen, setIsModalOpen] = useState(false)
 
     // Fetch posters from API with fallback to static data
     useEffect(() => {
@@ -77,6 +80,32 @@ const Posters = () => {
         }, 500) // 0.5 second loading for show less
     }
 
+    const openModal = (poster) => {
+        setSelectedImage(poster)
+        setIsModalOpen(true)
+        // Prevent body scroll when modal is open
+        document.body.style.overflow = 'hidden'
+    }
+
+    const closeModal = () => {
+        setSelectedImage(null)
+        setIsModalOpen(false)
+        // Restore body scroll when modal is closed
+        document.body.style.overflow = 'unset'
+    }
+
+    // Close modal on escape key press
+    useEffect(() => {
+        const handleEscapeKey = (event) => {
+            if (event.key === 'Escape' && isModalOpen) {
+                closeModal()
+            }
+        }
+        
+        document.addEventListener('keydown', handleEscapeKey)
+        return () => document.removeEventListener('keydown', handleEscapeKey)
+    }, [isModalOpen])
+
     const displayedPosters = posters.slice().reverse().slice(0, displayLimit)
     const hasMorePosters = displayLimit < posters.length
 
@@ -100,12 +129,6 @@ const Posters = () => {
                     {error && (
                         <p className="text-xs text-orange-600 text-center mt-2">{error}</p>
                     )}
-                    {/* Debug info */}
-                    <p className="text-xs text-gray-500 text-center mt-2">
-                        Showing {posters.length} posters | 
-                        Source: {posters.length > 0 && posters[0].imageUrl ? 'API Images (Cloudinary)' : 'Static Files'} |
-                        Endpoint: http://192.168.20.59:2000/api/v1/images
-                    </p>
                 </section>
             </header>
 
@@ -113,18 +136,21 @@ const Posters = () => {
             <section className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" role="region" aria-labelledby="achievements-title" aria-label="Achievement posters gallery">
                 {displayedPosters.map((poster) => (
                     <article key={poster.id || poster._id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                        <figure className="relative">
+                        <figure className="relative aspect-[3/4] w-full cursor-pointer" onClick={() => openModal(poster)}>
                             <img 
                                 src={poster.imageUrl || poster.image} 
                                 alt={poster.title || `Achievement poster ${poster.id || poster._id}`}
                                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                                 role="img"
                             />
-                            {poster.title && (
-                                <figcaption className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white p-2 text-sm">
-                                    {poster.title}
-                                </figcaption>
-                            )}
+                            {/* Click indicator */}
+                            <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center">
+                                <div className="opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+                                    </svg>
+                                </div>
+                            </div>
                         </figure>
                     </article>
                 ))}
@@ -181,6 +207,41 @@ const Posters = () => {
                         }
                     </p>
                 </section>
+            )}
+
+            {/* Image Modal */}
+            {isModalOpen && selectedImage && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-75" onClick={closeModal}>
+                    <div className="relative max-w-4xl max-h-full">
+                        {/* Close button */}
+                        <button
+                            onClick={closeModal}
+                            className="absolute -top-10 right-0 text-white hover:text-gray-300 text-2xl font-bold z-10"
+                            aria-label="Close modal"
+                        >
+                            ✕
+                        </button>
+                        
+                        {/* Modal image */}
+                        <div className="relative" onClick={(e) => e.stopPropagation()}>
+                            <img
+                                src={selectedImage.imageUrl || selectedImage.image}
+                                alt={selectedImage.title || `Achievement poster ${selectedImage.id || selectedImage._id}`}
+                                className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
+                            />
+                            
+                            {/* Image info */}
+                            {selectedImage.title && (
+                                <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white p-3 rounded-b-lg">
+                                    <h3 className="text-lg font-semibold">{selectedImage.title}</h3>
+                                    {selectedImage.description && (
+                                        <p className="text-sm text-gray-300 mt-1">{selectedImage.description}</p>
+                                    )}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
             )}
         </main>
     )
