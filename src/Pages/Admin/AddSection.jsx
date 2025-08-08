@@ -1,7 +1,11 @@
 import React from 'react';
+import { useOutletContext } from 'react-router-dom';
 
-const AddSection = ({ formData, handleInputChange, handleSubmit, handleCancel, submitting }) => (
-  <div className="bg-white rounded-lg p-6 shadow-lg mb-6 border border-gray-200 max-w-xl mx-auto">
+const AddSection = () => {
+  const { formData, handleInputChange, handleSubmit, handleCancel, submitting } = useOutletContext();
+  
+  return (
+    <div className="bg-white rounded-lg p-6 shadow-lg mb-6 border border-gray-200 max-w-xl mx-auto">
     <h2 className="text-2xl font-bold text-gray-800 mb-4">Add New Content</h2>
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
@@ -34,6 +38,7 @@ const AddSection = ({ formData, handleInputChange, handleSubmit, handleCancel, s
       </div>
     </form>
   </div>
-);
+  );
+};
 
 export default AddSection;

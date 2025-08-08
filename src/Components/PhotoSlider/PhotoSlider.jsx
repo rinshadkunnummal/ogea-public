@@ -105,7 +105,7 @@ const PhotoSlider = () => {
       >
         {latestBanners.map((banner) => (
           <SwiperSlide key={banner.id} className="flex justify-center items-center">
-            <figure className="w-full h-[40vw]">
+            <figure className="w-full h-[34vw]">
               <img
                 src={banner.image}
                 alt={`Banner image ${banner.id}`}
