@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Routes, Route } from 'react-router-dom'
-import StatsSection from './StatsSection'
-import ManageSection from './ManageSection'
-import AddSection from './AddSection'
-import ManagePosters from './ManagePosters'
+import { Outlet, useLoaderData, useNavigate } from 'react-router-dom'
 import { articlesAPI, config } from '../../services/apiService'
 import AdminSideBar from '@/Components/AdminSideBar/AdminSideBar'
 
@@ -252,12 +248,17 @@ const Admin = () => {
         <AdminSideBar handleLogout={handleLogout} />
       </div>
       <div className="right flex-1 p-8 bg-gray-50">
-        <Routes>
-          <Route path="/" element={<StatsSection stats={stats} />} />
-          <Route path="manage" element={<ManageSection articles={articles} handleDeleteArticle={handleDeleteArticle} onArticleUpdate={fetchArticles} />} />
-          <Route path="add" element={<AddSection formData={formData} handleInputChange={handleInputChange} handleSubmit={handleSubmit} handleCancel={handleCancel} submitting={submitting} />} />
-          <Route path="posters" element={<ManagePosters />} />
-        </Routes>
+        <Outlet context={{ 
+          stats, 
+          articles, 
+          handleDeleteArticle, 
+          onArticleUpdate: fetchArticles,
+          formData,
+          handleInputChange,
+          handleSubmit,
+          handleCancel,
+          submitting
+        }} />
       </div>
     </div>
   )
