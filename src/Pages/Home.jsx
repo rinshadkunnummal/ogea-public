@@ -46,11 +46,7 @@ const Home = () => {
                 </article>
             </section>
 
-<<<<<<< HEAD
             <section className="achievements-section w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-12 " role="region" aria-labelledby="achievements-heading">
-=======
-            <section className="achievements-section w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-12" role="region" aria-labelledby="achievements-heading">
->>>>>>> 28b1b16a2ed885ad34db01712a6ff8e0e5ce7395
                 <div className="rounded-lg flex flex-col gap-4 sm:gap-6">
                     <header className="section-header">
                         <h2 id="achievements-heading" className="text-xl sm:text-2xl lg:text-3xl font-medium text-center mb-4 sm:mb-6 text-black font-poppins">

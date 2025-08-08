@@ -60,12 +60,9 @@ export const router = createBrowserRouter([
     ]
   },
   {
-<<<<<<< HEAD
-    path: "/admin/*",
-    element: <LazyWrapper><Admin /></LazyWrapper>
-=======
     path: "/admin",
     element: <LazyWrapper><Admin /></LazyWrapper>,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -84,7 +81,6 @@ export const router = createBrowserRouter([
         element: <LazyWrapper><ManagePosters /></LazyWrapper>
       }
     ]
->>>>>>> 28b1b16a2ed885ad34db01712a6ff8e0e5ce7395
   },
   {
     path: "*",

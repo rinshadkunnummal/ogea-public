@@ -101,21 +101,7 @@ const ManagePosters = () => {
                 throw new Error('No image URL returned from upload');
             }
 
-<<<<<<< HEAD
             alert('Image uploaded successfully to Cloudinary!');
-=======
-            // Create poster data
-            const posterData = {
-                ...posterForm,
-                imageUrl: imageUrl,
-                fileName: selectedFile?.name || editingPoster?.fileName
-            };
-
-            if (editingPoster) {
-                // Update functionality might not be available - show info message
-                alert('Note: Update functionality depends on API support. Image uploaded as new poster.');
-            }
->>>>>>> 28b1b16a2ed885ad34db01712a6ff8e0e5ce7395
 
             // Upload new poster (since update might not be supported)
             alert('Poster uploaded successfully!');

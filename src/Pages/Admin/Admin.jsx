@@ -247,16 +247,7 @@ const Admin = () => {
       <div className="sideBar">
         <AdminSideBar handleLogout={handleLogout} />
       </div>
-<<<<<<< HEAD
       <div className="right flex-1 ml-0 md:ml-64 p-4 md:p-8 bg-gray-50">
-        <Routes>
-          <Route path="/" element={<StatsSection stats={stats} />} />
-          <Route path="manage" element={<ManageSection articles={articles} handleDeleteArticle={handleDeleteArticle} onArticleUpdate={fetchArticles} />} />
-          <Route path="add" element={<AddSection formData={formData} handleInputChange={handleInputChange} handleSubmit={handleSubmit} handleCancel={handleCancel} submitting={submitting} />} />
-          <Route path="posters" element={<ManagePosters />} />
-        </Routes>
-=======
-      <div className="right flex-1 p-8 bg-gray-50">
         <Outlet context={{ 
           stats, 
           articles, 
@@ -268,7 +259,6 @@ const Admin = () => {
           handleCancel,
           submitting
         }} />
->>>>>>> 28b1b16a2ed885ad34db01712a6ff8e0e5ce7395
       </div>
     </div>
   )

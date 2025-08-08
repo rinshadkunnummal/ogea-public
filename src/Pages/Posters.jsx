@@ -115,13 +115,6 @@ const Posters = () => {
                     {error && (
                         <p className="text-xs text-orange-600 text-center mt-2">{error}</p>
                     )}
-<<<<<<< HEAD
-=======
-                    {/* Debug info */}
-                    <p className="text-xs text-gray-500 text-center mt-2">
-                        Showing {posters.length} static posters
-                    </p>
->>>>>>> 28b1b16a2ed885ad34db01712a6ff8e0e5ce7395
                 </section>
             </header>
 
@@ -136,7 +129,6 @@ const Posters = () => {
                                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                                 role="img"
                             />
-<<<<<<< HEAD
                             {/* Click indicator */}
                             <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center">
                                 <div className="opacity-0 hover:opacity-100 transition-opacity duration-300">
@@ -145,8 +137,6 @@ const Posters = () => {
                                     </svg>
                                 </div>
                             </div>
-=======
->>>>>>> 28b1b16a2ed885ad34db01712a6ff8e0e5ce7395
                         </figure>
                     </article>
                 ))}
