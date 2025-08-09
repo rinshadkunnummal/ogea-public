@@ -30,114 +30,142 @@ import poster28 from './28.jpg'
 export const posters = [
   {
     id: 1,
-    image: poster1
+    image: poster1,
+    category: 'penreach'
   },
   {
     id: 2,
-    image: poster2
+    image: poster2,
+    category: 'paperpath' // PaperPath
   },
   {
     id: 3,
-    image: poster3
+    image: poster3,
+    category: 'penreach' // Penreach
   },
   {
     id: 4,
-    image: poster4
+    image: poster4,
+    category: 'paperpath' // PaperPath
   },
   {
     id: 5,
-    image: poster5
+    image: poster5,
+    category: 'penreach' // Penreach
   },
   {
     id: 6,
-    image: poster6
+    image: poster6,
+    category: 'penreach' // Penreach
   },
   {
     id: 7,
-    image: poster7
+    image: poster7,
+    category: 'penreach' // Penreach
   },
   {
     id: 8,
-    image: poster8
+    image: poster8,
+    category: 'talentide' // TalentTide
   },
   {
     id: 9,
-    image: poster9
+    image: poster9,
+    category: 'penreach' // Penreach
   },
   {
     id: 10,
-    image: poster10
+    image: poster10,
+    category: 'paperpath' // PaperPath
   },
   {
     id: 11,
-    image: poster11
+    image: poster11,
+    category: 'talentide' // TalentTide
   },
   {
     id: 12,
-    image: poster12
+    image: poster12,
+    category: 'penreach' // Penreach
   },
   {
     id: 13,
-    image: poster13
+    image: poster13,
+    category: 'paperpath' // PaperPath
   },
   {
     id: 14,
-    image: poster14
+    image: poster14,
+    category: 'talentide' // TalentTide
   },
   {
     id: 15,
-    image: poster15
+    image: poster15,
+    category: 'penreach' // Penreach
   },
   {
     id: 16,
-    image: poster16
+    image: poster16,
+    category: 'paperpath' // PaperPath
   },
   {
     id: 17,
-    image: poster17
+    image: poster17,
+    category: 'talentide' // TalentTide
   },
   {
     id: 18,
-    image: poster18
+    image: poster18,
+    category: 'penreach' // Penreach
   },
   {
     id: 19,
-    image: poster19
+    image: poster19,
+    category: 'paperpath' // PaperPath
   },
   {
     id: 20,
-    image: poster20
+    image: poster20,
+    category: 'talentide' // TalentTide
   },
   {
     id: 21,
-    image: poster21
+    image: poster21,
+    category: 'penreach' // Penreach
   },
   {
     id: 22,
-    image: poster22
+    image: poster22,
+    category: 'paperpath' // PaperPath
   },
   {
     id: 23,
-    image: poster23
+    image: poster23,
+    category: 'talentide' // TalentTide
   },
   {
     id: 24,
-    image: poster24
+    image: poster24,
+    category: 'penreach' // Penreach
   },
   {
     id: 25,
-    image: poster25
+    image: poster25,
+    category: 'paperpath' // PaperPath
   },
   {
     id: 26,
-    image: poster26
+    image: poster26,
+    category: 'talentide' // TalentTide
   },
   {
     id: 27,
-    image: poster27
+    image: poster27,
+    category: 'penreach' // Penreach
   },
   {
     id: 28,
-    image: poster28
+    image: poster28,
+    category: 'paperpath' // PaperPath
   }
 ];

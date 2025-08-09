@@ -12,6 +12,7 @@ const Posters = () => {
     const [error, setError] = useState(null)
     const [selectedImage, setSelectedImage] = useState(null)
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const [activeFilter, setActiveFilter] = useState('all')
 
     // Load only static posters, skip API fetching
     useEffect(() => {
@@ -20,18 +21,29 @@ const Posters = () => {
                 setLoading(true)
                 
                 // Transform static posters to consistent format
-                const transformedStaticPosters = staticPosters.map(poster => ({
-                    id: poster.id,
-                    _id: poster.id,
-                    imageUrl: poster.image,
-                    title: `Poster ${poster.id}`,
-                    description: `Achievement poster ${poster.id}`,
-                    category: 'achievement',
-                    createdAt: new Date(),
-                    source: 'static'
-                }))
+                const transformedStaticPosters = staticPosters.map(poster => {
+                    const categoryMap = {
+                        'paperpath': 'PaperPath',
+                        'talentide': 'TalentTide', 
+                        'penreach': 'Penreach'
+                    }
+                    const categoryName = categoryMap[poster.category] || 'Achievement'
+                    
+                    return {
+                        id: poster.id,
+                        _id: poster.id,
+                        imageUrl: poster.image,
+                        title: `${categoryName} Poster ${poster.id}`,
+                        description: `${categoryName} achievement poster ${poster.id}`,
+                        category: poster.category || 'paperpath',
+                        createdAt: new Date(),
+                        source: 'static'
+                    }
+                })
                 
                 console.log('Using static posters only:', transformedStaticPosters.length)
+                console.log('First poster imageUrl:', transformedStaticPosters[0]?.imageUrl)
+                console.log('Sample poster data:', transformedStaticPosters.slice(0, 2))
                 setPosters(transformedStaticPosters)
                 setError(null)
             } catch (err) {
@@ -92,8 +104,27 @@ const Posters = () => {
         return () => document.removeEventListener('keydown', handleEscapeKey)
     }, [isModalOpen])
 
-    const displayedPosters = posters.slice().reverse().slice(0, displayLimit)
-    const hasMorePosters = displayLimit < posters.length
+    // Filter categories mapping
+    const filterCategories = [
+        { key: 'all', label: 'All', value: 'all' },
+        { key: 'paperpath', label: 'PaperPath', value: 'paperpath' },
+        { key: 'talentide', label: 'TalentTide', value: 'talentide' },
+        { key: 'penreach', label: 'Penreach', value: 'penreach' }
+    ]
+
+    // Handle filter change
+    const handleFilterChange = (filterValue) => {
+        setActiveFilter(filterValue)
+        setDisplayLimit(8) // Reset display limit when filter changes
+    }
+
+    // Filter posters based on active filter
+    const filteredPosters = activeFilter === 'all' 
+        ? posters 
+        : posters.filter(poster => poster.category === activeFilter)
+
+    const displayedPosters = filteredPosters.slice().reverse().slice(0, displayLimit)
+    const hasMorePosters = displayLimit < filteredPosters.length
 
     // Show loader during initial loading
     if (loading) {
@@ -118,19 +149,59 @@ const Posters = () => {
                 </section>
             </header>
 
+            {/* Filter Buttons */}
+            <section className="mb-8" role="region" aria-label="Filter categories">
+                <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
+                    {filterCategories.map((filter) => (
+                        <button
+                            key={filter.key}
+                            onClick={() => handleFilterChange(filter.value)}
+                            className={`px-4 py-2 rounded-full text-sm sm:text-base font-medium transition-all duration-300 border-2 ${
+                                activeFilter === filter.value
+                                    ? 'bg-[#58A0C8] text-white border-[#58A0C8] shadow-md transform scale-105'
+                                    : 'bg-white text-[#58A0C8] border-[#58A0C8] hover:bg-[#58A0C8] hover:text-white'
+                            }`}
+                            aria-pressed={activeFilter === filter.value}
+                            aria-label={`Filter by ${filter.label}`}
+                        >
+                            {filter.label}
+                        </button>
+                    ))}
+                </div>
+                
+                {/* Results count */}
+                <div className="text-center mt-4">
+                    <p className="text-sm text-gray-600">
+                        Showing {displayedPosters.length} of {filteredPosters.length} posters
+                        {activeFilter !== 'all' && (
+                            <span className="ml-1">
+                                in {filterCategories.find(f => f.value === activeFilter)?.label}
+                            </span>
+                        )}
+                    </p>
+                </div>
+            </section>
+
             {/* Posters Grid */}
             <section className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" role="region" aria-labelledby="achievements-title" aria-label="Achievement posters gallery">
                 {displayedPosters.map((poster) => (
                     <article key={poster.id || poster._id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                        <figure className="relative aspect-[3/4] w-full cursor-pointer" onClick={() => openModal(poster)}>
+                        <figure className="relative w-full cursor-pointer" onClick={() => openModal(poster)} style={{ paddingBottom: '133.33%' }}>
                             <img 
                                 src={poster.imageUrl || poster.image} 
                                 alt={poster.title || `Achievement poster ${poster.id || poster._id}`}
-                                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                                className="absolute top-0 left-0 w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                                 role="img"
+                                onLoad={(e) => {
+                                    console.log('Image loaded:', poster.id, e.target.src);
+                                }}
+                                onError={(e) => {
+                                    console.error('Image failed to load:', poster.id, e.target.src);
+                                }}
+                                style={{ backgroundColor: '#f3f4f6' }}
                             />
                             {/* Click indicator */}
-                            <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center">
+                            <div className="absolute inset-0 hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center">
                                 <div className="opacity-0 hover:opacity-100 transition-opacity duration-300">
                                     <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
@@ -143,7 +214,7 @@ const Posters = () => {
             </section>
 
             {/* Show More/Less Buttons */}
-            {posters.length > 8 && (
+            {filteredPosters.length > 8 && (
                 <nav className="flex justify-center mt-8 gap-4" role="navigation" aria-label="Poster pagination controls">
                     {hasMorePosters && !loadingLess && (
                         <button

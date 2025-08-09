@@ -1,11 +1,17 @@
 import React from 'react';
 import { useOutletContext } from 'react-router-dom';
+import TipTap from '../../Components/TipTap/TipTap';
 
 const AddSection = () => {
   const { formData, handleInputChange, handleSubmit, handleCancel, submitting } = useOutletContext();
   
+  // Handle TipTap content change
+  const handleContentChange = (content) => {
+    handleInputChange({ target: { name: 'content', value: content } });
+  };
+  
   return (
-    <div className="bg-white rounded-lg p-6 shadow-lg mb-6 border border-gray-200 max-w-xl mx-auto">
+    <div className="bg-white rounded-lg p-6 shadow-lg mb-6 border border-gray-200 w-full">
     <h2 className="text-2xl font-bold text-gray-800 mb-4">Add New Content</h2>
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
@@ -30,7 +36,13 @@ const AddSection = () => {
       </div>
       <div>
         <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-1">Article Content *</label>
-        <textarea id="content" name="content" value={formData.content} onChange={handleInputChange} rows="8" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Enter the full article content" required />
+        <div className="w-full">
+          <TipTap 
+            content={formData.content} 
+            onChange={handleContentChange} 
+            placeholder="Enter the full article content..."
+          />
+        </div>
       </div>
       <div className="flex gap-4 pt-4">
         <button type="submit" disabled={submitting} className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium disabled:opacity-50">{submitting ? 'Adding...' : 'Add Content'}</button>
