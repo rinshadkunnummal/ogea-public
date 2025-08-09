@@ -132,3 +132,7 @@
 body {
     background-color:#f0f7f8 ;
 }
+
+body::-webkit-scrollbar {
+    display: none;
+}

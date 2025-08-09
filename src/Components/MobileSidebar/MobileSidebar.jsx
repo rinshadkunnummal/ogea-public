@@ -16,7 +16,7 @@ const MobileSidebar = ({ isOpen, onClose }) => {
             />
 
             {/* Sidebar */}
-            <div className={`fixed top-0 left-0 h-full w-80 bg-[#23272c84] backdrop-blur-xl text-white z-50 transform transition-transform duration-300 ease-in-out md:hidden ${isOpen ? 'translate-x-0' : '-translate-x-full'
+            <div className={`fixed top-0 right-0 h-full w-80 bg-[#23272c84] backdrop-blur-xl text-white z-50 transform transition-transform duration-300 ease-in-out md:hidden ${isOpen ? 'translate-x-0' : 'translate-x-full'
                 }`}>
                 {/* Header */}
                 <div className="flex justify-between items-center p-6 border-b border-teal-700/50">
@@ -44,13 +44,13 @@ const MobileSidebar = ({ isOpen, onClose }) => {
                             key={item.to}
                             className={`transform transition-all duration-300 ${isOpen
                                     ? 'translate-x-0 opacity-100'
-                                    : '-translate-x-4 opacity-0'
+                                    : 'translate-x-4 opacity-0'
                                 }`}
                             style={{ transitionDelay: isOpen ? item.delay : '0ms' }}
                         >
                             <Link
                                 to={item.to}
-                                className="block hover:text-gray-300 transition-colors duration-200 hover:translate-x-2"
+                                className="block hover:text-gray-300 transition-colors duration-200 hover:-translate-x-2"
                                 onClick={onClose}
                             >
                                 <NavigationButton imageId={item.icon} isActive={
@@ -66,7 +66,7 @@ const MobileSidebar = ({ isOpen, onClose }) => {
                 </nav>
 
                 {/* Footer with animation */}
-                <div className={`absolute bottom-0 left-0 right-0 p-6 border-t border-teal-700/50 transform transition-all duration-300 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+                <div className={`absolute bottom-0 left-0 right-0 p-6 border-t border-teal-700/50 transform transition-all duration-300 ${isOpen ? 'translate-x-0 opacity-100' : 'translate-x-4 opacity-0'
                     }`} style={{ transitionDelay: isOpen ? '250ms' : '0ms' }}>
                     <p className="text-sm text-gray-300 text-center">© 2025 CHS OGEA</p>
                     <p className="text-sm text-gray-200 text-center">
