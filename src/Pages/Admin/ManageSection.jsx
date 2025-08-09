@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { articlesAPI } from '../../services/apiService';
+import TipTap from '../../Components/TipTap/TipTap';
 
 const ManageSection = () => {
   const { articles, handleDeleteArticle, onArticleUpdate } = useOutletContext();
@@ -28,6 +29,14 @@ const ManageSection = () => {
     setEditFormData(prev => ({
       ...prev,
       [name]: value
+    }))
+  }
+
+  // Handle TipTap content change for editing
+  const handleEditContentChange = (content) => {
+    setEditFormData(prev => ({
+      ...prev,
+      content: content
     }))
   }
 
@@ -157,30 +166,32 @@ const ManageSection = () => {
     {/* Edit Modal */}
     {editingArticle && (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-        <div className="bg-white rounded-lg p-4 sm:p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+        <div className="bg-white rounded-lg p-4 sm:p-6 w-full max-w-6xl max-h-[90vh] overflow-y-auto">
           <h2 className="text-xl sm:text-2xl font-bold mb-4">Edit Article</h2>
           <form onSubmit={handleEditSubmit}>
-            <div className="mb-4">
-              <label className="block text-sm font-medium mb-2">Title</label>
-              <input
-                type="text"
-                name="title"
-                value={editFormData.title}
-                onChange={handleEditInputChange}
-                className="w-full p-2 sm:p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-sm font-medium mb-2">Writer</label>
-              <input
-                type="text"
-                name="writer"
-                value={editFormData.writer}
-                onChange={handleEditInputChange}
-                className="w-full p-2 sm:p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
-                required
-              />
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+              <div>
+                <label className="block text-sm font-medium mb-2">Title</label>
+                <input
+                  type="text"
+                  name="title"
+                  value={editFormData.title}
+                  onChange={handleEditInputChange}
+                  className="w-full p-2 sm:p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2">Writer</label>
+                <input
+                  type="text"
+                  name="writer"
+                  value={editFormData.writer}
+                  onChange={handleEditInputChange}
+                  className="w-full p-2 sm:p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+                  required
+                />
+              </div>
             </div>
             <div className="mb-4">
               <label className="block text-sm font-medium mb-2">Category</label>
@@ -188,7 +199,7 @@ const ManageSection = () => {
                 name="category"
                 value={editFormData.category}
                 onChange={handleEditInputChange}
-                className="w-full p-2 sm:p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+                className="w-full p-2 sm:p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base max-w-xs"
               >
                 <option value="article">Article</option>
                 <option value="essay">Essay</option>
@@ -201,14 +212,13 @@ const ManageSection = () => {
             </div>
             <div className="mb-6">
               <label className="block text-sm font-medium mb-2">Content</label>
-              <textarea
-                name="content"
-                value={editFormData.content}
-                onChange={handleEditInputChange}
-                rows={8}
-                className="w-full p-2 sm:p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 resize-vertical text-sm sm:text-base"
-                required
-              />
+              <div className="w-full">
+                <TipTap 
+                  content={editFormData.content} 
+                  onChange={handleEditContentChange} 
+                  placeholder="Edit the article content..."
+                />
+              </div>
             </div>
             <div className="flex flex-col-reverse sm:flex-row justify-end gap-3 sm:gap-4">
               <button

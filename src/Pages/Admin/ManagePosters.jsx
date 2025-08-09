@@ -12,7 +12,7 @@ const ManagePosters = () => {
     const [posterForm, setPosterForm] = useState({
         title: '',
         description: '',
-        category: 'achievement'
+        category: 'paperpath'
     });
     const [editingPoster, setEditingPoster] = useState(null);
 
@@ -38,7 +38,7 @@ const ManagePosters = () => {
                 imageUrl: image.url,
                 title: image.filename || image.publicId,
                 description: `${image.format?.toUpperCase() || 'IMAGE'} - ${image.width}x${image.height}`,
-                category: 'achievement',
+                category: 'paperpath',
                 createdAt: image.uploadedAt,
                 fileName: image.filename
             }));
@@ -122,7 +122,7 @@ const ManagePosters = () => {
         setPosterForm({
             title: poster.title || '',
             description: poster.description || '',
-            category: poster.category || 'achievement'
+            category: poster.category || 'paperpath'
         });
         setSelectedFile(null);
     };
@@ -143,7 +143,7 @@ const ManagePosters = () => {
         setPosterForm({
             title: '',
             description: '',
-            category: 'achievement'
+            category: 'paperpath'
         });
         setSelectedFile(null);
         setEditingPoster(null);
@@ -240,9 +240,9 @@ const ManagePosters = () => {
                             onChange={handleFormChange}
                             className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         >
-                            <option value="achievement">Achievement</option>
-                            <option value="event">Event</option>
-                            <option value="program">Program</option>
+                            <option value="paperpath">PaperPath</option>
+                            <option value="talentide">TalentTide</option>
+                            <option value="penreach">Penreach</option>
                             <option value="announcement">Announcement</option>
                         </select>
                     </div>
