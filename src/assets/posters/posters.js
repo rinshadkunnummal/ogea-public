@@ -16,16 +16,21 @@ import poster15 from './15.png'
 import poster16 from './16.jpg'
 import poster17 from './17.png'
 import poster18 from './18.jpg'
-import poster19 from './19.png'
-import poster20 from './20.png'
+import poster19 from './19.jpg'
+import poster20 from './20.jpg'
 import poster21 from './21.png'
 import poster22 from './22.png'
 import poster23 from './23.png'
 import poster24 from './24.png'
-import poster25 from './25.jpg'
+import poster25 from './25.png'
 import poster26 from './26.png'
 import poster27 from './27.jpg'
-import poster28 from './28.jpg'
+import poster28 from './28.png'
+import poster29 from './29.jpg'
+import poster30 from './30.jpg'
+import poster31 from './31.jpg'
+import poster32 from './32.jpg'
+
 
 export const posters = [
   {
@@ -66,12 +71,12 @@ export const posters = [
   {
     id: 8,
     image: poster8,
-    category: 'talentide' // TalentTide
+    category: 'penreach' // TalentTide
   },
   {
     id: 9,
     image: poster9,
-    category: 'penreach' // Penreach
+    category: 'paperpath' // Penreach
   },
   {
     id: 10,
@@ -81,7 +86,7 @@ export const posters = [
   {
     id: 11,
     image: poster11,
-    category: 'talentide' // TalentTide
+    category: 'paperpath' // TalentTide
   },
   {
     id: 12,
@@ -91,42 +96,42 @@ export const posters = [
   {
     id: 13,
     image: poster13,
-    category: 'paperpath' // PaperPath
+    category: 'talentide' // PaperPath
   },
   {
     id: 14,
     image: poster14,
-    category: 'talentide' // TalentTide
+    category: 'penreach' // TalentTide
   },
   {
     id: 15,
     image: poster15,
-    category: 'penreach' // Penreach
+    category: 'paperpath' // Penreach
   },
   {
     id: 16,
     image: poster16,
-    category: 'paperpath' // PaperPath
+    category: 'talentide' // PaperPath
   },
   {
     id: 17,
     image: poster17,
-    category: 'talentide' // TalentTide
+    category: 'paperpath' // TalentTide
   },
   {
     id: 18,
     image: poster18,
-    category: 'penreach' // Penreach
+    category: 'talentide' // Penreach
   },
   {
     id: 19,
     image: poster19,
-    category: 'paperpath' // PaperPath
+    category: 'talentide' // PaperPath
   },
   {
     id: 20,
     image: poster20,
-    category: 'talentide' // TalentTide
+    category: 'penreach' // TalentTide
   },
   {
     id: 21,
@@ -136,12 +141,12 @@ export const posters = [
   {
     id: 22,
     image: poster22,
-    category: 'paperpath' // PaperPath
+    category: 'penreach' // PaperPath
   },
   {
     id: 23,
     image: poster23,
-    category: 'talentide' // TalentTide
+    category: 'penreach' // TalentTide
   },
   {
     id: 24,
@@ -151,21 +156,41 @@ export const posters = [
   {
     id: 25,
     image: poster25,
-    category: 'paperpath' // PaperPath
+    category: 'penreach' // PaperPath
   },
   {
     id: 26,
     image: poster26,
-    category: 'talentide' // TalentTide
+    category: 'penreach' // TalentTide
   },
   {
     id: 27,
     image: poster27,
-    category: 'penreach' // Penreach
+    category: 'talentide' // Penreach
   },
   {
     id: 28,
     image: poster28,
     category: 'paperpath' // PaperPath
+  },
+  {
+    id: 29,
+    image: poster29,
+    category: 'penreach' // PaperPath
+  },
+  {
+    id: 30,
+    image: poster30,
+    category: 'talentide' // TalentTide
+  },
+  {
+    id: 31,
+    image: poster31,
+    category: 'penreach' // Penreach
+  },
+  {
+    id: 32,
+    image: poster32,
+    category: 'talentide' // PaperPath
   }
 ];
