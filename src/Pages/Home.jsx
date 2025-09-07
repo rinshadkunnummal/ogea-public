@@ -3,9 +3,11 @@ import Button from '../Components/Button/Button.jsx'
 import { posters } from '../assets/posters/posters.js'
 import Loader from '../Components/Loader/Loader.jsx'
 import PhotoSlider from '../Components/PhotoSlider/PhotoSlider.jsx'
+import NotificationModal from '../Components/NotificationModal/NotificationModal.jsx'
 
 const Home = () => {
     const [loading, setLoading] = useState(true)
+    const [showNotification, setShowNotification] = useState(true)
 
     // Simulate initial loading
     useEffect(() => {
@@ -15,6 +17,10 @@ const Home = () => {
 
         return () => clearTimeout(timer)
     }, [])
+
+    const handleNotificationClose = () => {
+        setShowNotification(false)
+    }
 
     // Show loader during initial loading
     if (loading) {
@@ -29,9 +35,21 @@ const Home = () => {
 
     return (
         <main className="home-page flex flex-col items-center justify-center gap-5">
+            {/* Notification Modal */}
+            {showNotification && !loading && (
+                <NotificationModal
+                    title="📢 Participate in Programs!"
+                    message="Need to participate in programs? Click the link below to access all the resources and information you need to get involved in our various outreach initiatives and academic programs."
+                    duration={10000} // 10 seconds
+                    onClose={handleNotificationClose}
+                    actionLink="https://drive.google.com/drive/folders/1z-Q5CfkDy-2D0T9tDwXYXL6Uv1jrkkSk?usp=drive_link"
+                    actionText="Access Programs ⇗"
+                />
+            )}
+
             <PhotoSlider/>
 
-            <section className="hero-section w-full max-w-6xl mx-auto flex flex-col justify-center items-center gap-4 sm:gap-6 lg:gap-8 px-4 sm:px-6 lg:px-12 py-2 border-t border-gray-500" role="banner">
+            <section className="hero-section lg:hidden w-full max-w-6xl mx-auto flex flex-col justify-center items-center gap-4 sm:gap-6 lg:gap-8 px-4 sm:px-6 lg:px-12 py-2 border-t border-gray-500" role="banner">
                 <header className="hero-content">
                     <h1 className="font-poppins text-4xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-black text-center  leading-tight font-medium">
                         Showcasing Students <br />
@@ -46,7 +64,7 @@ const Home = () => {
                 </article>
             </section>
 
-            <section className="achievements-section w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-12 " role="region" aria-labelledby="achievements-heading">
+            <section className="achievements-section hidden w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-12 " role="region" aria-labelledby="achievements-heading">
                 <div className="rounded-lg flex flex-col gap-4 sm:gap-6">
                     <header className="section-header">
                         <h2 id="achievements-heading" className="text-xl sm:text-2xl lg:text-3xl font-medium text-center mb-4 sm:mb-6 text-black font-poppins">

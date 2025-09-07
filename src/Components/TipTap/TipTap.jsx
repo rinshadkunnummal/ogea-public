@@ -15,6 +15,21 @@ const TipTap = ({ content = '', onChange, placeholder = 'Start writing...' }) =>
                         class: 'italic',
                     },
                 },
+                // Disable underline from StarterKit to avoid conflicts
+                underline: false,
+                // Configure paragraph to preserve line breaks
+                paragraph: {
+                    HTMLAttributes: {
+                        class: 'paragraph',
+                    },
+                },
+                // Configure hard breaks to preserve enters
+                hardBreak: {
+                    keepMarks: false,
+                    HTMLAttributes: {
+                        class: 'hard-break',
+                    },
+                },
             }),
             Underline,
             TextAlign.configure({
@@ -24,7 +39,9 @@ const TipTap = ({ content = '', onChange, placeholder = 'Start writing...' }) =>
         content,
         onUpdate: ({ editor }) => {
             if (onChange) {
-                onChange(editor.getHTML());
+                // Get HTML with better formatting preservation
+                const html = editor.getHTML();
+                onChange(html);
             }
         },
         editorProps: {
@@ -32,13 +49,29 @@ const TipTap = ({ content = '', onChange, placeholder = 'Start writing...' }) =>
                 class: 'prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none min-h-[200px] p-4',
                 'data-placeholder': placeholder,
             },
+            // Handle paste events to preserve formatting
+            handlePaste: (view, event, slice) => {
+                return false; // Let TipTap handle it normally
+            },
+            // Preserve line breaks when transforming content
+            transformPastedHTML: (html) => {
+                // Convert line breaks to proper paragraphs
+                return html.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>');
+            },
+        },
+        // Parse options to better handle content
+        parseOptions: {
+            preserveWhitespace: 'full',
         },
     });
 
     // Update editor content when content prop changes
     React.useEffect(() => {
         if (editor && content !== editor.getHTML()) {
-            editor.commands.setContent(content);
+            // Use setContent with parseOptions to preserve formatting
+            editor.commands.setContent(content, false, {
+                preserveWhitespace: 'full',
+            });
         }
     }, [content, editor]);
 
@@ -208,6 +241,14 @@ const TipTap = ({ content = '', onChange, placeholder = 'Start writing...' }) =>
 
                 {/* Actions */}
                 <div className="flex gap-1">
+                    <button
+                        type="button"
+                        onClick={() => editor.chain().focus().setHardBreak().run()}
+                        className="px-2 sm:px-3 py-1 rounded text-xs sm:text-sm font-medium border bg-white text-gray-700 hover:bg-gray-100 border-gray-300 transition-colors"
+                        title="Insert line break (Shift+Enter)"
+                    >
+                        ↵
+                    </button>
                     <button
                         type="button"
                         onClick={() => editor.chain().focus().setHorizontalRule().run()}

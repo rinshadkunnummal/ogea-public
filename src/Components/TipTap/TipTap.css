@@ -3,6 +3,35 @@
   outline: none;
   padding: 1rem;
   min-height: 200px;
+  white-space: pre-wrap; /* Preserve whitespace and line breaks */
+}
+
+/* Paragraph spacing and line break handling */
+.ProseMirror p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.ProseMirror p:last-child {
+  margin-bottom: 0;
+}
+
+/* Hard breaks (Shift+Enter) */
+.ProseMirror br {
+  display: block;
+  margin: 0.5rem 0;
+  line-height: 1;
+}
+
+/* Empty paragraphs should still take space */
+.ProseMirror p:empty {
+  min-height: 1.5rem;
+}
+
+/* Preserve line breaks in content */
+.ProseMirror .hard-break::after {
+  content: "\A";
+  white-space: pre;
 }
 
 .ProseMirror em {

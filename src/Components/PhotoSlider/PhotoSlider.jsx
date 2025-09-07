@@ -125,7 +125,6 @@ const PhotoSlider = () => {
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
         className="w-full h-auto"
-        preloadImages={false}
         watchSlidesProgress={true}
       >
         {latestBanners.length > 0 ? latestBanners.map((banner) => (
@@ -153,7 +152,7 @@ const PhotoSlider = () => {
                   }`}
                   onLoad={() => handleImageLoad(banner.id)}
                   onError={() => handleImageError(banner.id)}
-                  fetchpriority="high"
+                  fetchPriority="high"
                   decoding="async"
                 />
               )}
