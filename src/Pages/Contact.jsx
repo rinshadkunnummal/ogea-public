@@ -28,7 +28,7 @@ const Contact = () => {
   return (
     <main className="contact-page flex items-center justify-center flex-col leading-normal px-3 sm:px-6 py-6 pt-24">
       <header className="contact-header text-center mb-8">
-        <h1 className="text-3xl text-black font-bold mb-4 font-nunito">Contact</h1>
+        <h1 className="text-3xl text-black font-bold mb-4 font-nunito">Contact Us</h1>
         <p className="text-lg text-black mb-6">Get in touch with us!</p>
       </header>
       <section className="contact-content" role="region" aria-labelledby="contact-heading">
