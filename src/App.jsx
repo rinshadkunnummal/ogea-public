@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { createBrowserRouter, RouterProvider, Outlet, useLocation } from 'react-router-dom'
 import Navbar from './Components/NavBar/Navbar.jsx'
 import Footer from './Components/Footer/Footer.jsx'
-
 import { router } from './routes/routes'
 import { Analytics } from '@vercel/analytics/react';
 
