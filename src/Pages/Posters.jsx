@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { imagesAPI } from '../services/apiService'
+import { imagesAPI } from '../lib/apiService'
 import { posters as staticPosters } from '../assets/posters/posters'
 import Loader from '../Components/Loader/Loader.jsx'
 

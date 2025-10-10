@@ -8,17 +8,15 @@ import { Analytics } from '@vercel/analytics/react';
 // Layout component that handles navbar and footer visibility
 const Layout = () => {
   const location = useLocation()
-  const isAdminRoute = location.pathname.startsWith("/admin")
-
+  const isHomePage = location.pathname === '/';
+  
   return (
     <div className="w-full bg-[#f1f1f1]">
-      {/* Only show Navbar if not on /admin */}
-      {!isAdminRoute && <Navbar />}
+      <Navbar />
       <div className="content">
         <Outlet />
       </div>
-      {/* Only show Footer if not on /admin */}
-      {!isAdminRoute && <Footer />}
+      <Footer />
     </div>
   )
 }

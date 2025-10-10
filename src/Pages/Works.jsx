@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate, useLocation } from 'react-router-dom'
-import { articlesAPI } from '../services/apiService';
+import { articlesAPI } from '../lib/apiService'
 import Loader from '../Components/Loader/Loader';
 import ArticleCard from '../Components/ArticleCard/ArticleCard';
 import ArticleFullView from '../Components/ArticleFullView/ArticleFullView';

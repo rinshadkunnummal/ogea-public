@@ -9,11 +9,6 @@ const Home = lazy(() => import('../Pages/Home.jsx'))
 const Works = lazy(() => import('../Pages/Works'))
 const Posters = lazy(() => import('../Pages/Posters.jsx'))
 const Contact = lazy(() => import('../Pages/Contact'))
-const Admin = lazy(() => import('../Pages/Admin/Admin.jsx'))
-const StatsSection = lazy(() => import('../Pages/Admin/StatsSection.jsx'))
-const ManageSection = lazy(() => import('../Pages/Admin/ManageSection.jsx'))
-const AddSection = lazy(() => import('../Pages/Admin/AddSection.jsx'))
-const ManagePosters = lazy(() => import('../Pages/Admin/ManagePosters.jsx'))
 
 // Loading component
 const LoadingSpinner = () => (
@@ -56,29 +51,6 @@ export const router = createBrowserRouter([
       {
         path: "contact",
         element: <LazyWrapper><Contact /></LazyWrapper>
-      }
-    ]
-  },
-  {
-    path: "/admin",
-    element: <LazyWrapper><Admin /></LazyWrapper>,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        index: true,
-        element: <LazyWrapper><StatsSection /></LazyWrapper>
-      },
-      {
-        path: "manage",
-        element: <LazyWrapper><ManageSection /></LazyWrapper>
-      },
-      {
-        path: "add",
-        element: <LazyWrapper><AddSection /></LazyWrapper>
-      },
-      {
-        path: "posters",
-        element: <LazyWrapper><ManagePosters /></LazyWrapper>
       }
     ]
   },
