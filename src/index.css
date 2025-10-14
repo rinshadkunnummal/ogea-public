@@ -4,9 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-    --font-nunito: 'Nunito', sans-serif;
-    --font-poppins: 'Poppins', sans-serif;
-    --font-arima : 'Arima', sans-serif;
+    --font-quicksand: 'Quicksand', sans-serif;
 }
 
 @theme inline {
@@ -123,16 +121,4 @@
   body {
     @apply bg-background text-foreground;
     }
-}
-
-* {
-    scroll-behavior: smooth;
-}
-
-body {
-    background-color:#f0f7f8 ;
-}
-
-body::-webkit-scrollbar {
-    display: none;
 }

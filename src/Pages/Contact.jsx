@@ -1,40 +1,36 @@
-import React, { useState, useEffect } from 'react'
-import ContactDetails from '../Components/ContactDetails/ContactDetails'
-import Loader from '../Components/Loader/Loader.jsx'
+import React from 'react'
+import details from '@/lib/details'
 
 const Contact = () => {
-  const [loading, setLoading] = useState(true)
-
-  // Simulate initial loading
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false)
-    }, 1000) // 1 second loading simulation
-
-    return () => clearTimeout(timer)
-  }, [])
-
-  // Show loader during initial loading
-  if (loading) {
-    return (
-      <main className="contact-page flex items-center justify-center min-h-[400px]">
-        <section className="text-center" aria-live="polite" aria-busy="true">
-          <Loader />
-        </section>
-      </main>
-    )
-  }
-
   return (
-    <main className="contact-page flex items-center justify-center flex-col leading-normal px-3 sm:px-6 py-6 pt-24">
-      <header className="contact-header text-center mb-8">
-        <h1 className="text-3xl text-black font-bold mb-4 font-nunito">Contact Us</h1>
-        <p className="text-lg text-black mb-6">Get in touch with us!</p>
-      </header>
-      <section className="contact-content" role="region" aria-labelledby="contact-heading">
-        <ContactDetails />
-      </section>
-    </main>
+    <section id='contact' className='py-10 px-4 md:px-8 lg:px-16 flex flex-col justify-center items-center min-h-[90vh]'>
+      {/* Main Title */}
+      <div className="text-center mb-12">
+        <h1 className='font-bold text-4xl md:text-5xl lg:text-6xl text-gray-700 mb-4'>
+          Get in Touch
+        </h1>
+        <hr className='mx-auto text-gray-300 my-4 w-1/4' />
+        <p className='text-gray-500 text-lg md:text-xl max-w-4xl mx-auto'>
+          Have questions? Want to collaborate? We'd love to hear from you!
+        </p>
+      </div>
+      {/* Details Section */}
+      <article className='max-w-4xl mx-auto mt-16'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+          {details.map((detail, index) => (
+            <div key={index} className='flex flex-col items-center text-center space-y-4'>
+              <div className={`w-16 h-16 ${detail.color} rounded-2xl flex items-center justify-center shadow-lg`}>
+                <detail.icon className="h-8 w-8 text-white" />
+              </div>
+              <div>
+                <h3 className='text-xl font-semibold text-gray-800 mb-2'>{detail.method}</h3>
+                <p className='text-gray-600 text-sm'>{detail.info}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </article>
+    </section>
   )
 }
 

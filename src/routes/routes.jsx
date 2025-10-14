@@ -1,61 +1,50 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { lazy, Suspense } from 'react'
-import Layout from '@/Pages/Layout.jsx'
-import Loader from '@/Components/Loader/Loader.jsx'
-import ErrorPage from '@/Components/ErrorPage/ErrorPage.jsx'
+import Layout from '../layout/Layout'
+import Home from '../pages/Home'
+import Works from '../Pages/Works'
+import Posters from '../pages/Posters'
+import Contact from '../pages/Contact'
 
-// Lazy load components
-const Home = lazy(() => import('../Pages/Home.jsx'))
-const Works = lazy(() => import('../Pages/Works'))
-const Posters = lazy(() => import('../Pages/Posters.jsx'))
-const Contact = lazy(() => import('../Pages/Contact'))
-
-// Loading component
-const LoadingSpinner = () => (
-  <div className="flex items-center justify-center min-h-[50vh]">
-    <div className="flex flex-col items-center gap-4">
-        <Loader />
-    </div>
-  </div>
-)
-
-// Wrapper component with Suspense
-const LazyWrapper = ({ children }) => (
-  <Suspense fallback={<LoadingSpinner />}>
-    {children}
-  </Suspense>
-)
-
-export const router = createBrowserRouter([
+// Create browser router with all routes
+const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Layout />,
-    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
-        element: <LazyWrapper><Home /></LazyWrapper>
+        element: <Home />,
       },
       {
-        path: "works",
-        element: <LazyWrapper><Works /></LazyWrapper>
+        path: 'works',
+        element: <Works />,
       },
       {
-        path: "works/:articleId",
-        element: <LazyWrapper><Works /></LazyWrapper>
+        path: 'works/:articleId',
+        element: <Works />,
       },
       {
-        path: "posters",
-        element: <LazyWrapper><Posters /></LazyWrapper>
+        path: 'posters',
+        element: <Posters />,
       },
       {
-        path: "contact",
-        element: <LazyWrapper><Contact /></LazyWrapper>
-      }
-    ]
+        path: 'contact',
+        element: <Contact />,
+      },
+    ],
   },
   {
-    path: "*",
-    element: <ErrorPage />
-  }
+    path: '*',
+    element: (
+      <div className="flex flex-col items-center justify-center min-h-screen">
+        <h1 className="text-4xl font-bold text-gray-800 mb-4">404 - Page Not Found</h1>
+        <p className="text-gray-600 mb-6">The page you're looking for doesn't exist.</p>
+        <a href="/" className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+          Go Home
+        </a>
+      </div>
+    ),
+  },
 ])
+
+export default router
