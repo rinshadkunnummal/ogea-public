@@ -92,12 +92,13 @@ const Header = () => {
                     </ul>
 
                     {/* Mobile Menu Button */}
-                    <Hamburger
-                        toggled={isMobileMenuOpen}
-                        toggle={setIsMobileMenuOpen}
-                        size={24}
-                        className="lg:hidden"
-                    />
+                    <div className="block lg:hidden">
+                        <Hamburger
+                            toggled={isMobileMenuOpen}
+                            toggle={setIsMobileMenuOpen}
+                            size={24}
+                        />
+                    </div>
                 </div>
 
                 {/* Mobile Menu Overlay */}
