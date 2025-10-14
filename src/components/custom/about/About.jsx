@@ -1,5 +1,5 @@
 import React from 'react'
-import logoImg from '/logo.svg'
+import logoImg from '../../../assets/banners/baaner.jpg'
 
 const About = () => {
   return (
@@ -35,7 +35,7 @@ const About = () => {
             <div className="flex justify-center lg:justify-end rounded-lg">
                 <div className="relative w-full max-w-md">
                     <div className='shadow-lg hover:shadow-xl transition-shadow duration-300'>
-                        <div className='bg-white rounded-2xl p-8 flex flex-col items-center justify-center min-h-[300px]'>
+                        <div className='bg-white rounded-2xl flex flex-col items-center justify-center'>
                             <img src={logoImg} alt="OGEA Banner" className="w-full h-full rounded-lg" />
                         </div>
                     </div>
