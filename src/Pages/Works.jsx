@@ -30,7 +30,7 @@ const Works = () => {
   }, [])
 
   return (
-    <div className="py-10 px-4 md:px-8 lg:px-16">
+    <div className="py-10 px-4 md:px-8 lg:px-16 min-h-screen">
       {/* Header */}
       <div className="text-center mb-12">
         <h1 className="font-bold text-4xl md:text-5xl lg:text-6xl text-gray-700 mb-4">
@@ -75,7 +75,7 @@ const Works = () => {
 
       {/* Error State */}
       {error && (
-        <div className="bg-red-100 border border-red-400 text-red-700 px-6 py-4 rounded-lg text-center max-w-2xl mx-auto">
+        <div className="bg-red-100 border text-red-700 px-6 py-4 rounded-lg text-center max-w-2xl mx-auto">
           {error}
         </div>
       )}

@@ -1,7 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const ArticleCard = ({ article }) => {
-  const { title, content, writer, category, createdAt } = article;
+  const { _id, title, content, writer, category, createdAt } = article;
   
   // Decode HTML entities and strip HTML tags
   const decodeHtml = (html) => {
@@ -40,8 +41,9 @@ const ArticleCard = ({ article }) => {
   };
 
   return (
-    <article className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 p-6 border border-gray-100">
-      {/* Category Badge */}
+    <Link to={`/works/${_id}`} className="block">
+      <article className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 p-6 border border-gray-100 cursor-pointer">
+        {/* Category Badge */}
       {category && (
         <div className="mb-3">
           <span className="inline-block px-3 py-1 text-xs font-semibold text-white bg-blue-500 rounded-full">
@@ -101,6 +103,7 @@ const ArticleCard = ({ article }) => {
         )}
       </div>
     </article>
+    </Link>
   )
 }
 

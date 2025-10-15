@@ -4,6 +4,7 @@ import Home from '../Pages/Home'
 import Works from '../Pages/Works'
 import Posters from '../Pages/Posters'
 import Contact from '../Pages/Contact'
+import Article from '../Pages/Article'
 
 // Create browser router with all routes
 const router = createBrowserRouter([
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'works/:articleId',
-        element: <Works />,
+        element: <Article />,
       },
       {
         path: 'posters',

@@ -122,3 +122,14 @@
     @apply bg-background text-foreground;
     }
 }
+
+body {
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body ::-webkit-scrollbar {
+    scroll-behavior: smooth;
+}
