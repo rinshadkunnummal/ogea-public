@@ -50,7 +50,7 @@ const ArticleCard = ({ article }) => {
         {/* Category Badge */}
         {category && (
           <div className="mb-3">
-            <span className="inline-block px-3 py-1 text-xs font-semibold text-white bg-blue-500 rounded-full">
+            <span className="inline-block px-3 py-1 text-xs font-semibold text-white bg-blue-500 rounded-full capitalize">
               {category}
             </span>
           </div>
