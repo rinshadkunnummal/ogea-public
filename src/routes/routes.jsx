@@ -1,10 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom'
 import Layout from '../layout/Layout'
-import Home from '../pages/Home'
-import Works from '../pages/Works'
-import Posters from '../pages/Posters'
-import Contact from '../pages/Contact'
-import Article from '../pages/Article'
+import Home from '../Pages/Home'
+import Works from '../Pages/Works'
+import Posters from '../Pages/Posters'
+import Contact from '../Pages/Contact'
+import Article from '../Pages/Article'
 
 // Create browser router with all routes
 const router = createBrowserRouter([
