@@ -114,6 +114,7 @@ export const posters = [
   { id: 40, image: penreach16, category: 'penreach' },
   { id: 41, image: penreach15, category: 'penreach' },
   { id: 42, image: penreach14, category: 'penreach' },
+  { id: 20, image: paperpath4, category: 'paperpath' },
   { id: 43, image: penreach13, category: 'penreach' },
   { id: 44, image: penreach12, category: 'penreach' },
   { id: 59, image: paperpath12, category: 'paperpath' },
@@ -128,7 +129,6 @@ export const posters = [
   { id: 50, image: penreach6, category: 'penreach' },
   { id: 62, image: talenttide9, category: 'talenttide' },
   { id: 51, image: penreach5, category: 'penreach' },
-  { id: 32, image: talenttide1, category: 'talenttide' },
   { id: 52, image: penreach4, category: 'penreach' },
-  { id: 20, image: paperpath4, category: 'paperpath' },
+  { id: 32, image: talenttide1, category: 'talenttide' },
 ];

@@ -1,6 +1,6 @@
 import React from 'react'
 import ImageCard from '../components/custom/imagecard/ImageCard'
-import { posters } from '@/assets/posters/posters'
+import { posters } from '@/lib/posters'
 
 const Posters = () => {
   return (
