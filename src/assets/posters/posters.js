@@ -40,17 +40,22 @@ import penreach38 from './penreach/38.jpg'
 import penreach39 from './penreach/39.jpg'
 import penreach40 from './penreach/40.png'
 
-// PaperPath imports (8 posters)
-import paperpath1 from './paperpath/1.png'
+// PaperPath imports (13 posters)
+import paperpath1 from './paperpath/1.jpg'
 import paperpath2 from './paperpath/2.jpg'
-import paperpath3 from './paperpath/3.png'
+import paperpath3 from './paperpath/3.jpg'
 import paperpath4 from './paperpath/4.png'
 import paperpath5 from './paperpath/5.png'
 import paperpath6 from './paperpath/6.png'
 import paperpath7 from './paperpath/7.png'
-import paperpath8 from './paperpath/8.png'
+import paperpath8 from './paperpath/8.jpg'
+import paperpath9 from './paperpath/9.jpg'
+import paperpath10 from './paperpath/10.jpg'
+import paperpath11 from './paperpath/11.jpg'
+import paperpath12 from './paperpath/12.jpg'
+import paperpath13 from './paperpath/13.jpg'
 
-// TalentTide imports (7 posters)
+// TalentTide imports (9 posters)
 import talenttide1 from './talenttide/1.jpg'
 import talenttide2 from './talenttide/2.jpg'
 import talenttide3 from './talenttide/3.jpg'
@@ -58,9 +63,11 @@ import talenttide4 from './talenttide/4.jpg'
 import talenttide5 from './talenttide/5.jpg'
 import talenttide6 from './talenttide/6.jpg'
 import talenttide7 from './talenttide/7.jpg'
+import talenttide8 from './talenttide/8.jpg'
+import talenttide9 from './talenttide/9.jpg'
 
 
-// Total: 55 posters (40 Penreach + 8 PaperPath + 7 TalentTide) - Reshuffled mix
+// Total: 62 posters (40 Penreach + 13 PaperPath + 9 TalentTide) - Reshuffled mix
 export const posters = [
   { id: 1, image: penreach40, category: 'penreach' },
   { id: 2, image: paperpath8, category: 'paperpath' },
@@ -117,4 +124,11 @@ export const posters = [
   { id: 32, image: talenttide1, category: 'talenttide' },
   { id: 52, image: penreach4, category: 'penreach' },
   { id: 20, image: paperpath4, category: 'paperpath' },
+  { id: 56, image: paperpath9, category: 'paperpath' },
+  { id: 57, image: paperpath10, category: 'paperpath' },
+  { id: 58, image: paperpath11, category: 'paperpath' },
+  { id: 59, image: paperpath12, category: 'paperpath' },
+  { id: 60, image: paperpath13, category: 'paperpath' },
+  { id: 61, image: talenttide8, category: 'talenttide' },
+  { id: 62, image: talenttide9, category: 'talenttide' },
 ];
