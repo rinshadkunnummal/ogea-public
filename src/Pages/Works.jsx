@@ -1,33 +1,53 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import ArticleCard from '../components/custom/articlecard/ArticleCard'
 import { Skeleton } from '../components/ui/skeleton'
 import { fetchAndLogArticles } from '../lib/articles.js'
+import { Search } from 'lucide-react'
 
 const Works = () => {
   const [articles, setArticles] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [searchTerm, setSearchTerm] = useState('')
+  const [filterCategory, setFilterCategory] = useState('all')
+
+  const loadArticles = async () => {
+    try {
+      setLoading(true)
+      const data = await fetchAndLogArticles()
+
+      // Handle different response structures
+      const articlesData = data?.articles || data?.data?.articles || data || []
+      setArticles(articlesData)
+      setError(null)
+    } catch (err) {
+      console.error('Failed to load articles:', err)
+      setError('Failed to load articles. Please try again later.')
+    } finally {
+      setLoading(false)
+    }
+  }
 
   useEffect(() => {
-    const loadArticles = async () => {
-      try {
-        setLoading(true)
-        const data = await fetchAndLogArticles()
-        
-        // Handle different response structures
-        const articlesData = data?.articles || data?.data?.articles || data || []
-        setArticles(articlesData)
-        setError(null)
-      } catch (err) {
-        console.error('Failed to load articles:', err)
-        setError('Failed to load articles. Please try again later.')
-      } finally {
-        setLoading(false)
-      }
-    }
-
     loadArticles()
   }, [])
+
+  // Filtered articles based on search and category
+  const filteredArticles = useMemo(() => {
+    return articles.filter((article) => {
+      const matchesSearch =
+        searchTerm === '' ||
+        article.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        article.author?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        article.category?.toLowerCase().includes(searchTerm.toLowerCase())
+
+      const matchesCategory =
+        filterCategory === 'all' ||
+        article.category?.toLowerCase() === filterCategory.toLowerCase()
+
+      return matchesSearch && matchesCategory
+    })
+  }, [articles, searchTerm, filterCategory])
 
   return (
     <div className="py-10 px-4 md:px-8 lg:px-16 min-h-screen">
@@ -50,18 +70,18 @@ const Works = () => {
               <div key={i} className="bg-white rounded-lg shadow-md p-6 border border-gray-100 space-y-4">
                 {/* Category Badge Skeleton */}
                 <Skeleton className="h-6 w-20 rounded-full" />
-                
+
                 {/* Title Skeleton */}
                 <Skeleton className="h-6 w-full" />
                 <Skeleton className="h-6 w-3/4" />
-                
+
                 {/* Content Skeleton */}
                 <div className="space-y-2 pt-2">
                   <Skeleton className="h-4 w-full" />
                   <Skeleton className="h-4 w-full" />
                   <Skeleton className="h-4 w-5/6" />
                 </div>
-                
+
                 {/* Footer Skeleton */}
                 <div className="flex items-center justify-between pt-4">
                   <Skeleton className="h-4 w-24" />
@@ -83,11 +103,46 @@ const Works = () => {
       {/* Articles Grid */}
       {!loading && !error && (
         <div className="max-w-7xl mx-auto">
-          {articles.length > 0 ? (
+          {/* Filtering Section */}
+          {articles.length > 0 && (
+            <section className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 mb-6">
+              <div className="flex items-center gap-4">
+                {/* Search */}
+                <div className="flex-1">
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                    <input
+                      id="search"
+                      type="text"
+                      placeholder="Search by title, author, or category..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    />
+                  </div>
+                </div>
+              </div>
+            </section>
+          )}
+          {filteredArticles.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {articles.map((article) => (
+              {filteredArticles.map((article) => (
                 <ArticleCard key={article._id || article.id} article={article} />
               ))}
+            </div>
+          ) : articles.length > 0 ? (
+            <div className="text-center py-12">
+              <p className="text-gray-500 text-xl">No articles match your filters</p>
+              <p className="text-gray-400 mt-2">Try adjusting your search or filter criteria</p>
+              <button
+                onClick={() => {
+                  setSearchTerm('')
+                  setFilterCategory('all')
+                }}
+                className="mt-4 px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                Clear all filters
+              </button>
             </div>
           ) : (
             <div className="text-center py-12">
@@ -95,13 +150,6 @@ const Works = () => {
               <p className="text-gray-400 mt-2">Check back later for new content!</p>
             </div>
           )}
-        </div>
-      )}
-
-      {/* Article Count */}
-      {!loading && !error && articles.length > 0 && (
-        <div className="text-center mt-8 text-gray-500">
-          Showing {articles.length} article{articles.length !== 1 ? 's' : ''}
         </div>
       )}
     </div>
