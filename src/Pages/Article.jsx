@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import ArticleView from '../components/custom/articleview/ArticleView'
 import { Skeleton } from '../components/ui/skeleton'
+import { Badge } from '../components/ui/badge'
 import axios from 'axios'
 
 const Article = () => {
@@ -38,6 +39,7 @@ const Article = () => {
   if (loading) {
     return (
       <div className="min-h-screen py-10 px-4 md:px-8 lg:px-20 mx-auto max-w-4xl">
+        <Badge variant="outline" className="mb-4 animate-pulse">Loading article...</Badge>
         <Skeleton className="h-12 w-3/4 mb-4" />
         <Skeleton className="h-6 w-1/3 mb-8" />
         <div className="space-y-4">
@@ -54,6 +56,7 @@ const Article = () => {
   if (error || !article) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center px-4">
+        <Badge variant="destructive" className="mb-4">Error</Badge>
         <h1 className="text-4xl font-bold text-gray-800 mb-4">Article Not Found</h1>
         <p className="text-gray-600 mb-6">{error || 'The article you\'re looking for doesn\'t exist.'}</p>
         <button 

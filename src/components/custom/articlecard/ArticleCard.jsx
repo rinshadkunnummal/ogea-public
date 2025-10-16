@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Calendar, UserRoundPen } from 'lucide-react'
+import { Badge } from '../../ui/badge'
 
 const ArticleCard = ({ article }) => {
   const { _id, title, content, writer, category, createdAt } = article;
@@ -41,7 +42,7 @@ const ArticleCard = ({ article }) => {
   };
 
   return (
-    <article className="h-full flex flex-col bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden group">
+    <article className="h-full flex flex-col bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden group font-manjari">
       <Link 
         to={`/works/${_id}`} 
         className="flex flex-col h-full p-6"
@@ -50,15 +51,15 @@ const ArticleCard = ({ article }) => {
         {/* Category Badge */}
         {category && (
           <div className="mb-3">
-            <span className="inline-block px-3 py-1 text-xs font-semibold text-white bg-blue-500 rounded-full capitalize">
+            <Badge variant="default" className="bg-blue-500 hover:bg-blue-600 capitalize">
               {category}
-            </span>
+            </Badge>
           </div>
         )}
 
         {/* Title */}
         <header className="mb-3">
-          <h2 className="text-xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors duration-200 line-clamp-2 break-words">
+          <h2 className="text-xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors duration-200 line-clamp-2 break-words font-manjari">
             {decodeHtml(title)}
           </h2>
         </header>

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { ArrowLeft, Calendar, User } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
+import { Badge } from '../../ui/badge'
 
 const ArticleView = ({ article }) => {
   const navigate = useNavigate()
@@ -36,7 +37,7 @@ const ArticleView = ({ article }) => {
   };
 
   return (
-    <article className='min-h-screen py-10 px-4 md:px-8 lg:px-20 mx-auto max-w-4xl'>
+    <article className='min-h-screen py-10 px-4 md:px-8 lg:px-20 mx-auto max-w-4xl font-manjari'>
       {/* Back Button */}
       <button
         onClick={() => navigate('/works')}
@@ -48,9 +49,9 @@ const ArticleView = ({ article }) => {
       {/* Category Badge */}
       {article.category && (
         <div className="mb-4">
-          <span className="inline-block px-3 py-1 text-xs font-semibold text-white bg-blue-500 rounded-full">
+          <Badge variant="default" className="bg-blue-500 hover:bg-blue-600 text-sm capitalize">
             {article.category}
-          </span>
+          </Badge>
         </div>
       )}
 

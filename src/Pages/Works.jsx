@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useMemo } from 'react'
 import ArticleCard from '../components/custom/articlecard/ArticleCard'
 import { Skeleton } from '../components/ui/skeleton'
+import { Badge } from '../components/ui/badge'
 import { fetchAndLogArticles } from '../lib/articles.js'
-import { Search } from 'lucide-react'
+import { Search, FileText } from 'lucide-react'
 
 const Works = () => {
   const [articles, setArticles] = useState([])
@@ -106,7 +107,7 @@ const Works = () => {
           {/* Filtering Section */}
           {articles.length > 0 && (
             <section className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 mb-6">
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4 mb-4">
                 {/* Search */}
                 <div className="flex-1">
                   <div className="relative">

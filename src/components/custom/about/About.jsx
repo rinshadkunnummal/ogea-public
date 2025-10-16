@@ -1,5 +1,7 @@
 import React from 'react'
 import logoImg from '../../../assets/banners/baaner.jpg'
+import { Badge } from '../../ui/badge'
+import { Target, Users, Briefcase, GraduationCap } from 'lucide-react'
 
 const About = () => {
   return (

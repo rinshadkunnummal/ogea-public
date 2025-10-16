@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Alert, AlertDescription, AlertTitle } from '../../ui/alert'
 import { Button } from '../../ui/button'
-import { Info, X } from 'lucide-react'
+import { Badge } from '../../ui/badge'
+import { Info, X, Sparkles } from 'lucide-react'
 
 const WelcomeAlert = () => {
   const [isVisible, setIsVisible] = useState(true)
@@ -33,6 +34,13 @@ const WelcomeAlert = () => {
           </button>
 
           {/* Content */}
+          <div className="flex items-center gap-2 mb-2">
+            <Badge variant="default" className="bg-blue-600 flex items-center gap-1">
+              <Sparkles className="w-3 h-3" />
+              New
+            </Badge>
+          </div>
+          
           <AlertTitle className="text-lg font-bold text-gray-900 pr-8">
             Participate in Programs
           </AlertTitle>
