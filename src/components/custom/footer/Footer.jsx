@@ -35,6 +35,8 @@ const Footer = () => {
                         <ul className="space-y-3">
                             <li><a href="https://drive.google.com/drive/folders/1z-Q5CfkDy-2D0T9tDwXYXL6Uv1jrkkSk" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">Drive</a></li>
                             <li><a href="https://drive.google.com/drive/folders/1z-Q5CfkDy-2D0T9tDwXYXL6Uv1jrkkSk" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">Programs</a></li>
+                            <li><a href="mailto:chsoutreachboard@gmail.com" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">Mail Us</a></li>
+                            <li><a href="https://chsoutreach.live" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">Website</a></li>
                         </ul>
                     </div>
                 </div>
