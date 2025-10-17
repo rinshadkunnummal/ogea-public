@@ -58,6 +58,7 @@ import talenttide8 from '../assets/posters/talenttide/8.jpg'
 import talenttide9 from '../assets/posters/talenttide/9.jpg'
 import talenttide10 from '../assets/posters/talenttide/10.jpg'
 import talenttide11 from '../assets/posters/talenttide/11.jpg'
+import talenttide12 from '../assets/posters/talenttide/12.jpg'
 
 
 // Total: 55 posters (30 Penreach + 13 PaperPath + 12 TalentTide) - Shuffled mix
@@ -124,4 +125,5 @@ export const posters = [
   { id: 60, image: penreach4, category: 'penreach' },
   { id: 61, image: penreach16, category: 'penreach' },
   { id: 62, image: penreach21, category: 'penreach' },
+  { id: 63, image: talenttide12, category: 'talenttide' },
 ];
