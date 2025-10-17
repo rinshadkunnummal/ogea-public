@@ -1,4 +1,4 @@
-// Penreach imports (40 posters)
+// Penreach imports (30 posters)
 import penreach1 from '../assets/posters/penreach/1.jpg'
 import penreach2 from '../assets/posters/penreach/2.jpg'
 import penreach3 from '../assets/posters/penreach/3.jpg'
@@ -29,16 +29,6 @@ import penreach27 from '../assets/posters/penreach/27.jpg'
 import penreach28 from '../assets/posters/penreach/28.jpg'
 import penreach29 from '../assets/posters/penreach/29.jpg'
 import penreach30 from '../assets/posters/penreach/30.jpg'
-import penreach31 from '../assets/posters/penreach/31.png'
-import penreach32 from '../assets/posters/penreach/32.jpg'
-import penreach33 from '../assets/posters/penreach/33.png'
-import penreach34 from '../assets/posters/penreach/34.png'
-import penreach35 from '../assets/posters/penreach/35.png'
-import penreach36 from '../assets/posters/penreach/36.png'
-import penreach37 from '../assets/posters/penreach/37.jpg'
-import penreach38 from '../assets/posters/penreach/38.jpg'
-import penreach39 from '../assets/posters/penreach/39.jpg'
-import penreach40 from '../assets/posters/penreach/40.png'
 
 // PaperPath imports (13 posters)
 import paperpath1 from '../assets/posters/paperpath/1.jpg'
@@ -55,7 +45,8 @@ import paperpath11 from '../assets/posters/paperpath/11.jpg'
 import paperpath12 from '../assets/posters/paperpath/12.jpg'
 import paperpath13 from '../assets/posters/paperpath/13.jpg'
 
-// TalentTide imports (9 posters)
+// TalentTide imports (12 posters)
+import talenttide0 from '../assets/posters/talenttide/0.jpg'
 import talenttide1 from '../assets/posters/talenttide/1.jpg'
 import talenttide2 from '../assets/posters/talenttide/2.jpg'
 import talenttide3 from '../assets/posters/talenttide/3.jpg'
@@ -65,70 +56,72 @@ import talenttide6 from '../assets/posters/talenttide/6.jpg'
 import talenttide7 from '../assets/posters/talenttide/7.jpg'
 import talenttide8 from '../assets/posters/talenttide/8.jpg'
 import talenttide9 from '../assets/posters/talenttide/9.jpg'
+import talenttide10 from '../assets/posters/talenttide/10.jpg'
+import talenttide11 from '../assets/posters/talenttide/11.jpg'
 
 
-// Total: 62 posters (40 Penreach + 13 PaperPath + 9 TalentTide) - Reshuffled mix
+// Total: 55 posters (30 Penreach + 13 PaperPath + 12 TalentTide) - Shuffled mix
 export const posters = [
-  { id: 1, image: penreach40, category: 'penreach' },
-  { id: 2, image: paperpath8, category: 'paperpath' },
-  { id: 3, image: talenttide7, category: 'talenttide' },
-  { id: 4, image: penreach39, category: 'penreach' },
-  { id: 5, image: penreach38, category: 'penreach' },
-  { id: 6, image: paperpath7, category: 'paperpath' },
-  { id: 7, image: talenttide6, category: 'talenttide' },
-  { id: 8, image: penreach37, category: 'penreach' },
-  { id: 9, image: penreach36, category: 'penreach' },
-  { id: 10, image: paperpath6, category: 'paperpath' },
-  { id: 11, image: penreach35, category: 'penreach' },
-  { id: 12, image: talenttide5, category: 'talenttide' },
-  { id: 13, image: penreach34, category: 'penreach' },
-  { id: 14, image: penreach33, category: 'penreach' },
-  { id: 15, image: paperpath5, category: 'paperpath' },
-  { id: 55, image: penreach1, category: 'penreach' },
-  { id: 16, image: penreach32, category: 'penreach' },
-  { id: 17, image: talenttide4, category: 'talenttide' },
-  { id: 18, image: penreach31, category: 'penreach' },
-  { id: 19, image: penreach30, category: 'penreach' },
-  { id: 21, image: penreach29, category: 'penreach' },
-  { id: 22, image: talenttide3, category: 'talenttide' },
-  { id: 23, image: penreach28, category: 'penreach' },
-  { id: 24, image: penreach27, category: 'penreach' },
-  { id: 25, image: paperpath3, category: 'paperpath' },
-  { id: 26, image: penreach26, category: 'penreach' },
-  { id: 27, image: talenttide2, category: 'talenttide' },
-  { id: 28, image: penreach25, category: 'penreach' },
-  { id: 29, image: penreach24, category: 'penreach' },
-  { id: 30, image: paperpath2, category: 'paperpath' },
-  { id: 31, image: penreach23, category: 'penreach' },
-  { id: 33, image: penreach22, category: 'penreach' },
-  { id: 34, image: penreach21, category: 'penreach' },
-  { id: 35, image: paperpath1, category: 'paperpath' },
-  { id: 36, image: penreach20, category: 'penreach' },
-  { id: 53, image: penreach3, category: 'penreach' },
-  { id: 54, image: penreach2, category: 'penreach' },
-  { id: 37, image: penreach19, category: 'penreach' },
-  { id: 57, image: paperpath10, category: 'paperpath' },
-  { id: 58, image: paperpath11, category: 'paperpath' },
-  { id: 38, image: penreach18, category: 'penreach' },
-  { id: 39, image: penreach17, category: 'penreach' },
-  { id: 40, image: penreach16, category: 'penreach' },
-  { id: 41, image: penreach15, category: 'penreach' },
-  { id: 42, image: penreach14, category: 'penreach' },
-  { id: 20, image: paperpath4, category: 'paperpath' },
-  { id: 43, image: penreach13, category: 'penreach' },
-  { id: 44, image: penreach12, category: 'penreach' },
-  { id: 59, image: paperpath12, category: 'paperpath' },
-  { id: 45, image: penreach11, category: 'penreach' },
-  { id: 46, image: penreach10, category: 'penreach' },
-  { id: 56, image: paperpath9, category: 'paperpath' },
-  { id: 47, image: penreach9, category: 'penreach' },
-  { id: 60, image: paperpath13, category: 'paperpath' },
-  { id: 61, image: talenttide8, category: 'talenttide' },
-  { id: 48, image: penreach8, category: 'penreach' },
-  { id: 49, image: penreach7, category: 'penreach' },
-  { id: 50, image: penreach6, category: 'penreach' },
-  { id: 62, image: talenttide9, category: 'talenttide' },
-  { id: 51, image: penreach5, category: 'penreach' },
-  { id: 52, image: penreach4, category: 'penreach' },
-  { id: 32, image: talenttide1, category: 'talenttide' },
+  { id: 1, image: talenttide0, category: 'talenttide' },
+  { id: 2, image: paperpath13, category: 'paperpath' },
+  { id: 3, image: talenttide9, category: 'talenttide' },
+  { id: 4, image: penreach25, category: 'penreach' },
+  { id: 5, image: paperpath7, category: 'paperpath' },
+  { id: 6, image: penreach12, category: 'penreach' },
+  { id: 7, image: talenttide4, category: 'talenttide' },
+  { id: 8, image: penreach30, category: 'penreach' },
+  { id: 9, image: paperpath3, category: 'paperpath' },
+  { id: 10, image: penreach8, category: 'penreach' },
+  { id: 11, image: talenttide7, category: 'talenttide' },
+  { id: 12, image: talenttide10, category: 'talenttide' },
+  { id: 13, image: paperpath11, category: 'paperpath' },
+  { id: 14, image: penreach19, category: 'penreach' },
+  { id: 15, image: talenttide2, category: 'talenttide' },
+  { id: 16, image: penreach5, category: 'penreach' },
+  { id: 17, image: paperpath8, category: 'paperpath' },
+  { id: 18, image: penreach28, category: 'penreach' },
+  { id: 19, image: talenttide6, category: 'talenttide' },
+  { id: 20, image: penreach14, category: 'penreach' },
+  { id: 21, image: paperpath1, category: 'paperpath' },
+  { id: 22, image: talenttide11, category: 'talenttide' },
+  { id: 23, image: talenttide1, category: 'talenttide' },
+  { id: 24, image: penreach22, category: 'penreach' },
+  { id: 25, image: paperpath5, category: 'paperpath' },
+  { id: 26, image: penreach29, category: 'penreach' },
+  { id: 27, image: talenttide8, category: 'talenttide' },
+  { id: 28, image: penreach9, category: 'penreach' },
+  { id: 29, image: paperpath10, category: 'paperpath' },
+  { id: 30, image: penreach17, category: 'penreach' },
+  { id: 31, image: talenttide3, category: 'talenttide' },
+  { id: 32, image: penreach26, category: 'penreach' },
+  { id: 33, image: paperpath4, category: 'paperpath' },
+  { id: 34, image: penreach26, category: 'penreach' },
+  { id: 35, image: penreach3, category: 'penreach' },
+  { id: 36, image: talenttide5, category: 'talenttide' },
+  { id: 37, image: penreach11, category: 'penreach' },
+  { id: 38, image: paperpath12, category: 'paperpath' },
+  { id: 39, image: penreach27, category: 'penreach' },
+  { id: 40, image: penreach20, category: 'penreach' },
+  { id: 41, image: paperpath2, category: 'paperpath' },
+  { id: 42, image: penreach7, category: 'penreach' },
+  { id: 43, image: penreach30, category: 'penreach' },
+  { id: 44, image: paperpath9, category: 'paperpath' },
+  { id: 45, image: penreach15, category: 'penreach' },
+  { id: 46, image: penreach24, category: 'penreach' },
+  { id: 47, image: paperpath6, category: 'paperpath' },
+  { id: 48, image: penreach1, category: 'penreach' },
+  { id: 49, image: penreach21, category: 'penreach' },
+  { id: 50, image: penreach13, category: 'penreach' },
+  { id: 51, image: penreach29, category: 'penreach' },
+  { id: 52, image: penreach6, category: 'penreach' },
+  { id: 53, image: penreach18, category: 'penreach' },
+  { id: 54, image: penreach23, category: 'penreach' },
+  { id: 55, image: penreach10, category: 'penreach' },
+  { id: 56, image: penreach23, category: 'penreach' },
+  { id: 57, image: penreach2, category: 'penreach' },
+  { id: 58, image: penreach16, category: 'penreach' },
+  { id: 59, image: penreach27, category: 'penreach' },
+  { id: 60, image: penreach4, category: 'penreach' },
+  { id: 61, image: penreach16, category: 'penreach' },
+  { id: 62, image: penreach21, category: 'penreach' },
 ];

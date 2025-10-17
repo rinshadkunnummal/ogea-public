@@ -71,7 +71,7 @@ const ArticleCard = ({ article }) => {
 
         {/* Footer - Author and Date */}
         <footer className="flex items-center justify-between text-xs text-gray-500 pt-4 border-t border-gray-100 mt-auto">
-          <div className="flex items-center gap-1.5" aria-label={`Written by ${writer}`}>
+          <div className="flex items-center justify-center gap-1.5" aria-label={`Written by ${writer}`}>
             <UserRoundPen className="w-3.5 h-3.5" aria-hidden="true" />
             <span className="font-medium truncate">{writer}</span>
           </div>

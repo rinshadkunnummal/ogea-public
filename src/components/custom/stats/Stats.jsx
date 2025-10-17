@@ -2,7 +2,10 @@ import React from 'react'
 import { useStats } from '../../../lib/stats'
 import { Skeleton } from '../../ui/skeleton'
 import { Badge } from '../../ui/badge'
-import { BookOpen, FileText, Heart, Scroll, Users, MessageSquare, Mail, TrendingUp } from 'lucide-react'
+import { BookOpen, FileText, Heart, Scroll, Users, MessageSquare, Mail, TrendingUp, GraduationCap } from 'lucide-react'
+import { PenBox } from 'lucide-react'
+import { GraduationCapIcon } from 'lucide-react'
+import { Library } from 'lucide-react'
 
 const Stats = () => {
   const stats = useStats()
@@ -10,60 +13,36 @@ const Stats = () => {
   // Define stat items with icons and colors
   const statItems = [
     {
-      label: 'Total Publications',
-      value: stats.totalArticles,
-      icon: BookOpen,
+      label: 'Total',
+      value: 58,
+      icon: Library,
       color: 'from-blue-500 to-blue-600',
       bgColor: 'bg-blue-50',
       textColor: 'text-blue-600',
     },
     {
-      label: 'Articles',
-      value: stats.articles,
-      icon: FileText,
+      label: 'Penreach',
+      value: 30,
+      icon: PenBox,
       color: 'from-purple-500 to-purple-600',
       bgColor: 'bg-purple-50',
       textColor: 'text-purple-600',
     },
     {
-      label: 'Poems',
-      value: stats.poems,
-      icon: Heart,
+      label: 'Paperpath',
+      value: 16,
+      icon: BookOpen,
       color: 'from-red-500 to-red-600',
       bgColor: 'bg-red-50',
       textColor: 'text-red-600',
     },
     {
-      label: 'Essays',
-      value: stats.essays,
-      icon: Scroll,
+      label: 'TalentTide',
+      value: 12,
+      icon: GraduationCap,
       color: 'from-green-500 to-green-600',
       bgColor: 'bg-green-50',
       textColor: 'text-green-600',
-    },
-    {
-      label: 'Seminars',
-      value: stats.seminars,
-      icon: Users,
-      color: 'from-orange-500 to-orange-600',
-      bgColor: 'bg-orange-50',
-      textColor: 'text-orange-600',
-    },
-    {
-      label: 'Reviews',
-      value: stats.reviews,
-      icon: MessageSquare,
-      color: 'from-teal-500 to-teal-600',
-      bgColor: 'bg-teal-50',
-      textColor: 'text-teal-600',
-    },
-    {
-      label: 'Letters',
-      value: stats.letters,
-      icon: Mail,
-      color: 'from-indigo-500 to-indigo-600',
-      bgColor: 'bg-indigo-50',
-      textColor: 'text-indigo-600',
     },
   ]
 
@@ -72,11 +51,11 @@ const Stats = () => {
       {/* Main Title */}
       <div className="text-center mb-12">
         <h1 className='font-bold text-4xl md:text-5xl lg:text-6xl text-gray-700 mb-4'>
-          Publication Statistics
+          Statistics
         </h1>
         <hr className='mx-auto text-gray-300 my-4 w-1/4' />
         <p className='text-gray-500 text-lg md:text-xl max-w-4xl mx-auto'>
-          See the publication statistics of our talented students
+          See the statistics of programs by our talented students
         </p>
       </div>
 
@@ -85,7 +64,7 @@ const Stats = () => {
         {stats.loading ? (
           // Loading State
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+            {[1, 2, 3, 4,].map((i) => (
               <div key={i} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                 <div className="flex items-center gap-4">
                   <Skeleton className="h-12 w-12 rounded-lg" />
@@ -99,7 +78,7 @@ const Stats = () => {
           </div>
         ) : (
           // Stats Cards
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:px-28 px-10 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 lg:px-28 px-10 gap-6">
             {statItems.map((item, index) => {
               const Icon = item.icon
               return (
@@ -115,7 +94,7 @@ const Stats = () => {
                       <p className="text-3xl font-bold text-gray-800">
                         {item.value}
                       </p>
-                      <Badge variant="outline" className="mt-2 text-xs">
+                      <Badge variant="outline" className="text-xs">
                         {item.label}
                       </Badge>
                     </div>

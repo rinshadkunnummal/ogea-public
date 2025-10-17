@@ -10,8 +10,8 @@ const Home = () => {
     <section>
       <WelcomeAlert />
       <Swiper />
+      <Stats />
       <About />
-      {/* <Stats /> */}
       <Contact />
     </section>
   )
