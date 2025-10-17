@@ -11,7 +11,7 @@ const Home = () => {
       <WelcomeAlert />
       <Swiper />
       <About />
-      <Stats />
+      {/* <Stats /> */}
       <Contact />
     </section>
   )
