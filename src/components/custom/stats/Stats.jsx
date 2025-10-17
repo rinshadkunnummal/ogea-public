@@ -14,7 +14,7 @@ const Stats = () => {
   const statItems = [
     {
       label: 'Total',
-      value: 58,
+      value: 59,
       icon: Library,
       color: 'from-blue-500 to-blue-600',
       bgColor: 'bg-blue-50',
@@ -38,7 +38,7 @@ const Stats = () => {
     },
     {
       label: 'TalentTide',
-      value: 12,
+      value: 13,
       icon: GraduationCap,
       color: 'from-green-500 to-green-600',
       bgColor: 'bg-green-50',
