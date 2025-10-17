@@ -14,19 +14,19 @@ const ArticleView = ({ article }) => {
   // Decode HTML entities and unicode escapes while preserving HTML structure
   const decodeHtml = (html) => {
     if (!html) return '';
-    
+
     let decoded = html;
-    
+
     // Decode unicode escapes (e.g., \u003cp\u003e to <p>)
     decoded = decoded.replace(/\\u[\dA-F]{4}/gi, (match) => {
       return String.fromCharCode(parseInt(match.replace(/\\u/g, ''), 16));
     });
-    
+
     // Decode HTML entities (e.g., &lt; to <, &amp; to &)
     const txt = document.createElement('textarea');
     txt.innerHTML = decoded;
     decoded = txt.value;
-    
+
     return decoded;
   };
 
@@ -46,44 +46,44 @@ const ArticleView = ({ article }) => {
         <ArrowLeft className="w-5 h-5" />
       </button>
 
-      {/* Category Badge */}
-      {article.category && (
-        <div className="mb-4">
-          <Badge variant="default" className="bg-blue-500 hover:bg-blue-600 text-sm capitalize">
-            {article.category}
-          </Badge>
-        </div>
-      )}
+        {/* Category Badge */}
+        {article.category && (
+          <div className="mb-4">
+            <Badge variant="default" className="bg-blue-500 hover:bg-blue-600 text-sm capitalize">
+              {article.category}
+            </Badge>
+          </div>
+        )}
 
-      {/* Title */}
-      <div className="head mb-6">
-        <h1 className='text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 leading-tight break-words'>
-          {decodeHtml(article.title)}
-        </h1>
-      </div>
-
-      {/* Meta Information */}
-      <div className="info font-quicksand flex flex-wrap items-center gap-4 md:gap-6 text-gray-600 pb-6 border-b border-gray-200">
-        {/* Author */}
-        <div className="flex items-center gap-2">
-          <User className="w-4 h-4" />
-          <p className='text-base'>
-            by <span className='font-semibold text-gray-800'>{article.writer || article.author}</span>
-          </p>
+        {/* Title */}
+        <div className="head mb-6">
+          <h1 className='text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 leading-tight break-words'>
+            {decodeHtml(article.title)}
+          </h1>
         </div>
 
-        {/* Date
+        {/* Meta Information */}
+        <div className="info font-quicksand flex flex-wrap items-center gap-4 md:gap-6 text-gray-600 pb-6 border-b border-gray-200">
+          {/* Author */}
+          <div className="flex items-center gap-2">
+            <User className="w-4 h-4" />
+            <p className='text-base'>
+              by <span className='font-semibold text-gray-800'>{article.writer || article.author}</span>
+            </p>
+          </div>
+
+          {/* Date
         {article.createdAt && (
           <div className="flex items-center gap-2">
             <Calendar className="w-4 h-4" />
             <p className='text-base'>{formatDate(article.createdAt)}</p>
           </div>
         )} */}
-      </div>
+        </div>
 
-      {/* Content */}
-      <div 
-        className="content mt-8 text-gray-700 text-base md:text-lg max-w-none space-y-4
+        {/* Content */}
+        <div
+          className="content mt-8 text-gray-700 text-base md:text-lg max-w-none space-y-4
           [&_h1]:text-2xl [&_h1]:md:text-3xl [&_h1]:font-bold [&_h1]:text-gray-900 [&_h1]:mt-8 [&_h1]:mb-4 [&_h1]:leading-tight
           [&_h2]:text-xl [&_h2]:md:text-2xl [&_h2]:font-bold [&_h2]:text-gray-800 [&_h2]:mt-6 [&_h2]:mb-3 [&_h2]:leading-tight
           [&_h3]:text-lg [&_h3]:md:text-xl [&_h3]:font-semibold [&_h3]:text-gray-800 [&_h3]:mt-5 [&_h3]:mb-2 [&_h3]:leading-snug
@@ -99,9 +99,9 @@ const ArticleView = ({ article }) => {
           [&_blockquote]:border-l-4 [&_blockquote]:border-gray-300 [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:my-6 [&_blockquote]:text-gray-600
           [&_br]:block [&_br]:mb-2
           [&>*]:block"
-        dangerouslySetInnerHTML={{ __html: decodeHtml(article.content) }}
-      />
-    </article>
+          dangerouslySetInnerHTML={{ __html: decodeHtml(article.content) }}
+        />
+      </article>
   )
 }
 

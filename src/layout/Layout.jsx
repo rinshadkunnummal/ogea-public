@@ -8,7 +8,7 @@ import CustomCursor from '@/components/custom/cursor/CustomCursor'
 const Layout = () => {
   return (
     <>
-      <CustomCursor />
+      {/* <CustomCursor /> */}
       <section className="header">
         <Header />
       </section>
