@@ -83,7 +83,7 @@ const ArticleView = ({ article }) => {
 
         {/* Content */}
         <div
-          className="content mt-8 text-gray-700 text-base md:text-lg max-w-none space-y-4
+          className="content mt-8 text-gray-700 text-base md:text-lg max-w-none whitespace-pre-wrap
           [&_h1]:text-2xl [&_h1]:md:text-3xl [&_h1]:font-bold [&_h1]:text-gray-900 [&_h1]:mt-8 [&_h1]:mb-4 [&_h1]:leading-tight
           [&_h2]:text-xl [&_h2]:md:text-2xl [&_h2]:font-bold [&_h2]:text-gray-800 [&_h2]:mt-6 [&_h2]:mb-3 [&_h2]:leading-tight
           [&_h3]:text-lg [&_h3]:md:text-xl [&_h3]:font-semibold [&_h3]:text-gray-800 [&_h3]:mt-5 [&_h3]:mb-2 [&_h3]:leading-snug
@@ -97,8 +97,7 @@ const ArticleView = ({ article }) => {
           [&_em]:italic
           [&_a]:text-blue-600 [&_a]:underline [&_a]:hover:text-blue-800 [&_a]:transition-colors
           [&_blockquote]:border-l-4 [&_blockquote]:border-gray-300 [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:my-6 [&_blockquote]:text-gray-600
-          [&_br]:block [&_br]:mb-2
-          [&>*]:block"
+          [&_br]:block [&_br]:content-[''] [&_br]:my-2"
           dangerouslySetInnerHTML={{ __html: decodeHtml(article.content) }}
         />
       </article>
