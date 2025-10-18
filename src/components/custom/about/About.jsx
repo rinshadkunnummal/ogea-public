@@ -7,13 +7,12 @@ const About = () => {
         <motion.section
             id='about'
             className='py-10 px-4 md:px-8 lg:px-16'
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{
-                duration: 0.5,           // Animation duration
-                delay: 0.005,     // Staggered delay - change the 0.005 value
-                ease: "easeOut"
+                duration: 0.4,
+                ease: [0.25, 0.1, 0.25, 1]
             }}
         >
             {/* Main Title */}

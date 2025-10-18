@@ -1,10 +1,9 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import ImageCard from '../components/custom/imagecard/ImageCard'
 import { posters } from '@/lib/posters'
 import { motion } from "motion/react"
 
 const Posters = () => {
-  const scrollRef = useRef(null)
   return (
     <div className="py-10 px-4 md:px-8 lg:px-16 min-h-screen">
       {/* Posters Grid */}
@@ -12,13 +11,13 @@ const Posters = () => {
         {posters.slice().reverse().map((poster, index) => (
           <motion.div
             key={poster.id}
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.1, margin: "0px 0px -100px 0px" }}
             transition={{
-              duration: 0.5,           // Animation duration
-              delay: index * 0.005,     // Staggered delay - change the 0.005 value
-              ease: "easeOut"
+              duration: 0.4,
+              delay: Math.min(index * 0.03, 0.5),
+              ease: [0.25, 0.1, 0.25, 1]
             }}
           >
             <ImageCard image={poster.image} title={poster.title} />

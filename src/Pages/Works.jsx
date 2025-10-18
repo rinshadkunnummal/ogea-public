@@ -3,7 +3,6 @@ import ArticleCard from '../components/custom/articlecard/ArticleCard'
 import { Skeleton } from '../components/ui/skeleton'
 import { fetchAndLogArticles } from '../lib/articles.js'
 import { Search } from 'lucide-react'
-import { motion } from 'motion/react'
 
 const Works = () => {
   const [articles, setArticles] = useState([])
@@ -39,7 +38,7 @@ const Works = () => {
       const matchesSearch =
         searchTerm === '' ||
         article.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        article.author?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        article.writer?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         article.category?.toLowerCase().includes(searchTerm.toLowerCase())
 
       const matchesCategory =
@@ -51,18 +50,7 @@ const Works = () => {
   }, [articles, searchTerm, filterCategory])
 
   return (
-    <motion.section
-      id='works'
-      className="py-10 px-4 md:px-8 lg:px-16 min-h-screen"
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{
-        duration: 0.5,           // Animation duration
-        delay: 0.005,     // Staggered delay - change the 0.005 value
-        ease: "easeOut"
-      }}
-    >
+    <div className="py-10 px-4 md:px-8 lg:px-16 min-h-screen">
       {/* Header */}
       <div className="text-center mb-12">
         <h1 className="font-bold text-4xl md:text-5xl lg:text-6xl text-gray-700 mb-4">
@@ -164,7 +152,7 @@ const Works = () => {
           )}
         </div>
       )}
-    </motion.section>
+    </div>
   )
 }
 
