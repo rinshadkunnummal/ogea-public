@@ -1,9 +1,20 @@
 import React from 'react'
 import details from '@/lib/details'
+import { motion } from "motion/react"
 
 const Contact = () => {
   return (
-    <section id='contact' className='py-10 px-4 md:px-8 lg:px-16 flex flex-col justify-center items-center min-h-[90vh]'>
+    <motion.section
+      id='contact'
+      className='py-10 px-4 md:px-8 lg:px-16 flex flex-col justify-center items-center min-h-[90vh]'
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{
+        duration: 0.4,
+        ease: [0.25, 0.1, 0.25, 1]
+      }}
+    >
       {/* Main Title */}
       <div className="text-center mb-12">
         <h1 className='font-bold text-4xl md:text-5xl lg:text-6xl text-gray-700 mb-4'>
@@ -30,7 +41,7 @@ const Contact = () => {
           ))}
         </div>
       </article>
-    </section>
+    </motion.section>
   )
 }
 

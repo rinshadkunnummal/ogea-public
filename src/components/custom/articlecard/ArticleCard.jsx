@@ -50,11 +50,9 @@ const ArticleCard = ({ article }) => {
       >
         {/* Category Badge */}
         {category && (
-          <div className="mb-3">
-            <Badge variant="default" className="bg-blue-500 hover:bg-blue-600 capitalize">
-              {category}
-            </Badge>
-          </div>
+          <Badge variant="default" className="bg-blue-500 hover:bg-blue-600 capitalize mb-3">
+            {category}
+          </Badge>
         )}
 
         {/* Title */}
@@ -71,9 +69,9 @@ const ArticleCard = ({ article }) => {
 
         {/* Footer - Author and Date */}
         <footer className="flex items-center justify-between text-xs text-gray-500 pt-4 border-t border-gray-100 mt-auto">
-          <div className="flex items-center justify-center gap-1.5" aria-label={`Written by ${writer}`}>
-            <UserRoundPen className="w-3.5 h-3.5" aria-hidden="true" />
-            <span className="font-medium truncate">{writer}</span>
+          <div className="flex items-center gap-1.5" aria-label={`Written by ${writer}`}>
+            <UserRoundPen className="w-3.5 h-3.5 flex-shrink-0" aria-hidden="true" />
+            <span className="font-medium truncate pt-2">{writer}</span>
           </div>
 
           {createdAt && (
@@ -82,8 +80,8 @@ const ArticleCard = ({ article }) => {
               dateTime={createdAt}
               aria-label={`Published on ${formatDate(createdAt)}`}
             >
-              <Calendar className="w-3.5 h-3.5" aria-hidden="true" />
-              <span className="whitespace-nowrap">{formatDate(createdAt)}</span>
+              <Calendar className="w-3.5 h-3.5 flex-shrink-0" aria-hidden="true" />
+              <span className="whitespace-nowrap  pt-2">{formatDate(createdAt)}</span>
             </time>
           )}
         </footer>

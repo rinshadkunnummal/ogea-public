@@ -1,9 +1,8 @@
 import React, { useEffect, useState, useMemo } from 'react'
 import ArticleCard from '../components/custom/articlecard/ArticleCard'
 import { Skeleton } from '../components/ui/skeleton'
-import { Badge } from '../components/ui/badge'
 import { fetchAndLogArticles } from '../lib/articles.js'
-import { Search, FileText } from 'lucide-react'
+import { Search } from 'lucide-react'
 
 const Works = () => {
   const [articles, setArticles] = useState([])
@@ -39,7 +38,7 @@ const Works = () => {
       const matchesSearch =
         searchTerm === '' ||
         article.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        article.author?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        article.writer?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         article.category?.toLowerCase().includes(searchTerm.toLowerCase())
 
       const matchesCategory =
