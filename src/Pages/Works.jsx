@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useMemo } from 'react'
 import ArticleCard from '../components/custom/articlecard/ArticleCard'
 import { Skeleton } from '../components/ui/skeleton'
-import { Badge } from '../components/ui/badge'
 import { fetchAndLogArticles } from '../lib/articles.js'
-import { Search, FileText } from 'lucide-react'
+import { Search } from 'lucide-react'
+import { motion } from 'motion/react'
 
 const Works = () => {
   const [articles, setArticles] = useState([])
@@ -51,7 +51,18 @@ const Works = () => {
   }, [articles, searchTerm, filterCategory])
 
   return (
-    <div className="py-10 px-4 md:px-8 lg:px-16 min-h-screen">
+    <motion.section
+      id='works'
+      className="py-10 px-4 md:px-8 lg:px-16 min-h-screen"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{
+        duration: 0.5,           // Animation duration
+        delay: 0.005,     // Staggered delay - change the 0.005 value
+        ease: "easeOut"
+      }}
+    >
       {/* Header */}
       <div className="text-center mb-12">
         <h1 className="font-bold text-4xl md:text-5xl lg:text-6xl text-gray-700 mb-4">
@@ -153,7 +164,7 @@ const Works = () => {
           )}
         </div>
       )}
-    </div>
+    </motion.section>
   )
 }
 

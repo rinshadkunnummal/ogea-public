@@ -1,10 +1,10 @@
 import React from 'react'
+import { motion } from "motion/react"
 import { useStats } from '../../../lib/stats'
 import { Skeleton } from '../../ui/skeleton'
 import { Badge } from '../../ui/badge'
-import { BookOpen, FileText, Heart, Scroll, Users, MessageSquare, Mail, TrendingUp, GraduationCap } from 'lucide-react'
+import { BookOpen, GraduationCap } from 'lucide-react'
 import { PenBox } from 'lucide-react'
-import { GraduationCapIcon } from 'lucide-react'
 import { Library } from 'lucide-react'
 
 const Stats = () => {
@@ -47,7 +47,18 @@ const Stats = () => {
   ]
 
   return (
-    <section id='stats' className='py-10 px-4 md:px-8 lg:px-16 bg-gray-50'>
+    <motion.section
+      id='stats'
+      className='py-10 px-4 md:px-8 lg:px-16 bg-gray-50'
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{
+        duration: 0.5,           // Animation duration
+        delay: 0.005,     // Staggered delay - change the 0.005 value
+        ease: "easeOut"
+      }}
+    >
       {/* Main Title */}
       <div className="text-center mb-12">
         <h1 className='font-bold text-4xl md:text-5xl lg:text-6xl text-gray-700 mb-4'>
@@ -105,7 +116,7 @@ const Stats = () => {
           </div>
         )}
       </div>
-    </section>
+    </motion.section>
   )
 }
 
