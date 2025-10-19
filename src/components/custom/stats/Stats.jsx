@@ -72,7 +72,6 @@ const Stats = () => {
       {/* Stats Grid */}
       <div className="max-w-7xl mx-auto">
         {stats.loading ? (
-          // Loading State
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[1, 2, 3, 4,].map((i) => (
               <div key={i} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
@@ -88,7 +87,7 @@ const Stats = () => {
           </div>
         ) : (
           // Stats Cards
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 lg:px-28 px-10 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 lg:px-28 px-15 gap-6">
             {statItems.map((item, index) => {
               const Icon = item.icon
               return (
