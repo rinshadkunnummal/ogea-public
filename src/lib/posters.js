@@ -29,7 +29,7 @@ import penreach27 from '../assets/posters/penreach/27.jpg'
 import penreach28 from '../assets/posters/penreach/28.jpg'
 import penreach29 from '../assets/posters/penreach/29.jpg'
 import penreach30 from '../assets/posters/penreach/30.jpg'
-import penreach31 from '../assets/posters/penreach/30.jpg'
+import penreach31 from '../assets/posters/penreach/31.jpg'
 import penreach32 from '../assets/posters/penreach/32.jpg'
 import penreach33 from '../assets/posters/penreach/33.jpg'
 
