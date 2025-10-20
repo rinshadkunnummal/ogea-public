@@ -41,7 +41,7 @@ const Footer = () => {
                 {/* Bottom Section */}
                 <div className="pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4">
                     <p className="text-sm text-gray-600">
-                        © 2025 OGEA. All rights reserved.
+                        © 2025 OGEA . All rights reserved.
                     </p>
                     <div className="flex gap-6">
                         <a href="#" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">Privacy Policy</a>
