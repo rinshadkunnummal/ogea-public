@@ -22,7 +22,7 @@ const Stats = () => {
     },
     {
       label: 'Penreach',
-      value: 30,
+      value: 33,
       icon: PenBox,
       color: 'from-purple-500 to-purple-600',
       bgColor: 'bg-purple-50',
