@@ -14,7 +14,7 @@ const Stats = () => {
   const statItems = [
     {
       label: 'Total',
-      value: 59,
+      value: 62,
       icon: Library,
       color: 'from-blue-500 to-blue-600',
       bgColor: 'bg-blue-50',
