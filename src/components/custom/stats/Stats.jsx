@@ -14,7 +14,7 @@ const Stats = () => {
   const statItems = [
     {
       label: 'Total',
-      value: 62,
+      value: 63,
       icon: Library,
       color: 'from-blue-500 to-blue-600',
       bgColor: 'bg-blue-50',
@@ -22,7 +22,7 @@ const Stats = () => {
     },
     {
       label: 'Penreach',
-      value: 33,
+      value: 34,
       icon: PenBox,
       color: 'from-purple-500 to-purple-600',
       bgColor: 'bg-purple-50',
