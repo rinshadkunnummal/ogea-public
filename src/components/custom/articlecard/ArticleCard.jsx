@@ -1,9 +1,9 @@
-import React from 'react'
+import { memo } from 'react'
 import { Link } from 'react-router-dom'
 import { Calendar, UserRoundPen } from 'lucide-react'
 import { Badge } from '../../ui/badge'
 
-const ArticleCard = ({ article }) => {
+const ArticleCard = memo(({ article }) => {
   const { _id, title, content, writer, category, createdAt } = article;
 
   // Decode HTML entities and strip HTML tags
@@ -88,6 +88,8 @@ const ArticleCard = ({ article }) => {
       </Link>
     </article>
   )
-}
+})
+
+ArticleCard.displayName = 'ArticleCard'
 
 export default ArticleCard

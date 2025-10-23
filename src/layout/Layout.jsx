@@ -1,4 +1,3 @@
-import React from 'react'
 import { Analytics } from "@vercel/analytics/react"
 import { Outlet } from 'react-router-dom'
 import Header from '../components/custom/header/Header'
@@ -9,16 +8,12 @@ const Layout = () => {
   return (
     <>
       {/* <CustomCursor /> */}
-      <section className="header">
-        <Header />
-      </section>
+      <Header />
       <main className='lg:px-10 px-2'>
         <Analytics />
         <Outlet />
       </main>
-      <section>
-        <Footer />
-      </section>
+      <Footer />
     </>
   )
 }

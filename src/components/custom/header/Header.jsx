@@ -1,56 +1,62 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback, memo } from 'react'
 import { NavLink } from 'react-router-dom'
 import links from '../../../lib/links'
-import { Menu, X } from 'lucide-react'
+import { X } from 'lucide-react'
 import Hamburger from 'hamburger-react'
 import logoImg from '/logo.svg'
+
+// Memoized NavItem component
+const NavItem = memo(({ link, onClick, isMobile = false }) => (
+  <NavLink
+    to={link.path}
+    onClick={onClick}
+    className={({ isActive }) =>
+      isMobile
+        ? `block px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 ${
+            isActive 
+              ? 'text-white bg-gray-900 shadow-md' 
+              : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+          }`
+        : `px-3 py-2 rounded-xl transition-colors duration-200 font-medium ${
+            isActive ? 'text-gray-900' : 'text-gray-600'
+          }`
+    }
+  >
+    {link.name}
+  </NavLink>
+))
+
+NavItem.displayName = 'NavItem'
 
 const Header = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
-    // Close mobile menu when screen size changes to desktop
+    const closeMobileMenu = useCallback(() => setIsMobileMenuOpen(false), [])
+
+    // Combined effect for all side effects
     useEffect(() => {
         const handleResize = () => {
-            if (window.innerWidth >= 768) {
-                setIsMobileMenuOpen(false)
-            }
+            if (window.innerWidth >= 768) closeMobileMenu()
         }
 
-        window.addEventListener('resize', handleResize)
-        return () => window.removeEventListener('resize', handleResize)
-    }, [])
-
-    // Close mobile menu when clicking outside
-    useEffect(() => {
         const handleClickOutside = (event) => {
             if (isMobileMenuOpen && !event.target.closest('nav')) {
-                setIsMobileMenuOpen(false)
+                closeMobileMenu()
             }
         }
 
+        // Prevent body scroll when mobile menu is open
+        document.body.style.overflow = isMobileMenuOpen ? 'hidden' : 'unset'
+
+        window.addEventListener('resize', handleResize)
         document.addEventListener('mousedown', handleClickOutside)
-        return () => document.removeEventListener('mousedown', handleClickOutside)
-    }, [isMobileMenuOpen])
 
-    // Prevent body scroll when mobile menu is open
-    useEffect(() => {
-        if (isMobileMenuOpen) {
-            document.body.style.overflow = 'hidden'
-        } else {
-            document.body.style.overflow = 'unset'
-        }
         return () => {
+            window.removeEventListener('resize', handleResize)
+            document.removeEventListener('mousedown', handleClickOutside)
             document.body.style.overflow = 'unset'
         }
-    }, [isMobileMenuOpen])
-
-    const toggleMobileMenu = () => {
-        setIsMobileMenuOpen(!isMobileMenuOpen)
-    }
-
-    const closeMobileMenu = () => {
-        setIsMobileMenuOpen(false)
-    }
+    }, [isMobileMenuOpen, closeMobileMenu])
 
     return (
         <header className="bg-white shadow-md w-full sm:w-3/4 lg:w-1/2 mx-auto my-2 rounded-lg font-quicksand sticky top-2 z-50">
@@ -75,18 +81,7 @@ const Header = () => {
                     <ul className="hidden lg:flex space-x-6">
                         {links.map((link) => (
                             <li key={link.path}>
-                                <NavLink
-                                    to={link.path}
-                                    className={({ isActive }) =>
-                                        `px-3 py-2 rounded-xl transition-colors duration-200 font-medium ${
-                                            isActive
-                                                ? 'text-gray-900'
-                                                : 'text-gray-600 '
-                                        }`
-                                    }
-                                >
-                                    {link.name}
-                                </NavLink>
+                                <NavItem link={link} />
                             </li>
                         ))}
                     </ul>
@@ -144,19 +139,7 @@ const Header = () => {
                         <ul className="space-y-2">
                             {links.map((link) => (
                                 <li key={link.path}>
-                                    <NavLink
-                                        to={link.path}
-                                        onClick={closeMobileMenu}
-                                        className={({ isActive }) =>
-                                            `block px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 ${
-                                                isActive 
-                                                    ? 'text-white bg-gray-900 shadow-md' 
-                                                    : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
-                                            }`
-                                        }
-                                    >
-                                        {link.name}
-                                    </NavLink>
+                                    <NavItem link={link} onClick={closeMobileMenu} isMobile />
                                 </li>
                             ))}
                         </ul>
