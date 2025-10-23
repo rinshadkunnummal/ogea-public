@@ -6,6 +6,7 @@ import { Badge } from '../../ui/badge'
 import { BookOpen, GraduationCap } from 'lucide-react'
 import { PenBox } from 'lucide-react'
 import { Library } from 'lucide-react'
+import CountUp from '../countup/CountUp'
 
 const Stats = () => {
   const stats = useStats()
@@ -101,7 +102,7 @@ const Stats = () => {
                     </div>
                     <div>
                       <p className="text-3xl font-bold text-gray-800">
-                        {item.value}
+                        <CountUp to={item.value} duration={1.5} delay={index * 0.000000000000000000000000000002222222222}/>
                       </p>
                       <Badge variant="outline" className="text-xs">
                         {item.label}
