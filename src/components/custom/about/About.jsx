@@ -16,25 +16,25 @@ const About = memo(() => {
             }}
         >
             {/* Main Title */}
-            <header className="text-center mb-12">
-                <h2 className='font-bold text-4xl md:text-5xl lg:text-6xl text-gray-700 mb-4'>
+            <div className="text-center mb-12">
+                <h1 className='font-bold text-4xl md:text-5xl lg:text-6xl text-gray-700 mb-4'>
                     About OGEA
-                </h2>
+                </h1>
                 <hr className='mx-auto text-gray-300 my-4 w-1/4' />
                 <p className='text-gray-500 text-lg md:text-xl max-w-4xl mx-auto'>
                     Where innovation meets creativity, and dreams transform into reality
                 </p>
-            </header>
+            </div>
 
             {/* Vision Section */}
-            <article className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mt-16">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mt-16">
                 {/* Left Content - Our Vision */}
                 <div className="space-y-6">
                     <div className="flex items-start gap-3">
-                        <div className='w-1 h-8 bg-gradient-to-b from-red-500 to-blue-500 rounded-full flex-shrink-0' aria-hidden="true"></div>
-                        <h3 className='text-2xl md:text-3xl font-bold text-gray-800'>
+                        <div className='w-1 h-8 bg-gradient-to-b from-red-500 to-blue-500 rounded-full flex-shrink-0'></div>
+                        <h2 className='text-2xl md:text-3xl font-bold text-gray-800'>
                             Our Vision
-                        </h3>
+                        </h2>
                     </div>
 
                     <p className='text-gray-600 text-base md:text-lg leading-relaxed'>
@@ -43,16 +43,16 @@ const About = memo(() => {
                 </div>
 
                 {/* Right Content - Festival Image */}
-                <figure className="flex justify-center lg:justify-end rounded-lg">
+                <div className="flex justify-center lg:justify-end rounded-lg">
                     <div className="relative w-full max-w-md">
                         <div className='shadow-lg hover:shadow-xl transition-shadow duration-300'>
                             <div className='bg-white rounded-2xl flex flex-col items-center justify-center'>
-                                <img src={logoImg} alt="OGEA - Office of Guidance and External Activities" className="w-full h-full rounded-lg" />
+                                <img src={logoImg} alt="OGEA Banner" className="w-full h-full rounded-lg" />
                             </div>
                         </div>
                     </div>
-                </figure>
-            </article>
+                </div>
+            </div>
         </motion.section>
     )
 })

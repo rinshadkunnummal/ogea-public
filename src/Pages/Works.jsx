@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import ArticleCard from '../components/custom/articlecard/ArticleCard'
 import { Skeleton } from '../components/ui/skeleton'
 import { fetchAndLogArticles } from '../lib/articles.js'
@@ -50,9 +50,9 @@ const Works = () => {
   }, [articles, searchTerm, filterCategory])
 
   return (
-    <article className="py-10 px-4 md:px-8 lg:px-16 min-h-screen">
+    <div className="py-10 px-4 md:px-8 lg:px-16 min-h-screen">
       {/* Header */}
-      <header className="text-center mb-12">
+      <div className="text-center mb-12">
         <h1 className="font-bold text-4xl md:text-5xl lg:text-6xl text-gray-700 mb-4">
           Literary Works
         </h1>
@@ -60,7 +60,7 @@ const Works = () => {
         <p className="text-gray-500 text-lg md:text-xl max-w-4xl mx-auto">
           Explore creative pieces written by our talented students
         </p>
-      </header>
+      </div>
 
       {/* Loading State */}
       {loading && (
@@ -152,7 +152,7 @@ const Works = () => {
           )}
         </div>
       )}
-    </article>
+    </div>
   )
 }
 

@@ -1,14 +1,12 @@
-import { memo } from 'react'
+import React from 'react'
 
-const ImageCard = memo(({ image, title, className = '' }) => {
+const ImageCard = ({ image, title, className }) => {
   return (
-    <figure className={`image-card ${className} rounded-xl`}>
-      <img src={image} alt={title || 'OGEA achievement poster'} className='rounded-xl' loading="lazy" />
-      {title && <figcaption className="sr-only">{title}</figcaption>}
-    </figure>
+    <div className={`image-card ${className} rounded-xl`}>
+      <img src={image} alt={title} className='rounded-xl'/>
+      <h3>{title}</h3>
+    </div>
   )
-})
-
-ImageCard.displayName = 'ImageCard'
+}
 
 export default ImageCard

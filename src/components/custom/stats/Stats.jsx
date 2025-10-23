@@ -78,15 +78,15 @@ const Stats = () => {
       }}
     >
       {/* Main Title */}
-      <header className="text-center mb-12">
-        <h2 className='font-bold text-4xl md:text-5xl lg:text-6xl text-gray-700 mb-4'>
+      <div className="text-center mb-12">
+        <h1 className='font-bold text-4xl md:text-5xl lg:text-6xl text-gray-700 mb-4'>
           Statistics
-        </h2>
+        </h1>
         <hr className='mx-auto text-gray-300 my-4 w-1/4' />
         <p className='text-gray-500 text-lg md:text-xl max-w-4xl mx-auto'>
           See the statistics of programs by our talented students
         </p>
-      </header>
+      </div>
 
       {/* Stats Grid */}
       <div className="max-w-7xl mx-auto">

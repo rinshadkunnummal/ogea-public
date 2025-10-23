@@ -1,3 +1,4 @@
+import React from 'react'
 import details from '@/lib/details'
 import { motion } from "motion/react"
 
@@ -15,33 +16,31 @@ const Contact = () => {
       }}
     >
       {/* Main Title */}
-      <header className="text-center mb-12">
-        <h2 className='font-bold text-4xl md:text-5xl lg:text-6xl text-gray-700 mb-4'>
+      <div className="text-center mb-12">
+        <h1 className='font-bold text-4xl md:text-5xl lg:text-6xl text-gray-700 mb-4'>
           Get in Touch
-        </h2>
+        </h1>
         <hr className='mx-auto text-gray-300 my-4 w-1/4' />
         <p className='text-gray-500 text-lg md:text-xl max-w-4xl mx-auto'>
           Have questions? Want to collaborate? We'd love to hear from you!
         </p>
-      </header>
+      </div>
       {/* Details Section */}
-      <div className='max-w-4xl mx-auto mt-16'>
+      <article className='max-w-4xl mx-auto mt-16'>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
           {details.map((detail, index) => (
-            <address key={index} className='flex flex-col items-center text-center space-y-4 not-italic'>
+            <div key={index} className='flex flex-col items-center text-center space-y-4'>
               <div className={`w-16 h-16 ${detail.color} rounded-2xl flex items-center justify-center shadow-lg`}>
-                <detail.icon className="h-8 w-8 text-white" aria-hidden="true" />
+                <detail.icon className="h-8 w-8 text-white" />
               </div>
               <div>
                 <h3 className='text-xl font-semibold text-gray-800 mb-2'>{detail.method}</h3>
-                <a href={detail.links} className='text-gray-600 text-sm hover:text-gray-900 transition-colors'>
-                  {detail.info}
-                </a>
+                <p className='text-gray-600 text-sm'>{detail.info}</p>
               </div>
-            </address>
+            </div>
           ))}
         </div>
-      </div>
+      </article>
     </motion.section>
   )
 }

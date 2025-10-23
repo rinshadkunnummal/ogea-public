@@ -1,9 +1,9 @@
-import { useEffect, memo } from 'react'
+import React, { useEffect } from 'react'
 import { ArrowLeft, Calendar, User } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { Badge } from '../../ui/badge'
 
-const ArticleView = memo(({ article }) => {
+const ArticleView = ({ article }) => {
   const navigate = useNavigate()
 
   // Scroll to top when component mounts
@@ -39,15 +39,12 @@ const ArticleView = memo(({ article }) => {
   return (
     <article className='min-h-screen py-10 px-4 md:px-8 lg:px-20 mx-auto max-w-4xl font-manjari'>
       {/* Back Button */}
-      <nav aria-label="Article navigation">
-        <button
-          onClick={() => navigate('/works')}
-          className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-8 transition-colors duration-200"
-          aria-label="Back to literary works"
-        >
-          <ArrowLeft className="w-5 h-5" aria-hidden="true" />
-        </button>
-      </nav>
+      <button
+        onClick={() => navigate('/works')}
+        className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-8 transition-colors duration-200"
+      >
+        <ArrowLeft className="w-5 h-5" />
+      </button>
 
         {/* Category Badge */}
         {article.category && (
@@ -59,17 +56,17 @@ const ArticleView = memo(({ article }) => {
         )}
 
         {/* Title */}
-        <header className="head mb-6">
+        <div className="head mb-6">
           <h1 className='text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 leading-tight break-words'>
             {decodeHtml(article.title)}
           </h1>
-        </header>
+        </div>
 
         {/* Meta Information */}
-        <aside className="info font-quicksand flex flex-wrap items-center gap-4 md:gap-6 text-gray-600 pb-6 border-b border-gray-200">
+        <div className="info font-quicksand flex flex-wrap items-center gap-4 md:gap-6 text-gray-600 pb-6 border-b border-gray-200">
           {/* Author */}
           <div className="flex items-center gap-2">
-            <User className="w-4 h-4" aria-hidden="true" />
+            <User className="w-4 h-4" />
             <p className='text-base'>
               by <span className='font-semibold text-gray-800'>{article.writer || article.author}</span>
             </p>
@@ -82,10 +79,10 @@ const ArticleView = memo(({ article }) => {
             <p className='text-base'>{formatDate(article.createdAt)}</p>
           </div>
         )} */}
-        </aside>
+        </div>
 
         {/* Content */}
-        <section
+        <div
           className="content mt-8 text-gray-700 text-base md:text-lg max-w-none whitespace-pre-wrap
           [&_h1]:text-2xl [&_h1]:md:text-3xl [&_h1]:font-bold [&_h1]:text-gray-900 [&_h1]:mt-8 [&_h1]:mb-4 [&_h1]:leading-tight
           [&_h2]:text-xl [&_h2]:md:text-2xl [&_h2]:font-bold [&_h2]:text-gray-800 [&_h2]:mt-6 [&_h2]:mb-3 [&_h2]:leading-tight
@@ -105,8 +102,6 @@ const ArticleView = memo(({ article }) => {
         />
       </article>
   )
-})
-
-ArticleView.displayName = 'ArticleView'
+}
 
 export default ArticleView
