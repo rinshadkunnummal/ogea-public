@@ -33,6 +33,8 @@ import penreach31 from '../assets/posters/penreach/31.jpg'
 import penreach32 from '../assets/posters/penreach/32.jpg'
 import penreach33 from '../assets/posters/penreach/33.jpg'
 import penreach34 from '../assets/posters/penreach/34.jpg'
+import penreach35 from '../assets/posters/penreach/35.jpg'
+import penreach36 from '../assets/posters/penreach/36.jpg'
 
 
 // PaperPath imports (13 posters)
@@ -134,4 +136,6 @@ export const posters = [
   { id: 61, image: penreach32, category: 'penreach' },
   { id: 62, image: penreach33, category: 'penreach' },
   { id: 63, image: penreach34, category: 'penreach' },
+  { id: 64, image: penreach35, category: 'penreach' },
+  { id: 65, image: penreach36, category: 'penreach' },
 ];
