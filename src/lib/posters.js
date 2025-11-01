@@ -35,6 +35,7 @@ import penreach33 from '../assets/posters/penreach/33.jpg'
 import penreach34 from '../assets/posters/penreach/34.jpg'
 import penreach35 from '../assets/posters/penreach/35.jpg'
 import penreach36 from '../assets/posters/penreach/36.jpg'
+import penreach37 from '../assets/posters/penreach/37.jpg'
 
 
 // PaperPath imports (13 posters)
@@ -54,9 +55,9 @@ import paperpath13 from '../assets/posters/paperpath/13.jpg'
 import paperpath14 from '../assets/posters/paperpath/14.jpg'
 import paperpath15 from '../assets/posters/paperpath/15.jpg'
 import paperpath16 from '../assets/posters/paperpath/16.jpg'
+import paperpath17 from '../assets/posters/paperpath/17.jpg'
 
 // TalentTide imports (12 posters)
-import talenttide0 from '../assets/posters/talenttide/0.jpg'
 import talenttide1 from '../assets/posters/talenttide/1.jpg'
 import talenttide2 from '../assets/posters/talenttide/2.jpg'
 import talenttide3 from '../assets/posters/talenttide/3.jpg'
@@ -69,11 +70,13 @@ import talenttide9 from '../assets/posters/talenttide/9.jpg'
 import talenttide10 from '../assets/posters/talenttide/10.jpg'
 import talenttide11 from '../assets/posters/talenttide/11.jpg'
 import talenttide12 from '../assets/posters/talenttide/12.jpg'
-
+import talenttide13 from '../assets/posters/talenttide/13.jpg'
+import talenttide14 from '../assets/posters/talenttide/14.jpg'
+import talenttide15 from '../assets/posters/talenttide/13.jpg'
 
 // Total: 55 posters (30 Penreach + 13 PaperPath + 12 TalentTide) - Shuffled mix
 export const posters = [
-  { id: 1, image: talenttide0, category: 'talenttide' },
+  { id: 1, image: talenttide1, category: 'talenttide' },
   { id: 2, image: paperpath1, category: 'paperpath' },
   { id: 3, image: penreach1, category: 'penreach' },
   { id: 4, image: penreach2, category: 'penreach' },
@@ -85,14 +88,14 @@ export const posters = [
   { id: 10, image: penreach4, category: 'penreach' },
   { id: 11, image: penreach5, category: 'penreach' },
   { id: 12, image: penreach6, category: 'penreach' },
-  { id: 13, image: talenttide3, category: 'talenttide' },
-  { id: 14, image: talenttide4, category: 'talenttide' },
+  { id: 13, image: talenttide4, category: 'talenttide' },
+  { id: 14, image: talenttide5, category: 'talenttide' },
   { id: 15, image: paperpath6, category: 'paperpath' },
   { id: 16, image: penreach7, category: 'penreach' },
   { id: 17, image: penreach8, category: 'penreach' },
   { id: 18, image: paperpath7, category: 'paperpath' },
   { id: 19, image: penreach9, category: 'penreach' },
-  { id: 20, image: talenttide2, category: 'talenttide' },
+  { id: 20, image: talenttide3, category: 'talenttide' },
   { id: 21, image: penreach10, category: 'penreach' },
   { id: 22, image: penreach11, category: 'penreach' },
   { id: 23, image: penreach12, category: 'penreach' },
@@ -100,22 +103,22 @@ export const posters = [
   { id: 25, image: penreach14, category: 'penreach' },
   { id: 26, image: penreach15, category: 'penreach' },
   { id: 27, image: paperpath8, category: 'paperpath' },
-  { id: 28, image: talenttide1, category: 'talenttide' },
-  { id: 29, image: talenttide5, category: 'talenttide' },
-  { id: 30, image: talenttide6, category: 'talenttide' },
+  { id: 28, image: talenttide2, category: 'talenttide' },
+  { id: 29, image: talenttide6, category: 'talenttide' },
+  { id: 30, image: talenttide7, category: 'talenttide' },
   { id: 31, image: penreach16, category: 'penreach' },
   { id: 32, image: penreach17, category: 'penreach' },
-  { id: 33, image: talenttide7, category: 'talenttide' },
+  { id: 33, image: talenttide8, category: 'talenttide' },
   { id: 34, image: penreach18, category: 'penreach' },
-  { id: 35, image: talenttide9, category: 'talenttide' },
+  { id: 35, image: talenttide10, category: 'talenttide' },
   { id: 36, image: penreach25, category: 'penreach' },
   { id: 37, image: penreach20, category: 'penreach' },
-  { id: 38, image: talenttide10, category: 'talenttide' },
+  { id: 38, image: talenttide11, category: 'talenttide' },
   { id: 39, image: paperpath11, category: 'paperpath' },
   { id: 40, image: penreach19, category: 'penreach' },
-  { id: 41, image: talenttide8, category: 'talenttide' },
+  { id: 41, image: talenttide9, category: 'talenttide' },
   { id: 42, image: penreach21, category: 'penreach' },
-  { id: 43, image: talenttide11, category: 'talenttide' },
+  { id: 43, image: talenttide12, category: 'talenttide' },
   { id: 44, image: penreach22, category: 'penreach' },
   { id: 45, image: penreach23, category: 'penreach' },
   { id: 46, image: paperpath10, category: 'paperpath' },
@@ -131,11 +134,15 @@ export const posters = [
   { id: 56, image: paperpath14, category: 'paperpath' },
   { id: 57, image: paperpath15, category: 'paperpath' },
   { id: 58, image: paperpath16, category: 'paperpath' },
-  { id: 59, image: talenttide12, category: 'talenttide' },
+  { id: 59, image: talenttide13, category: 'talenttide' },
   { id: 60, image: penreach31, category: 'penreach' },
   { id: 61, image: penreach32, category: 'penreach' },
   { id: 62, image: penreach33, category: 'penreach' },
   { id: 63, image: penreach34, category: 'penreach' },
   { id: 64, image: penreach35, category: 'penreach' },
   { id: 65, image: penreach36, category: 'penreach' },
+  { id: 66, image: penreach37 , category: 'penreach' },
+  { id: 67, image: paperpath17 , category: 'paperpath' },
+  { id: 68, image: talenttide14 , category: 'talenttide' },
+  { id: 69, image: talenttide15 , category: 'talenttide' },
 ];
