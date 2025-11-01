@@ -10,15 +10,14 @@ import CountUp from '../countup/CountUp'
 const STAT_ITEMS = [
   {
     label: 'Total',
-    value: 66,
-    key: 'totalArticles',
+    value: 69,
     icon: Library,
     bgColor: 'bg-blue-50',
     textColor: 'text-blue-600',
   },
   {
     label: 'Penreach',
-    value: 36,
+    value: 37,
     key: null, // No API data for this
     icon: PenBox,
     bgColor: 'bg-purple-50',
@@ -34,7 +33,7 @@ const STAT_ITEMS = [
   },
   {
     label: 'TalentTide',
-    value: 13,
+    value: 15,
     key: null, // No API data for this
     icon: GraduationCap,
     bgColor: 'bg-green-50',
@@ -102,13 +101,27 @@ const Stats = () => {
 
       {/* Stats Grid */}
       <div className="max-w-7xl mx-auto">
-        
-          
+        {stats.loading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {Array.from({ length: 4 }, (_, i) => (
+              <div key={i} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                <div className="flex items-center gap-4">
+                  <Skeleton className="h-12 w-12 rounded-lg" />
+                  <div className="flex-1 space-y-2">
+                    <Skeleton className="h-8 w-16" />
+                    <Skeleton className="h-4 w-20" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 lg:px-28 px-15 gap-6">
             {statItems.map((item, index) => (
               <StatCard key={item.label} item={item} delay={index * 0.1} />
             ))}
           </div>
+        )}
       </div>
     </motion.section>
   )
