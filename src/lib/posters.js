@@ -141,8 +141,8 @@ export const posters = [
   { id: 63, image: penreach34, category: 'penreach' },
   { id: 64, image: penreach35, category: 'penreach' },
   { id: 65, image: penreach36, category: 'penreach' },
-  { id: 66, image: penreach37 , category: 'penreach' },
   { id: 67, image: paperpath17 , category: 'paperpath' },
   { id: 68, image: talenttide14 , category: 'talenttide' },
   { id: 69, image: talenttide15 , category: 'talenttide' },
+  { id: 66, image: penreach37 , category: 'penreach' },
 ];
