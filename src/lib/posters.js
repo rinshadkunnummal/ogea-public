@@ -41,7 +41,18 @@ import penreach39 from '../assets/posters/penreach/39.jpg'
 import penreach40 from '../assets/posters/penreach/40.jpg'
 import penreach41 from '../assets/posters/penreach/41.jpg'
 import penreach42 from '../assets/posters/penreach/42.jpg'
-
+import penreach43 from '../assets/posters/penreach/43.jpg'
+import penreach44 from '../assets/posters/penreach/44.jpg'
+import penreach45 from '../assets/posters/penreach/45.jpg'
+import penreach46 from '../assets/posters/penreach/46.jpg'
+import penreach47 from '../assets/posters/penreach/47.jpg'
+import penreach48 from '../assets/posters/penreach/48.jpg'
+import penreach49 from '../assets/posters/penreach/49.jpg'
+import penreach50 from '../assets/posters/penreach/50.jpg'
+import penreach51 from '../assets/posters/penreach/51.jpg'
+import penreach52 from '../assets/posters/penreach/52.jpg'
+import penreach53 from '../assets/posters/penreach/53.jpg'
+import penreach54 from '../assets/posters/penreach/54.jpg'
 
 // PaperPath imports (13 posters)
 import paperpath1 from '../assets/posters/paperpath/1.jpg'
@@ -78,6 +89,7 @@ import talenttide12 from '../assets/posters/talenttide/12.jpg'
 import talenttide13 from '../assets/posters/talenttide/13.jpg'
 import talenttide14 from '../assets/posters/talenttide/14.jpg'
 import talenttide15 from '../assets/posters/talenttide/15.jpg'
+import talenttide16 from '../assets/posters/talenttide/16.jpg'
 
 // Total: 55 posters (30 Penreach + 13 PaperPath + 12 TalentTide) - Shuffled mix
 export const posters = [
@@ -155,4 +167,17 @@ export const posters = [
   { id: 72, image: penreach40 , category: 'penreach' },
   { id: 73, image: penreach41 , category: 'penreach' },
   { id: 74, image: penreach42 , category: 'penreach' },
+  { id: 75, image: penreach43 , category: 'penreach' },
+  { id: 76, image: penreach44 , category: 'penreach' },
+  { id: 77, image: penreach45 , category: 'penreach' },
+  { id: 78, image: penreach46 , category: 'penreach' },
+  { id: 79, image: penreach47 , category: 'penreach' },
+  { id: 80, image: penreach48 , category: 'penreach' },
+  { id: 81, image: penreach49 , category: 'penreach' },
+  { id: 82, image: penreach50 , category: 'penreach' },
+  { id: 83, image: penreach51 , category: 'penreach' },
+  { id: 84, image: penreach52 , category: 'penreach' },
+  { id: 85, image: penreach53 , category: 'penreach' },
+  { id: 86, image: penreach54 , category: 'penreach' },
+  { id: 87, image: talenttide16 , category: 'talenttide' },
 ];
