@@ -53,6 +53,9 @@ import penreach51 from '../assets/posters/penreach/51.jpg'
 import penreach52 from '../assets/posters/penreach/52.jpg'
 import penreach53 from '../assets/posters/penreach/53.jpg'
 import penreach54 from '../assets/posters/penreach/54.jpg'
+import penreach55 from '../assets/posters/penreach/55.jpg'
+import penreach56 from '../assets/posters/penreach/56.jpg'
+import penreach57 from '../assets/posters/penreach/57.jpg'
 
 // PaperPath imports (13 posters)
 import paperpath1 from '../assets/posters/paperpath/1.jpg'
@@ -90,6 +93,9 @@ import talenttide13 from '../assets/posters/talenttide/13.jpg'
 import talenttide14 from '../assets/posters/talenttide/14.jpg'
 import talenttide15 from '../assets/posters/talenttide/15.jpg'
 import talenttide16 from '../assets/posters/talenttide/16.jpg'
+import afzalmunzir from '../assets/posters/talenttide/hayy.jpg'
+import afzalmunzir2 from '../assets/posters/talenttide/rabeeeh.jpg'
+import champions from '../assets/posters/talenttide/champions.jpg'
 
 // Total: 55 posters (30 Penreach + 13 PaperPath + 12 TalentTide) - Shuffled mix
 export const posters = [
@@ -180,4 +186,10 @@ export const posters = [
   { id: 85, image: penreach53 , category: 'penreach' },
   { id: 86, image: penreach54 , category: 'penreach' },
   { id: 87, image: talenttide16 , category: 'talenttide' },
+  { id: 88, image: penreach55 , category: 'penreach' },
+  { id: 89, image: penreach56 , category: 'penreach' },
+  { id: 90, image: penreach57 , category: 'penreach' },
+  { id: 91, image: afzalmunzir , category: 'talenttide' },
+  { id: 92, image: afzalmunzir2 , category: 'talenttide' },
+  { id: 93, image: champions , category: 'talenttide' },
 ];

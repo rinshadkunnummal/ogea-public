@@ -1,5 +1,5 @@
 import { motion } from "motion/react"
-import heroImg from '../../../assets/banners/baanner hero.jpg'
+import heroImg from '../../../assets/banners/champions.jpg'
 
 const Hero = () => {
   return (
