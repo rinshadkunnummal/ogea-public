@@ -75,6 +75,7 @@ import paperpath14 from '../assets/posters/paperpath/14.jpg'
 import paperpath15 from '../assets/posters/paperpath/15.jpg'
 import paperpath16 from '../assets/posters/paperpath/16.jpg'
 import paperpath17 from '../assets/posters/paperpath/17.jpg'
+import paperpath18 from '../assets/posters/paperpath/18.jpg'
 
 // TalentTide imports (12 posters)
 import talenttide1 from '../assets/posters/talenttide/1.jpg'
@@ -82,7 +83,7 @@ import talenttide2 from '../assets/posters/talenttide/2.jpg'
 import talenttide3 from '../assets/posters/talenttide/3.jpg'
 import talenttide4 from '../assets/posters/talenttide/4.jpg'
 import talenttide5 from '../assets/posters/talenttide/5.jpg'
-import talenttide6 from '../assets/posters/talenttide/6.jpg'
+import talenttidemunazar from '../assets/posters/talenttide/junior.jpg'
 import talenttide7 from '../assets/posters/talenttide/7.jpg'
 import talenttide8 from '../assets/posters/talenttide/8.jpg'
 import talenttide9 from '../assets/posters/talenttide/9.jpg'
@@ -127,21 +128,21 @@ export const posters = [
   { id: 26, image: penreach15, category: 'penreach' },
   { id: 27, image: paperpath8, category: 'paperpath' },
   { id: 28, image: talenttide2, category: 'talenttide' },
-  { id: 29, image: talenttide6, category: 'talenttide' },
+  { id: 29, image: talenttidemunazar, category: 'talenttide' },
   { id: 30, image: talenttide7, category: 'talenttide' },
   { id: 31, image: penreach16, category: 'penreach' },
   { id: 32, image: penreach17, category: 'penreach' },
   { id: 33, image: talenttide8, category: 'talenttide' },
   { id: 34, image: penreach18, category: 'penreach' },
-  { id: 35, image: talenttide10, category: 'talenttide' },
+  { id: 35, image: talenttide9, category: 'talenttide' },
   { id: 36, image: penreach25, category: 'penreach' },
   { id: 37, image: penreach20, category: 'penreach' },
-  { id: 38, image: talenttide11, category: 'talenttide' },
+  { id: 38, image: talenttide10, category: 'talenttide' },
   { id: 39, image: paperpath11, category: 'paperpath' },
   { id: 40, image: penreach19, category: 'penreach' },
   { id: 41, image: talenttide9, category: 'talenttide' },
   { id: 42, image: penreach21, category: 'penreach' },
-  { id: 43, image: talenttide12, category: 'talenttide' },
+  { id: 43, image: talenttide11, category: 'talenttide' },
   { id: 44, image: penreach22, category: 'penreach' },
   { id: 45, image: penreach23, category: 'penreach' },
   { id: 46, image: paperpath10, category: 'paperpath' },
@@ -157,7 +158,7 @@ export const posters = [
   { id: 56, image: paperpath14, category: 'paperpath' },
   { id: 57, image: paperpath15, category: 'paperpath' },
   { id: 58, image: paperpath16, category: 'paperpath' },
-  { id: 59, image: talenttide13, category: 'talenttide' },
+  { id: 59, image: talenttide12, category: 'talenttide' },
   { id: 60, image: penreach31, category: 'penreach' },
   { id: 61, image: penreach32, category: 'penreach' },
   { id: 62, image: penreach33, category: 'penreach' },
@@ -165,8 +166,8 @@ export const posters = [
   { id: 64, image: penreach35, category: 'penreach' },
   { id: 65, image: penreach36, category: 'penreach' },
   { id: 66, image: paperpath17 , category: 'paperpath' },
-  { id: 67, image: talenttide14 , category: 'talenttide' },
-  { id: 68, image: talenttide15 , category: 'talenttide' },
+  { id: 67, image: talenttide13 , category: 'talenttide' },
+  { id: 68, image: talenttide14 , category: 'talenttide' },
   { id: 69, image: penreach37 , category: 'penreach' },
   { id: 70, image: penreach38 , category: 'penreach' },
   { id: 71, image: penreach39 , category: 'penreach' },
@@ -185,11 +186,13 @@ export const posters = [
   { id: 84, image: penreach52 , category: 'penreach' },
   { id: 85, image: penreach53 , category: 'penreach' },
   { id: 86, image: penreach54 , category: 'penreach' },
-  { id: 87, image: talenttide16 , category: 'talenttide' },
+  { id: 87, image: talenttide15 , category: 'talenttide' },
   { id: 88, image: penreach55 , category: 'penreach' },
   { id: 89, image: penreach56 , category: 'penreach' },
   { id: 90, image: penreach57 , category: 'penreach' },
   { id: 91, image: afzalmunzir , category: 'talenttide' },
   { id: 92, image: afzalmunzir2 , category: 'talenttide' },
   { id: 93, image: champions , category: 'talenttide' },
+  { id: 94, image: paperpath18, category: 'paperpath' },
+  { id: 95, image: talenttide16, category: 'paperpath' },
 ];
