@@ -19,30 +19,6 @@ export const totalBatchwiseData = [
 
 // Monthwise data - each month contains batch points
 export const monthwiseData = {
-  January: [
-    { batch: "HIMA", points: 4 },
-    { batch: "HIBA", points: 2 },
-    { batch: "SWAFA", points: 2 },
-    { batch: "SUHBA", points: 40 },
-    { batch: "WAFD", points: 24 },
-    { batch: "USWA", points: 50 },
-  ],
-  February: [
-    { batch: "HIMA", points: 14 },
-    { batch: "HIBA", points: 14 },
-    { batch: "SWAFA", points: 14 },
-    { batch: "SUHBA", points: 14 },
-    { batch: "WAFD", points: 14 },
-    { batch: "USWA", points: 15 },
-  ],
-  March: [
-    { batch: "HIMA", points: 14 },
-    { batch: "HIBA", points: 15 },
-    { batch: "SWAFA", points: 42 },
-    { batch: "SUHBA", points: 11 },
-    { batch: "WAFD", points: 13 },
-    { batch: "USWA", points: 21 },
-  ],
   April: [
     { batch: "HIMA", points: 14 },
     { batch: "HIBA", points: 15 },
@@ -100,14 +76,6 @@ export const monthwiseData = {
     { batch: "USWA", points: 21 },
   ],
   November: [
-    { batch: "HIMA", points: 14 },
-    { batch: "HIBA", points: 15 },
-    { batch: "SWAFA", points: 42 },
-    { batch: "SUHBA", points: 11 },
-    { batch: "WAFD", points: 13 },
-    { batch: "USWA", points: 21 },
-  ],
-  December: [
     { batch: "HIMA", points: 14 },
     { batch: "HIBA", points: 15 },
     { batch: "SWAFA", points: 42 },
