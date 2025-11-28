@@ -1,6 +1,6 @@
 import GraphCard from "@/components/custom/graph/Graphcard"
 import MainGraph from "@/components/custom/graph/MainGraph"
-import { MONTHS } from "@/lib/graphdata"
+import { monthwiseData } from "@/lib/graphdata"
 
 const Charts = () => {
   return (
@@ -11,7 +11,7 @@ const Charts = () => {
 
         {/* Monthwise Charts */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {MONTHS.map((month) => (
+          {Object.keys(monthwiseData).map((month) => (
             <GraphCard key={month} month={month} />
           ))}
         </div>
