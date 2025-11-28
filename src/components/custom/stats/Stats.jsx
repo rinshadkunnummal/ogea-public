@@ -10,14 +10,14 @@ import CountUp from '../countup/CountUp'
 const STAT_ITEMS = [
   {
     label: 'Total',
-    value: 89,
+    value: 100,
     icon: Library,
     bgColor: 'bg-blue-50',
     textColor: 'text-blue-600',
   },
   {
     label: 'Penreach',
-    value: 57,
+    value: 65,
     key: null, // No API data for this
     icon: PenBox,
     bgColor: 'bg-purple-50',
@@ -25,7 +25,7 @@ const STAT_ITEMS = [
   },
   {
     label: 'Paperpath',
-    value: 17,
+    value: 18,
     key: null, // No API data for this
     icon: BookOpen,
     bgColor: 'bg-red-50',
@@ -33,7 +33,7 @@ const STAT_ITEMS = [
   },
   {
     label: 'TalentTide',
-    value: 15,
+    value: 17,
     key: null, // No API data for this
     icon: GraduationCap,
     bgColor: 'bg-green-50',
