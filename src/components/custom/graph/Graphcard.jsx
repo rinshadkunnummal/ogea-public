@@ -1,4 +1,4 @@
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
+import { CartesianGrid, Line, LineChart, XAxis } from "recharts"
 import {
   Card,
   CardContent,
@@ -29,20 +29,38 @@ const GraphCard = ({ month }) => {
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
-          <BarChart accessibilityLayer data={chartData}>
+          <LineChart
+            accessibilityLayer
+            data={chartData}
+            margin={{
+              left: 12,
+              right: 12,
+            }}
+          >
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="batch"
               tickLine={false}
-              tickMargin={10}
               axisLine={false}
+              tickMargin={8}
             />
             <ChartTooltip
               cursor={false}
-              content={<ChartTooltipContent />}
+              content={<ChartTooltipContent hideLabel />}
             />
-            <Bar dataKey="points" fill="black" radius={8} />
-          </BarChart>
+            <Line
+              dataKey="points"
+              type="natural"
+              stroke="black"
+              strokeWidth={2}
+              dot={{
+                fill: "black",
+              }}
+              activeDot={{
+                r: 6,
+              }}
+            />
+          </LineChart>
         </ChartContainer>
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
