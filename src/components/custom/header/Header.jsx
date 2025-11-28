@@ -59,7 +59,7 @@ const Header = () => {
     }, [isMobileMenuOpen, closeMobileMenu])
 
     return (
-        <header className="bg-white shadow-md w-full sm:w-3/4 lg:w-1/2 mx-auto my-2 rounded-lg font-quicksand sticky top-2 z-50">
+        <header className="bg-white shadow-md w-full sm:w-3/4 lg:w-2/3 mx-auto my-2 rounded-lg font-quicksand sticky top-2 z-50">
             <nav className="container mx-auto px-4 py-4">
                 <div className="flex items-center justify-between">
                     {/* Logo */}
@@ -78,7 +78,7 @@ const Header = () => {
                     </div>
 
                     {/* Desktop Navigation */}
-                    <ul className="hidden lg:flex space-x-6">
+                    <ul className="hidden lg:flex space-x-4">
                         {links.map((link) => (
                             <li key={link.path}>
                                 <NavItem link={link} />

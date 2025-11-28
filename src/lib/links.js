@@ -1,15 +1,21 @@
+import path from "path"
+
 const links = [
     {
         path: '/',
         name: 'Home'
     },
     {
-        path: '/works',
-        name: 'Literary Works'
+        path: '/charts',
+        name: 'Score Board'
     },
     {
         path: '/posters',
         name: 'Achievements'
+    },
+    {
+        path: '/works',
+        name: 'Literary Works'
     },
     {
         path: '/contact',
