@@ -6,7 +6,7 @@ const links = [
         name: 'Home'
     },
     // {
-    //     path: '/charts',
+    //     path: '/analytics',
     //     name: 'Score Board'
     // },/
     {
