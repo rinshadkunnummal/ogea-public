@@ -59,8 +59,8 @@ const Header = () => {
     }, [isMobileMenuOpen, closeMobileMenu])
 
     return (
-        <header className="bg-white shadow-md w-full sm:w-3/4 lg:w-1/2 mx-auto my-2 rounded-lg font-quicksand sticky top-2 z-50">
-            <nav className="container mx-auto px-4 py-4">
+        <header className="bg-white shadow-md w-full sm:w-4/5 lg:w-3/5 mx-auto my-2 rounded-lg font-quicksand sticky top-2 z-50">
+            <nav className="container mx-auto px-2 py-4">
                 <div className="flex items-center justify-between">
                     {/* Logo */}
                     <div className="text-2xl font-bold text-gray-800 flex-shrink-0">
@@ -78,7 +78,7 @@ const Header = () => {
                     </div>
 
                     {/* Desktop Navigation */}
-                    <ul className="hidden lg:flex space-x-6">
+                    <ul className="hidden md:flex space-x-1 lg:space-x-4">
                         {links.map((link) => (
                             <li key={link.path}>
                                 <NavItem link={link} />
@@ -87,7 +87,7 @@ const Header = () => {
                     </ul>
 
                     {/* Mobile Menu Button */}
-                    <div className="block lg:hidden">
+                    <div className="block md:hidden">
                         <Hamburger
                             toggled={isMobileMenuOpen}
                             toggle={setIsMobileMenuOpen}
@@ -99,7 +99,7 @@ const Header = () => {
                 {/* Mobile Menu Overlay */}
                 {isMobileMenuOpen && (
                     <div 
-                        className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 lg:hidden"
+                        className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 md:hidden"
                         onClick={closeMobileMenu}
                     />
                 )}
@@ -107,7 +107,7 @@ const Header = () => {
                 {/* Mobile Menu Sheet */}
                 <div
                     className={`
-                        lg:hidden fixed top-0 right-0 h-full w-80 max-w-[85vw]
+                        md:hidden fixed top-0 right-0 h-full w-80 max-w-[85vw]
                         bg-white shadow-2xl overflow-hidden
                         transition-transform duration-300 ease-in-out z-50
                         ${isMobileMenuOpen 

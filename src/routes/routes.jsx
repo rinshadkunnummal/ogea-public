@@ -5,6 +5,7 @@ import Works from '../Pages/Works'
 import Posters from '../Pages/Posters'
 import Contact from '../Pages/Contact'
 import Article from '../Pages/Article'
+import Charts from '../Pages/Charts'
 import Error from '../components/custom/error/Error'
 
 // Create browser router with all routes
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: 'contact',
         element: <Contact />,
+      },
+      {
+        path: 'charts',
+        element: <Charts />,
       },
     ],
   },
