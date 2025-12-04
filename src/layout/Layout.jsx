@@ -12,7 +12,7 @@ const Layout = () => {
       <section className="header">
         <Header />
       </section>
-      <main className='lg:px-10 px-2'>
+      <main className='lg:px-7 md:px-5 px-2'>
         <Analytics />
         <Outlet />
       </main>

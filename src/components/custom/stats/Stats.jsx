@@ -10,14 +10,14 @@ import CountUp from '../countup/CountUp'
 const STAT_ITEMS = [
   {
     label: 'Total',
-    value: 100,
+    value: 106,
     icon: Library,
     bgColor: 'bg-blue-50',
     textColor: 'text-blue-600',
   },
   {
     label: 'Penreach',
-    value: 65,
+    value: 71,
     key: null, // No API data for this
     icon: PenBox,
     bgColor: 'bg-purple-50',
@@ -116,7 +116,7 @@ const Stats = () => {
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 lg:px-28 px-15 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-col s-4 lg:px-28 px-15 gap-6">
             {statItems.map((item, index) => (
               <StatCard key={item.label} item={item} delay={index * 0.1} />
             ))}

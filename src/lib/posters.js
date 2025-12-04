@@ -64,6 +64,13 @@ import penreach62 from '../assets/posters/penreach/62.jpg'
 import penreach63 from '../assets/posters/penreach/63.jpg'
 import penreach64 from '../assets/posters/penreach/64.jpg'
 import penreach65 from '../assets/posters/penreach/65.jpg'
+import penreach66 from '../assets/posters/penreach/66.jpg'
+import penreach67 from '../assets/posters/penreach/67.jpg'
+import penreach68 from '../assets/posters/penreach/68.jpg'
+import penreach69 from '../assets/posters/penreach/69.jpg'
+import penreach70 from '../assets/posters/penreach/70.jpg'
+import penreach71 from '../assets/posters/penreach/71.jpg'
+
 
 // PaperPath imports (13 posters)
 import paperpath1 from '../assets/posters/paperpath/1.jpg'
@@ -214,4 +221,10 @@ export const posters = [
   { id: 102, image: penreach64 , category: 'penreach' },
   { id: 103, image: penreach65 , category: 'penreach' },
   { id: 104, image: talenttide17 , category: 'talenttide' },
+  { id: 105, image: penreach66 , category: 'penreach' },
+  { id: 106, image: penreach67 , category: 'penreach' },
+  { id: 107, image: penreach68 , category: 'penreach' },
+  { id: 108, image: penreach69 , category: 'penreach' },
+  { id: 109, image: penreach70 , category: 'penreach' },
+  { id: 110, image: penreach71 , category: 'penreach' },
 ];
