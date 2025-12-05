@@ -33,8 +33,8 @@ const GraphCard = ({ month }) => {
             accessibilityLayer
             data={chartData}
             margin={{
-              left: 12,
-              right: 12,
+              left: 20,
+              right: 20,
             }}
           >
             <CartesianGrid vertical={false} />
@@ -43,6 +43,7 @@ const GraphCard = ({ month }) => {
               tickLine={false}
               axisLine={false}
               tickMargin={8}
+              padding={{ left: 20, right: 20 }}
             />
             <ChartTooltip
               cursor={false}
