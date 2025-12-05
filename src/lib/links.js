@@ -5,10 +5,10 @@ const links = [
         path: '/',
         name: 'Home'
     },
-    // {
-    //     path: '/analytics',
-    //     name: 'Score Board'
-    // },/
+    {
+        path: '/analytics',
+        name: 'Score Board'
+    },
     {
         path: '/posters',
         name: 'Achievements'
