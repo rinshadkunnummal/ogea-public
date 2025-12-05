@@ -10,11 +10,11 @@ const Charts = () => {
         <MainGraph />
 
         {/* Monthwise Charts */}
-        {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {Object.keys(monthwiseData).map((month) => (
             <GraphCard key={month} month={month} />
-          ))} */}
-        {/* </div> */}
+          ))}
+        </div>
       </div>
     </div>
   )
