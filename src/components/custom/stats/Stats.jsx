@@ -10,7 +10,7 @@ import CountUp from '../countup/CountUp'
 const STAT_ITEMS = [
   {
     label: 'Total',
-    value: 106,
+    value: 107,
     icon: Library,
     bgColor: 'bg-blue-50',
     textColor: 'text-blue-600',
@@ -25,7 +25,7 @@ const STAT_ITEMS = [
   },
   {
     label: 'Paperpath',
-    value: 18,
+    value: 19,
     key: null, // No API data for this
     icon: BookOpen,
     bgColor: 'bg-red-50',
