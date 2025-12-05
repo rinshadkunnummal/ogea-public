@@ -91,6 +91,7 @@ import paperpath15 from '../assets/posters/paperpath/15.jpg'
 import paperpath16 from '../assets/posters/paperpath/16.jpg'
 import paperpath17 from '../assets/posters/paperpath/17.jpg'
 import paperpath18 from '../assets/posters/paperpath/18.jpg'
+import paperpath19 from '../assets/posters/paperpath/19.jpg'
 
 // TalentTide imports (12 posters)
 import talenttide1 from '../assets/posters/talenttide/1.jpg'
@@ -227,4 +228,5 @@ export const posters = [
   { id: 108, image: penreach69 , category: 'penreach' },
   { id: 109, image: penreach70 , category: 'penreach' },
   { id: 110, image: penreach71 , category: 'penreach' },
+  { id: 111, image: paperpath19 , category: 'paperpath' },
 ];
