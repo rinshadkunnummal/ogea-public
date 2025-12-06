@@ -4,7 +4,7 @@ import { monthwiseData } from "@/lib/graphdata"
 
 const Charts = () => {
   return (
-    <div className="py-10 px-4 md:px-8 lg:px-13 min-h-screen">
+    <div className="py-10 px-1 md:px-8 lg:px-13 min-h-screen">
       <div className="max-w-4xl mx-auto space-y-8">
         {/* Total Analytics Chart */}
         <MainGraph />
