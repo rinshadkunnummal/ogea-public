@@ -10,14 +10,14 @@ import CountUp from '../countup/CountUp'
 const STAT_ITEMS = [
   {
     label: 'Total',
-    value: 107,
+    value: 111,
     icon: Library,
     bgColor: 'bg-blue-50',
     textColor: 'text-blue-600',
   },
   {
     label: 'Penreach',
-    value: 71,
+    value: 75,
     key: null, // No API data for this
     icon: PenBox,
     bgColor: 'bg-purple-50',
