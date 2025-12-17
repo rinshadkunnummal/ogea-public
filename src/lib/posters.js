@@ -74,7 +74,23 @@ import penreach72 from '../assets/posters/penreach/72.jpg'
 import penreach73 from '../assets/posters/penreach/73.jpg'
 import penreach74 from '../assets/posters/penreach/74.jpg'
 import penreach75 from '../assets/posters/penreach/75.jpg'
-
+import penreach76 from '../assets/posters/penreach/76.jpg'
+import penreach77 from '../assets/posters/penreach/77.jpg'
+import penreach78 from '../assets/posters/penreach/78.jpg'
+import penreach79 from '../assets/posters/penreach/79.jpg'
+import penreach80 from '../assets/posters/penreach/80.jpg'
+import penreach81 from '../assets/posters/penreach/81.jpg'
+import penreach82 from '../assets/posters/penreach/82.jpg'
+import penreach83 from '../assets/posters/penreach/83.jpg'
+import penreach84 from '../assets/posters/penreach/84.jpg'
+import penreach85 from '../assets/posters/penreach/85.jpg'
+import penreach86 from '../assets/posters/penreach/86.jpg'
+import penreach87 from '../assets/posters/penreach/87.jpg'
+import penreach88 from '../assets/posters/penreach/88.jpg'
+import penreach89 from '../assets/posters/penreach/89.jpg'
+import penreach90 from '../assets/posters/penreach/90.jpg'
+import penreach91 from '../assets/posters/penreach/91.jpg'
+import penreach92 from '../assets/posters/penreach/92.jpg'
 
 // PaperPath imports (13 posters)
 import paperpath1 from '../assets/posters/paperpath/1.jpg'
@@ -237,4 +253,22 @@ export const posters = [
   { id: 113, image: penreach73 , category: 'penreach' },
   { id: 114, image: penreach74 , category: 'penreach' }, 
   { id: 115, image: penreach75 , category: 'penreach' },
+  { id: 116, image: penreach76 , category: 'penreach' },
+  { id: 117, image: penreach77 , category: 'penreach' },
+  { id: 118, image: penreach78 , category: 'penreach' },
+  { id: 119, image: penreach79 , category: 'penreach' },
+  { id: 120, image: penreach80 , category: 'penreach' },
+  { id: 121, image: penreach81 , category: 'penreach' },
+  { id: 122, image: penreach82 , category: 'penreach' },
+  { id: 123, image: penreach83 , category: 'penreach' },
+  { id: 124, image: penreach84 , category: 'penreach' },
+  { id: 125, image: penreach85 , category: 'penreach' },
+  { id: 126, image: penreach86 , category: 'penreach' },
+  { id: 127, image: penreach87 , category: 'penreach' },
+  { id: 128, image: penreach88 , category: 'penreach' },
+  { id: 129, image: penreach89 , category: 'penreach' },
+  { id: 130, image: penreach90 , category: 'penreach' },
+  { id: 131, image: penreach91 , category: 'penreach' },
+  { id: 132, image: penreach92 , category: 'penreach' },
+  
 ];
