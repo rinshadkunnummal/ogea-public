@@ -6,6 +6,7 @@ import Posters from '../Pages/Posters'
 import Contact from '../Pages/Contact'
 import Article from '../Pages/Article'
 import Charts from '../Pages/Charts'
+import Achievements from '../Pages/Achievements'
 import Error from '../components/custom/error/Error'
 
 // Create browser router with all routes
@@ -27,8 +28,8 @@ const router = createBrowserRouter([
         element: <Article />,
       },
       {
-        path: 'posters',
-        element: <Posters />,
+        path: 'achievements',
+        element: <Achievements />,
       },
       {
         path: 'contact',

@@ -10,13 +10,13 @@ const links = [
         name: 'Score Board'
     },
     {
-        path: '/posters',
+        path: '/achievements',
         name: 'Achievements'
     },
-    // {
-    //     path: '/works',
-    //     name: 'Literary Works'
-    // },
+    {
+        path: '/works',
+        name: 'Literary Works'
+    },
     {
         path: '/contact',
         name: 'Contact'
