@@ -2,73 +2,110 @@ import { memo, useMemo } from 'react'
 import { motion } from "motion/react"
 import { useStats } from '../../../lib/stats'
 import { Skeleton } from '../../ui/skeleton'
-import { Badge } from '../../ui/badge'
-import { BookOpen, GraduationCap, PenBox, Library } from 'lucide-react'
+import { BookOpen, GraduationCap, PenBox, Library, TrendingUp } from 'lucide-react'
 import CountUp from '../countup/CountUp'
 
-// Stat items configuration (fallback values)
+// Stat items configuration
 const STAT_ITEMS = [
   {
     label: 'Total',
+    description: 'All Achievements',
     value: 130,
     icon: Library,
-    bgColor: 'bg-blue-50',
-    textColor: 'text-blue-600',
+    color: 'blue',
   },
   {
     label: 'Penreach',
+    description: 'Publications',
     value: 92,
-    key: null, // No API data for this
+    key: null,
     icon: PenBox,
-    bgColor: 'bg-purple-50',
-    textColor: 'text-purple-600',
+    color: 'indigo',
   },
   {
     label: 'Paperpath',
+    description: 'Seminar Papers',
     value: 21,
-    key: null, // No API data for this
+    key: null,
     icon: BookOpen,
-    bgColor: 'bg-red-50',
-    textColor: 'text-red-600',
+    color: 'amber',
   },
   {
     label: 'TalentTide',
+    description: 'Student Spotlights',
     value: 17,
-    key: null, // No API data for this
+    key: null,
     icon: GraduationCap,
-    bgColor: 'bg-green-50',
-    textColor: 'text-green-600',
+    color: 'emerald',
   },
 ]
 
+const colorMap = {
+  blue: { bg: 'bg-blue-600', light: 'bg-blue-50', text: 'text-blue-600', ring: 'ring-blue-100' },
+  indigo: { bg: 'bg-indigo-600', light: 'bg-indigo-50', text: 'text-indigo-600', ring: 'ring-indigo-100' },
+  amber: { bg: 'bg-amber-500', light: 'bg-amber-50', text: 'text-amber-600', ring: 'ring-amber-100' },
+  emerald: { bg: 'bg-emerald-600', light: 'bg-emerald-50', text: 'text-emerald-600', ring: 'ring-emerald-100' },
+}
+
 // Memoized StatCard component
-const StatCard = memo(({ item, delay }) => {
+const StatCard = memo(({ item, delay, index }) => {
   const Icon = item.icon
+  const colors = colorMap[item.color]
+  
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200">
-      <div className="flex items-center gap-4">
-        <div className={`${item.bgColor} p-3 rounded-lg`}>
-          <Icon className={`w-6 h-6 ${item.textColor}`} />
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay: index * 0.08 }}
+      className="group relative"
+    >
+      <div className={`absolute -inset-0.5 ${colors.bg} rounded-2xl opacity-0 group-hover:opacity-10 blur transition-opacity duration-300`} />
+      <div className="relative bg-white rounded-2xl p-8 ring-1 ring-gray-200 hover:ring-2 hover:ring-offset-2 transition-all duration-300 cursor-default text-center">
+        
+        {/* Icon */}
+        <div className={`inline-flex items-center justify-center w-12 h-12 ${colors.light} ${colors.text} rounded-xl mb-5 ring-4 ${colors.ring} mx-auto`}>
+          <Icon className="w-6 h-6" strokeWidth={2} />
         </div>
-        <div>
-          <p className="text-3xl font-bold text-gray-800">
+        
+        {/* Value */}
+        <div className="flex items-baseline justify-center gap-2 mb-2">
+          <span className="text-5xl text-gray-900 tracking-tight">
             <CountUp to={item.value} duration={1.5} delay={delay} />
-          </p>
-          <Badge variant="outline" className="text-xs">
-            {item.label}
-          </Badge>
+          </span>
         </div>
+        
+        {/* Label & Description */}
+        <h3 className="text-lg font-semibold text-gray-900 mb-1">{item.label}</h3>
+        <p className="text-sm text-gray-500">{item.description}</p>
       </div>
-    </div>
+    </motion.div>
   )
 })
 
 StatCard.displayName = 'StatCard'
 
+// Skeleton Card component
+const SkeletonCard = memo(({ index }) => (
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ delay: index * 0.05 }}
+    className="bg-white rounded-2xl p-8 ring-1 ring-gray-200 flex flex-col items-center text-center"
+  >
+    <Skeleton className="w-12 h-12 rounded-xl mb-5" />
+    <Skeleton className="h-12 w-24 mb-3" />
+    <Skeleton className="h-5 w-20 mb-2" />
+    <Skeleton className="h-4 w-28" />
+  </motion.div>
+))
+
+SkeletonCard.displayName = 'SkeletonCard'
+
 const Stats = () => {
   const stats = useStats()
 
-  // Merge API stats with static config - use API data if available, otherwise use fallback
+  // Merge API stats with static config
   const statItems = useMemo(() => {
     return STAT_ITEMS.map(item => ({
       ...item,
@@ -77,53 +114,47 @@ const Stats = () => {
   }, [stats])
 
   return (
-    <motion.section
+    <section
       id='stats'
-      className='py-10 px-4 md:px-8 lg:px-16 bg-gray-50'
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.1 }}
-      transition={{
-        duration: 0.4,
-        ease: [0.25, 0.1, 0.25, 1]
-      }}
+      className='py-24 px-4 md:px-8 lg:px-16 bg-gray-50/50'
     >
-      {/* Main Title */}
-      <div className="text-center mb-12">
-        <h1 className='font-bold text-4xl md:text-5xl lg:text-6xl text-gray-700 mb-4'>
-          Statistics
-        </h1>
-        <hr className='mx-auto text-gray-300 my-4 w-1/4' />
-        <p className='text-gray-500 text-lg md:text-xl max-w-4xl mx-auto'>
-          See the statistics of programs by our talented students
-        </p>
-      </div>
-
-      {/* Stats Grid */}
       <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="max-w-3xl mx-auto text-center mb-20"
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white rounded-full ring-1 ring-gray-200 text-sm text-gray-600 mb-6">
+            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+            Live
+          </div>
+          <h2 className='font-bold text-4xl md:text-5xl text-gray-900 mb-6 tracking-tight'>
+            Statistics
+          </h2>
+          <p className='text-gray-600 text-xl leading-relaxed'>
+            Numbers that reflect the dedication and talent of our student contributors
+          </p>
+        </motion.div>
+
+        {/* Stats Grid */}
         {stats.loading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {Array.from({ length: 4 }, (_, i) => (
-              <div key={i} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                <div className="flex items-center gap-4">
-                  <Skeleton className="h-12 w-12 rounded-lg" />
-                  <div className="flex-1 space-y-2">
-                    <Skeleton className="h-8 w-16" />
-                    <Skeleton className="h-4 w-20" />
-                  </div>
-                </div>
-              </div>
+              <SkeletonCard key={i} index={i} />
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-col s-4 lg:px-28 px-15 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {statItems.map((item, index) => (
-              <StatCard key={item.label} item={item} delay={index * 0.1} />
+              <StatCard key={item.label} item={item} delay={index * 0.1} index={index} />
             ))}
           </div>
         )}
       </div>
-    </motion.section>
+    </section>
   )
 }
 
