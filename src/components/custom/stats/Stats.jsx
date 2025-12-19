@@ -1,44 +1,71 @@
-import { memo, useMemo } from 'react'
+import { memo, useMemo, useState, useEffect } from 'react'
 import { motion } from "motion/react"
-import { useStats } from '../../../lib/stats'
 import { Skeleton } from '../../ui/skeleton'
-import { BookOpen, GraduationCap, PenBox, Library, TrendingUp } from 'lucide-react'
+import { BookOpen, GraduationCap, PenBox, Library } from 'lucide-react'
 import CountUp from '../countup/CountUp'
 
-// Stat items configuration
-const STAT_ITEMS = [
+// Stat items configuration template
+const STAT_CONFIG = [
   {
     label: 'Total',
     description: 'All Achievements',
-    value: 130,
+    key: 'totalCount',
     icon: Library,
     color: 'blue',
   },
   {
     label: 'Penreach',
     description: 'Publications',
-    value: 92,
-    key: null,
+    key: 'penreachCount',
     icon: PenBox,
     color: 'indigo',
   },
   {
     label: 'Paperpath',
     description: 'Seminar Papers',
-    value: 21,
-    key: null,
+    key: 'paperpathCount',
     icon: BookOpen,
     color: 'amber',
   },
   {
     label: 'TalentTide',
     description: 'Student Spotlights',
-    value: 17,
-    key: null,
+    key: 'talenttideCount',
     icon: GraduationCap,
     color: 'emerald',
   },
 ]
+
+// Custom hook to fetch statistics from API
+const useStatistics = () => {
+  const [data, setData] = useState({ loading: true, stats: null, error: null })
+
+  useEffect(() => {
+    const fetchStatistics = async () => {
+      try {
+        const apiBaseUrl = import.meta.env.VITE_API_BASE_URL
+        const response = await fetch(`${apiBaseUrl}/statistics`)
+        
+        if (!response.ok) {
+          throw new Error(`Failed to fetch statistics: ${response.statusText}`)
+        }
+        
+        const response_data = await response.json()
+        console.log('API Response:', response_data)
+        const stats = response_data?.data?.statistics?.[0] || null
+        console.log('Extracted stats:', stats)
+        setData({ loading: false, stats, error: null })
+      } catch (error) {
+        console.error('Error fetching statistics:', error)
+        setData({ loading: false, stats: null, error: error.message })
+      }
+    }
+
+    fetchStatistics()
+  }, [])
+
+  return data
+}
 
 const colorMap = {
   blue: { bg: 'bg-blue-600', light: 'bg-blue-50', text: 'text-blue-600', ring: 'ring-blue-100' },
@@ -103,13 +130,13 @@ const SkeletonCard = memo(({ index }) => (
 SkeletonCard.displayName = 'SkeletonCard'
 
 const Stats = () => {
-  const stats = useStats()
+  const { loading, stats, error } = useStatistics()
 
-  // Merge API stats with static config
+  // Build stat items from API data
   const statItems = useMemo(() => {
-    return STAT_ITEMS.map(item => ({
+    return STAT_CONFIG.map(item => ({
       ...item,
-      value: item.key && stats[item.key] ? stats[item.key] : item.value
+      value: stats?.[item.key] ?? 0
     }))
   }, [stats])
 
@@ -140,7 +167,7 @@ const Stats = () => {
         </motion.div>
 
         {/* Stats Grid */}
-        {stats.loading ? (
+        {loading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {Array.from({ length: 4 }, (_, i) => (
               <SkeletonCard key={i} index={i} />
