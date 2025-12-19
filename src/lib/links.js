@@ -13,10 +13,10 @@ const links = [
         path: '/posters',
         name: 'Achievements'
     },
-    {
-        path: '/works',
-        name: 'Literary Works'
-    },
+    // {
+    //     path: '/works',
+    //     name: 'Literary Works'
+    // },
     {
         path: '/contact',
         name: 'Contact'
