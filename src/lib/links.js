@@ -6,12 +6,12 @@ const links = [
         name: 'Home'
     },
     {
-        path: '/analytics',
-        name: 'Score Board'
-    },
-    {
         path: '/achievements',
         name: 'Achievements'
+    },
+    {
+        path: '/analytics',
+        name: 'Score Board'
     },
     {
         path: '/works',

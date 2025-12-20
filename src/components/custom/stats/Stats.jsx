@@ -158,7 +158,7 @@ const Stats = () => {
             Statistics
           </h2>
           <p className='text-gray-600 text-xl leading-relaxed'>
-            Numbers that reflect the dedication and talent of our student contributors
+            Numbers that reflect the dedication and talent of our students
           </p>
         </motion.div>
 
