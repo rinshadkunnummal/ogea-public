@@ -154,10 +154,6 @@ const Stats = () => {
           transition={{ duration: 0.5 }}
           className="max-w-3xl mx-auto text-center mb-20"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white rounded-full ring-1 ring-gray-200 text-sm text-gray-600 mb-6">
-            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-            Live
-          </div>
           <h2 className='font-bold text-4xl md:text-5xl text-gray-900 mb-6 tracking-tight'>
             Statistics
           </h2>
